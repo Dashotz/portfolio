@@ -1,0 +1,5 @@
+# Icons Folder
+Place custom SVG icons here (if not using react-icons).
+
+Example usage:
+import IconSvg from '@/assets/icons/icon.svg'

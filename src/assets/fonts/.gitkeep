@@ -1,0 +1,8 @@
+# Fonts Folder
+Place your custom font files here.
+
+Example usage in CSS:
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/CustomFont.woff2') format('woff2');
+}

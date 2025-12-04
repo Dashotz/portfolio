@@ -1,0 +1,5 @@
+# Images Folder
+Place your image files here.
+
+Example usage:
+import heroImage from '@/assets/images/hero.jpg'
