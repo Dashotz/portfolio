@@ -1,5 +1,7 @@
 import type { NavItem, SocialLink, PersonalInfo, Skill, Project, ContactInfo } from '@/types'
 import type { Variants } from 'framer-motion'
+import camerinoImage from '@/assets/images/camerino.jpg'
+import sttmaImage from '@/assets/images/sttma.jpg'
 
 // Navigation items
 export const navItems: NavItem[] = [
@@ -68,20 +70,20 @@ export const skills: Skill[] = [
 // Projects
 export const projects: Project[] = [
   {
-    title: 'E-Commerce Platform',
-    description: 'A full-featured e-commerce platform with shopping cart, payment integration, and admin dashboard.',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800',
-    github: 'https://github.com',
-    live: 'https://example.com',
+    title: 'Learning Management System',
+    description: 'A comprehensive LMS platform for Gov D.M. Camerino with student dashboard, grade tracking, assignments, quizzes, and attendance management. Features include subject management, calendar integration, and real-time activity tracking.',
+    technologies: ['PHP', 'HTML', 'CSS', 'JavaScript', 'MySQL'],
+    image: camerinoImage,
+    github: 'https://github.com/Dashotz/Camerino-Hub',
+    live: 'https://camerinohub.helioho.st',
   },
   {
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates and team collaboration features.',
-    technologies: ['Vue.js', 'Firebase', 'Tailwind CSS'],
-    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800',
-    github: 'https://github.com',
-    live: 'https://example.com',
+    title: 'St. Thomas More School',
+    description: 'An academic website developed for St. Thomas More School, featuring essential functions for information sharing, student access, and school updates. Includes a Learning Management System portal with login functionality for students and teachers.',
+    technologies: ['PHP', 'JavaScript', 'CSS', 'HTML', 'Bootstrap', 'MySQL'],
+    image: sttmaImage,
+    github: 'https://github.com/Dashotz',
+    live: 'https://stthomasmore.helioho.st',
   },
   {
     title: 'Social Media Dashboard',
