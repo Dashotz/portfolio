@@ -3,6 +3,7 @@ import type { Variants } from 'framer-motion'
 import camerinoImage from '@/assets/images/camerino.jpg'
 import sttmaImage from '@/assets/images/sttma.jpg'
 import weatherImage from '@/assets/images/weather.png'
+import socialmediaImage from '@/assets/images/socialmedia.jpg'
 
 // Navigation items
 export const navItems: NavItem[] = [
@@ -88,10 +89,10 @@ export const projects: Project[] = [
   },
   {
     title: 'Social Media Dashboard',
-    description: 'A comprehensive dashboard for managing social media accounts with analytics and scheduling.',
-    technologies: ['Next.js', 'TypeScript', 'Chart.js'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800',
-    github: 'https://github.com',
+    description: 'A comprehensive, real-time dashboard for managing multiple social media accounts with advanced analytics, post scheduling, and performance insights. Features include multi-platform support (Facebook, Instagram, Twitter), interactive charts, smart post scheduling with live preview, activity tracking, and enterprise-grade security with rate limiting and XSS protection.',
+    technologies: ['Next.js 14', 'TypeScript', 'Chart.js', 'Tailwind CSS', 'Zod', 'date-fns'],
+    image: socialmediaImage,
+    github: 'https://github.com/Dashotz',
     live: 'https://example.com',
   },
   {

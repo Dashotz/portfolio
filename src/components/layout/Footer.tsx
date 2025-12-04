@@ -24,7 +24,7 @@ const Footer = () => {
             transition={{ duration: 0.5 }}
             className="mb-4 md:mb-0 flex items-center gap-2"
           >
-            Made with <FaHeart className="text-red-500 animate-pulse" /> by Your Name
+            Made with <FaHeart className="text-red-500 animate-pulse" /> by Francis Cruz
           </motion.p>
 
           <motion.div
