@@ -1,27 +1,30 @@
-# Portfolio Website
+# Portfolio Website - Francis Cruz
 
-A modern, animated portfolio website built with React.js, featuring smooth animations, API integration, and a beautiful UI.
+A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features smooth animations, dark mode support, and a beautiful UI showcasing projects, skills, and contact information.
 
-## Features
+![Portfolio Preview](https://img.shields.io/badge/React-18.2.0-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-blue) ![Vite](https://img.shields.io/badge/Vite-5.0.8-purple) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.0-38bdf8)
 
-- 🎨 Modern and responsive design
-- ✨ Smooth animations using Framer Motion
-- 📱 Fully responsive layout
-- 🎯 Smooth scroll navigation
-- 🌈 Beautiful gradient effects
-- ⚡ Fast performance with Vite
-- 🔌 **API integration with graceful fallback**
-- 📁 **Clean, organized folder structure**
+## ✨ Features
 
-## Tech Stack
+- 🎨 **Modern & Responsive Design** - Beautiful UI that works on all devices
+- 🌙 **Dark Mode** - Toggle between light and dark themes with persistent preference
+- ✨ **Smooth Animations** - Powered by Framer Motion for engaging user experience
+- 📱 **Mobile-First** - Fully responsive with mobile-optimized navigation
+- 🔒 **Security** - Input validation, rate limiting, and XSS protection
+- ⚡ **Fast Performance** - Optimized with Vite for lightning-fast builds
+- 🎯 **SEO Friendly** - Proper meta tags and semantic HTML
+- 📊 **Project Showcase** - Display your projects with images, descriptions, and links
 
-- **React.js** - UI library
-- **Vite** - Build tool
-- **Tailwind CSS** - Styling
-- **Framer Motion** - Animations
+## 🛠️ Tech Stack
+
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Animation library
 - **React Icons** - Icon library
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -30,15 +33,16 @@ A modern, animated portfolio website built with React.js, featuring smooth anima
 
 ### Installation
 
-1. Install dependencies:
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/portfolio.git
+cd portfolio
+```
+
+2. Install dependencies:
 ```bash
 npm install
 ```
-
-2. (Optional) Configure API:
-   - Create a `.env` file in the root directory
-   - Add your API URL: `VITE_API_BASE_URL=http://localhost:3000/api`
-   - See `README_API.md` for detailed API documentation
 
 3. Start the development server:
 ```bash
@@ -47,7 +51,7 @@ npm run dev
 
 4. Open your browser and visit `http://localhost:5173`
 
-### Build for Production
+## 📦 Build for Production
 
 ```bash
 npm run build
@@ -55,129 +59,165 @@ npm run build
 
 The production build will be in the `dist` folder.
 
-## API Integration
-
-This portfolio supports dynamic content through API integration. The application gracefully falls back to static data if the API is unavailable.
-
-**Features:**
-- Fetch projects from API
-- Dynamic personal information
-- Contact form submission
-- Automatic fallback to static data
-
-See `README_API.md` for complete API documentation and backend examples.
-
-### Quick Start with API
-
-1. Start the example backend server (optional):
+Preview the production build:
 ```bash
-cd backend-example
-npm install
-npm start
+npm run preview
 ```
 
-2. Create `.env` file in root:
-```env
-VITE_API_BASE_URL=http://localhost:3000/api
-```
+## 🌐 Deployment to GitHub Pages
 
-3. Start the frontend:
+This project is configured for automatic deployment to GitHub Pages using GitHub Actions.
+
+### Setup Instructions
+
+1. **Update Base Path** in `vite.config.ts`:
+   - If your repo is `username.github.io`, change `base: '/portfolio/'` to `base: '/'`
+   - Otherwise, replace `'portfolio'` with your actual repository name
+
+2. **Enable GitHub Pages**:
+   - Go to your repository → **Settings** → **Pages**
+   - Under **Source**, select **GitHub Actions**
+
+3. **Push to GitHub**:
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push origin main
+   ```
+
+4. **Automatic Deployment**:
+   - The GitHub Actions workflow will automatically build and deploy
+   - Check the **Actions** tab to see deployment status
+   - Your site will be live at: `https://your-username.github.io/portfolio/`
+
+### Manual Deployment
+
+If you prefer manual deployment:
+
 ```bash
-npm run dev
+npm install --save-dev gh-pages
+npm run deploy
 ```
 
-## Customization
-
-### Personal Information
-
-You can customize your portfolio in two ways:
-
-**Option 1: Edit Constants File** (Static)
-- Update `src/constants/index.js` with your information
-
-**Option 2: Use API** (Dynamic)
-- Set up a backend API (see `README_API.md`)
-- Configure `VITE_API_BASE_URL` in `.env`
-- Data will be fetched automatically
-
-### Colors
-
-The color scheme can be customized in `tailwind.config.js`. The primary color is set to blue, but you can change it to match your brand.
-
-### Images
-
-Replace the placeholder project images in `src/constants/index.js` or via API with your own images.
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 portfolio/
 ├── src/
 │   ├── components/
 │   │   ├── layout/          # Layout components
-│   │   │   ├── Header.jsx
-│   │   │   └── Footer.jsx
+│   │   │   ├── Header.tsx   # Navigation header with dark mode toggle
+│   │   │   └── Footer.tsx   # Footer component
 │   │   └── sections/        # Page sections
-│   │       ├── Hero.jsx
-│   │       ├── About.jsx
-│   │       ├── Projects.jsx
-│   │       └── Contact.jsx
+│   │       ├── Hero.tsx     # Hero/landing section
+│   │       ├── About.tsx    # About me section
+│   │       ├── Projects.tsx # Projects showcase
+│   │       └── Contact.tsx  # Contact form section
 │   ├── hooks/               # Custom React hooks
-│   │   ├── useProjects.js
-│   │   ├── usePersonalInfo.js
-│   │   ├── useSkills.js
-│   │   └── useContact.js
+│   │   ├── useContact.ts    # Contact form handling
+│   │   ├── usePersonalInfo.ts
+│   │   ├── useProjects.ts
+│   │   ├── useSkills.ts
+│   │   └── useTheme.ts      # Dark mode theme management
 │   ├── services/            # API services
-│   │   └── api.js
+│   │   └── api.ts           # API service layer
 │   ├── utils/               # Utility functions
-│   │   └── scrollTo.js
-│   ├── constants/           # Static data & config
-│   │   └── index.js
-│   ├── config/              # Configuration
-│   │   └── api.js
-│   ├── styles/              # Stylesheets
-│   │   └── index.css
-│   ├── App.jsx
-│   └── main.jsx
-├── backend-example/         # Example backend server
-│   ├── server.js
-│   └── package.json
+│   │   ├── scrollTo.ts      # Smooth scroll utility
+│   │   ├── validation.ts    # Input validation
+│   │   └── rateLimit.ts     # Rate limiting
+│   ├── constants/           # Static data
+│   │   └── index.ts         # Projects, skills, contact info
+│   ├── types/               # TypeScript types
+│   │   └── index.ts
+│   ├── styles/              # Global styles
+│   │   └── index.css        # Tailwind imports
+│   ├── assets/              # Static assets
+│   │   └── images/          # Project images
+│   ├── App.tsx              # Main app component
+│   └── main.tsx             # Entry point
+├── .github/
+│   └── workflows/
+│       └── deploy.yml       # GitHub Actions deployment
+├── public/                  # Public assets
 ├── index.html
 ├── package.json
+├── vite.config.ts
 ├── tailwind.config.js
-├── vite.config.js
-├── README.md
-└── README_API.md
+└── tsconfig.json
 ```
 
-## Folder Organization
+## 🎨 Customization
 
-The project is organized into logical folders:
+### Personal Information
 
-- **`components/layout/`** - Reusable layout components (Header, Footer)
-- **`components/sections/`** - Main page sections (Hero, About, Projects, Contact)
-- **`hooks/`** - Custom React hooks for data fetching and state management
-- **`services/`** - API service layer for HTTP requests
-- **`utils/`** - Helper functions and utilities
-- **`constants/`** - Static data and configuration
-- **`config/`** - App configuration files
-- **`styles/`** - Global stylesheets
+Edit `src/constants/index.ts` to update:
+- Personal info (name, title, bio, about)
+- Projects (add/edit your projects)
+- Skills
+- Contact information
+- Social links
 
-## Environment Variables
+### Colors & Theme
 
-Create a `.env` file in the root directory:
-
-```env
-# API Configuration (optional)
-VITE_API_BASE_URL=http://localhost:3000/api
+Customize colors in `tailwind.config.js`:
+```javascript
+colors: {
+  primary: {
+    // Your custom color palette
+  }
+}
 ```
 
-If not provided, the app will use static data from constants.
+### Images
 
-## License
+Add your project images to `src/assets/images/` and import them in `src/constants/index.ts`:
+```typescript
+import projectImage from '@/assets/images/project.jpg'
+```
 
-MIT License - feel free to use this for your portfolio!
+### Dark Mode
 
-## Credits
+Dark mode is automatically handled. The theme preference is saved in localStorage and persists across sessions.
 
-Built with ❤️ using React.js and Framer Motion
+## 🔒 Security Features
+
+- **Input Validation** - All form inputs are validated and sanitized
+- **Rate Limiting** - Prevents spam and DoS attacks (5 requests per minute)
+- **XSS Protection** - Input sanitization to prevent XSS attacks
+- **Security Headers** - CSP, X-Frame-Options, and other security headers
+- **Error Handling** - Generic error messages to prevent information leakage
+
+## 📝 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run deploy` - Deploy to GitHub Pages (requires gh-pages)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+MIT License - feel free to use this for your own portfolio!
+
+## 👤 Author
+
+**Francis Cruz**
+
+- GitHub: [@Dashotz](https://github.com/Dashotz)
+- Email: frncsgerard02@gmail.com
+- LinkedIn: [Francis Cruz](https://ph.linkedin.com/in/frncszxc)
+
+## 🙏 Acknowledgments
+
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+
+---
+
+⭐ If you like this project, please give it a star!
