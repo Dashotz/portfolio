@@ -99,7 +99,14 @@ class ApiService {
    * Submit contact form
    */
   async submitContact(formData: ContactFormData): Promise<ApiResponse<ContactSubmitResponse>> {
-    return this.post<ContactSubmitResponse>('/contact', formData)
+    // Additional server-side validation should be implemented
+    // This is just client-side sanitization
+    const sanitizedData: ContactFormData = {
+      name: formData.name.trim().slice(0, 100),
+      email: formData.email.trim().toLowerCase().slice(0, 254),
+      message: formData.message.trim().slice(0, 2000),
+    }
+    return this.post<ContactSubmitResponse>('/contact', sanitizedData)
   }
 
   /**

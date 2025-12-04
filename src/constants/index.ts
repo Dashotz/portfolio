@@ -2,6 +2,7 @@ import type { NavItem, SocialLink, PersonalInfo, Skill, Project, ContactInfo } f
 import type { Variants } from 'framer-motion'
 import camerinoImage from '@/assets/images/camerino.jpg'
 import sttmaImage from '@/assets/images/sttma.jpg'
+import weatherImage from '@/assets/images/weather.png'
 
 // Navigation items
 export const navItems: NavItem[] = [
@@ -95,11 +96,11 @@ export const projects: Project[] = [
   },
   {
     title: 'Weather App',
-    description: 'A beautiful weather application with location-based forecasts and interactive maps.',
-    technologies: ['React', 'OpenWeather API', 'Leaflet'],
-    image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800',
-    github: 'https://github.com',
-    live: 'https://example.com',
+    description: 'A beautiful weather application with location-based forecasts and interactive maps. Features include 5-day forecasts, nearby cities weather, city search with autocomplete, and interactive Leaflet maps. Built with free APIs (Open-Meteo & Nominatim) - no API keys required!',
+    technologies: ['React', 'Leaflet', 'React-Leaflet', 'Open-Meteo API', 'Nominatim', 'Tailwind CSS', 'Vite'],
+    image: weatherImage,
+    github: 'https://github.com/Dashotz/weather',
+    live: 'https://dashotz.github.io/weather/',
   },
 ]
 

@@ -5,6 +5,7 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa'
 import { contactInfo, containerVariants, itemVariants } from '@/constants'
 import { useContact } from '@/hooks/useContact'
+import { sanitizeInput } from '@/utils/validation'
 import type { ContactFormData } from '@/types'
 import type { IconType } from 'react-icons'
 
@@ -38,9 +39,10 @@ const Contact = () => {
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const value = sanitizeInput(e.target.value)
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     })
   }
 
@@ -131,7 +133,7 @@ const Contact = () => {
                 )}
 
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
                     Name
                   </label>
                   <input
@@ -141,14 +143,15 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    maxLength={100}
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                     placeholder="Your Name"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
                     Email
                   </label>
                   <input
@@ -158,14 +161,15 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    maxLength={254}
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                     placeholder="your.email@example.com"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
                     Message
                   </label>
                   <textarea
@@ -174,9 +178,10 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
+                    maxLength={2000}
                     disabled={isSubmitting}
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
                     placeholder="Your message..."
                   />
                 </div>
