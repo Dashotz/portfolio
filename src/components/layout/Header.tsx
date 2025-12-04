@@ -95,7 +95,7 @@ const Header = ({ isScrolled }: HeaderProps) => {
               )}
             </button>
             <button
-              className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+              className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -116,21 +116,24 @@ const Header = ({ isScrolled }: HeaderProps) => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden"
+              className="md:hidden overflow-hidden mt-4"
             >
-              <div className="py-4 space-y-4">
-                {navItems.map((item) => (
-                  <a
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-4 px-4 space-y-2">
+                {navItems.map((item, index) => (
+                  <motion.a
                     key={item.name}
                     href={item.href}
                     onClick={(e) => {
                       e.preventDefault()
                       handleNavClick(item.href)
                     }}
-                    className="block text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors"
+                    className="block px-4 py-3 text-center text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-gray-700 font-medium transition-colors rounded-lg"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
                   >
                     {item.name}
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </motion.div>
