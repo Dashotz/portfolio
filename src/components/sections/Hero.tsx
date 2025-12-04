@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
-import { HiArrowDown } from 'react-icons/hi'
 import { usePersonalInfo } from '@/hooks/usePersonalInfo'
 import { socialLinks, containerVariants, heroItemVariants } from '@/constants'
 import { scrollToElement } from '@/utils/scrollTo'
@@ -136,26 +135,6 @@ const Hero = () => {
               Get In Touch
             </motion.a>
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.a
-            href="#about"
-            onClick={(e) => {
-              e.preventDefault()
-              scrollToElement('#about')
-            }}
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="text-gray-400 hover:text-primary-600 transition-colors"
-          >
-            <HiArrowDown className="w-8 h-8" />
-          </motion.a>
         </motion.div>
       </div>
     </section>
