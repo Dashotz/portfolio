@@ -14,7 +14,7 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12">
+    <footer className="bg-gray-900 dark:bg-black text-gray-300 dark:text-gray-400 py-12">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <motion.p

@@ -20,7 +20,7 @@ export const socialLinks: SocialLink[] = [
   },
   { 
     icon: 'FaLinkedin', 
-    href: 'https://ph.linkedin.com/in/frncszxc?trk=people-guest_people_search-card', 
+    href: 'https://www.linkedin.com/in/frncszxc/', 
     label: 'LinkedIn' 
   },
   { 
@@ -107,18 +107,18 @@ export const projects: Project[] = [
 export const contactInfo: ContactInfo[] = [
   { 
     icon: 'FaEnvelope', 
-    text: 'your.email@example.com', 
-    href: 'mailto:your.email@example.com' 
+    text: 'frncsgerard02@gmail.com', 
+    href: 'mailto:frncsgerard02@gmail.com' 
   },
   { 
     icon: 'FaPhone', 
-    text: '+1 (234) 567-8900', 
-    href: 'tel:+12345678900' 
+    text: '+639208040444', 
+    href: 'tel:+639208040444' 
   },
   { 
     icon: 'FaMapMarkerAlt', 
-    text: 'Your City, Country', 
-    href: '#' 
+    text: 'Imus Cavite, Philippines', 
+    href: 'https://maps.app.goo.gl/nrzae2RrENJXso7s5' 
   },
 ]
 

@@ -11,7 +11,7 @@ const Projects = () => {
   const { projects, loading } = useProjects()
 
   return (
-    <section id="projects" ref={ref} className="py-20 bg-gradient-to-br from-gray-50 to-primary-50">
+    <section id="projects" ref={ref} className="py-20 bg-gradient-to-br from-gray-50 dark:from-gray-900 to-primary-50 dark:to-gray-800">
       <div className="container mx-auto px-6">
         <motion.div
           variants={containerVariants}
@@ -24,7 +24,7 @@ const Projects = () => {
               <span className="text-gradient">My Projects</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-purple-600 mx-auto mb-6" />
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 dark:text-white max-w-2xl mx-auto">
               A collection of projects showcasing my skills and creativity
             </p>
           </motion.div>
@@ -32,7 +32,7 @@ const Projects = () => {
           {loading ? (
             <div className="text-center py-12">
               <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-              <p className="mt-4 text-gray-600">Loading projects...</p>
+              <p className="mt-4 text-gray-600 dark:text-white">Loading projects...</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-8">
@@ -40,7 +40,7 @@ const Projects = () => {
                 <motion.div
                   key={project.title}
                   variants={itemVariants}
-                  className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all"
+                  className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all"
                   whileHover={{ y: -5 }}
                 >
                   <div className="relative overflow-hidden h-48">
@@ -55,8 +55,8 @@ const Projects = () => {
                   </div>
                   
                   <div className="p-6">
-                    <h3 className="text-2xl font-bold mb-3 text-gray-900">{project.title}</h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
+                    <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">{project.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">{project.description}</p>
                     
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.technologies.map((tech) => (
@@ -74,7 +74,7 @@ const Projects = () => {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-700 hover:text-primary-600 font-medium transition-colors"
+                        className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors"
                         whileHover={{ x: 5 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -85,7 +85,7 @@ const Projects = () => {
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-700 hover:text-primary-600 font-medium transition-colors"
+                        className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors"
                         whileHover={{ x: 5 }}
                         whileTap={{ scale: 0.95 }}
                       >

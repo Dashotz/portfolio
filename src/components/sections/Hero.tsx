@@ -16,7 +16,7 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-purple-50">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-primary-50 dark:from-gray-900 via-white dark:via-gray-900 to-purple-50 dark:to-gray-800">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(6)].map((_, i) => (
@@ -64,19 +64,19 @@ const Hero = () => {
           >
             <span className="text-gradient">Hi, I'm</span>
             <br />
-            <span className="text-gray-900">{personalInfo.name || 'Francis Cruz'}</span>
+            <span className="text-gray-900 dark:text-gray-100">{personalInfo.name || 'Francis Cruz'}</span>
           </motion.h1>
 
           <motion.p
             variants={heroItemVariants}
-            className="text-xl md:text-2xl text-gray-600 mb-8"
+            className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8"
           >
             {personalInfo.title || 'Full Stack Developer & Creative Problem Solver'}
           </motion.p>
 
           <motion.p
             variants={heroItemVariants}
-            className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto"
+            className="text-lg text-gray-500 dark:text-gray-400 mb-12 max-w-2xl mx-auto"
           >
             {personalInfo.bio || 'I create beautiful, functional, and user-centered digital experiences. Let\'s bring your ideas to life with modern web technologies.'}
           </motion.p>
@@ -95,7 +95,7 @@ const Hero = () => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-lg text-gray-700 hover:text-primary-600 hover:shadow-xl transition-all"
+                  className="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:shadow-xl transition-all"
                   whileHover={{ scale: 1.1, y: -5 }}
                   whileTap={{ scale: 0.95 }}
                   aria-label={label}

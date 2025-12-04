@@ -5,9 +5,11 @@ import About from './components/sections/About'
 import Projects from './components/sections/Projects'
 import Contact from './components/sections/Contact'
 import Footer from './components/layout/Footer'
+import { useTheme } from './hooks/useTheme'
 
 function App() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false)
+  useTheme() // Initialize theme
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -18,7 +20,7 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
       <Header isScrolled={isScrolled} />
       <main>
         <Hero />

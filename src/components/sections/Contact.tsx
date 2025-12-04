@@ -52,7 +52,7 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" ref={ref} className="py-20 bg-white">
+    <section id="contact" ref={ref} className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6">
         <motion.div
           variants={containerVariants}
@@ -65,15 +65,15 @@ const Contact = () => {
               <span className="text-gradient">Get In Touch</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-purple-600 mx-auto mb-6" />
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 dark:text-white max-w-2xl mx-auto">
               Have a project in mind? Let's work together to bring your ideas to life
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-12">
             <motion.div variants={itemVariants}>
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">Let's Connect</h3>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Let's Connect</h3>
+              <p className="text-gray-600 dark:text-white mb-8 leading-relaxed">
                 I'm always open to discussing new projects, creative ideas, or opportunities
                 to be part of your visions. Feel free to reach out through any of the channels below.
               </p>
@@ -87,13 +87,13 @@ const Contact = () => {
                     <motion.a
                       key={text}
                       href={href}
-                      className="flex items-center gap-4 text-gray-700 hover:text-primary-600 transition-colors group"
+                      className="flex items-center gap-4 text-gray-700 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors group"
                       whileHover={{ x: 5 }}
                     >
                       <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center group-hover:bg-primary-600 transition-colors">
                         <IconComponent className="w-5 h-5 text-primary-600 group-hover:text-white transition-colors" />
                       </div>
-                      <span className="text-lg">{text}</span>
+                      <span className="text-lg dark:text-white">{text}</span>
                     </motion.a>
                   )
                 })}
