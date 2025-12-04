@@ -92,8 +92,8 @@ export const projects: Project[] = [
     description: 'A comprehensive, real-time dashboard for managing multiple social media accounts with advanced analytics, post scheduling, and performance insights. Features include multi-platform support (Facebook, Instagram, Twitter), interactive charts, smart post scheduling with live preview, activity tracking, and enterprise-grade security with rate limiting and XSS protection.',
     technologies: ['Next.js 14', 'TypeScript', 'Chart.js', 'Tailwind CSS', 'Zod', 'date-fns'],
     image: socialmediaImage,
-    github: 'https://github.com/Dashotz',
-    live: 'https://example.com',
+    github: 'https://github.com/Dashotz/Social_Media_Dashboard',
+    live: 'https://dashotz.github.io/Social_Media_Dashboard/',
   },
   {
     title: 'Weather App',
