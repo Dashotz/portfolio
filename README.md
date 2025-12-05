@@ -179,6 +179,27 @@ import projectImage from '@/assets/images/project.jpg'
 
 Dark mode is automatically handled. The theme preference is saved in localStorage and persists across sessions.
 
+## 📧 Contact Form & Email
+
+The contact form supports email sending via EmailJS (free service):
+
+- **EmailJS Integration** - Send emails directly from the frontend
+- **Mailto Fallback** - Automatically falls back to mailto if EmailJS is not configured
+- **No Backend Required** - Works entirely from the frontend
+
+### Setup EmailJS (Optional)
+
+1. Create a free account at [EmailJS](https://www.emailjs.com/)
+2. Create an email service and template
+3. Add credentials to `.env`:
+   ```env
+   VITE_EMAILJS_SERVICE_ID=your_service_id
+   VITE_EMAILJS_TEMPLATE_ID=your_template_id
+   VITE_EMAILJS_PUBLIC_KEY=your_public_key
+   ```
+
+See `EMAILJS_SETUP.md` for detailed setup instructions.
+
 ## 🔒 Security Features
 
 - **Input Validation** - All form inputs are validated and sanitized

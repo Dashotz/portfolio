@@ -5,16 +5,17 @@
 
 /**
  * Sanitizes string input to prevent XSS attacks
+ * Preserves spaces but removes dangerous content
  */
 export const sanitizeInput = (input: string): string => {
   if (typeof input !== 'string') return ''
   
   return input
-    .trim()
     .replace(/[<>]/g, '') // Remove potential HTML tags
     .replace(/javascript:/gi, '') // Remove javascript: protocol
     .replace(/on\w+=/gi, '') // Remove event handlers
     .slice(0, 10000) // Limit length to prevent DoS
+    .trim() // Trim only at the end
 }
 
 /**

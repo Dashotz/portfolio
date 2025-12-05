@@ -5,7 +5,6 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa'
 import { contactInfo, containerVariants, itemVariants } from '@/constants'
 import { useContact } from '@/hooks/useContact'
-import { sanitizeInput } from '@/utils/validation'
 import type { ContactFormData } from '@/types'
 import type { IconType } from 'react-icons'
 
@@ -39,7 +38,8 @@ const Contact = () => {
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    const value = sanitizeInput(e.target.value)
+    // Allow normal typing including spaces - only sanitize on submit
+    const value = e.target.value
     setFormData({
       ...formData,
       [e.target.name]: value,
