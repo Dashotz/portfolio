@@ -64,12 +64,12 @@ export default function FeaturedProjects() {
   }, []);
 
   return (
-    <section id="projects" ref={sectionRef} className="relative flex items-start justify-center pt-10 pb-32 px-6 lg:px-8 xl:px-12 border-t border-white/10 mt-2.5">
+    <section id="projects" ref={sectionRef} className="relative flex items-start justify-center pt-8 sm:pt-10 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/10 mt-2.5">
       <div className="w-full max-w-6xl mx-auto text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl 2xl:text-7xl font-bold mb-12 md:mb-16 leading-tight tracking-tight break-words">
           Projects
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-gray-400 mt-8 md:mt-12 mb-12 md:mb-16 text-center whitespace-nowrap">
+        <p className="text-base sm:text-lg md:text-xl text-gray-400 mt-8 md:mt-12 mb-12 md:mb-16 text-center md:whitespace-nowrap">
           A selection of projects I've worked on, showcasing my skills in web development, design, and problem-solving.
         </p>
 

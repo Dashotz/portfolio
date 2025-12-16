@@ -2,14 +2,14 @@
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative flex items-start justify-center pt-16 px-6 lg:px-8 xl:px-12 border-t border-white/10">
+    <section id="contact" className="relative flex items-start justify-center pt-12 sm:pt-14 md:pt-16 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/10">
       <div className="w-full max-w-6xl mx-auto text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl 2xl:text-7xl font-bold mb-12 md:mb-16 leading-tight tracking-tight break-words">
           Contact
         </h1>
         
         <div className="w-full space-y-6 md:space-y-8 flex flex-col items-center">
-          <div className="text-base sm:text-lg md:text-xl font-light whitespace-nowrap">
+          <div className="text-base sm:text-lg md:text-xl font-light md:whitespace-nowrap">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
           </div>
           

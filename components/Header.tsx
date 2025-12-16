@@ -11,6 +11,24 @@ export default function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Close mobile menu when clicking outside
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isMenuOpen && !target.closest('nav') && !target.closest('button')) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -181,19 +199,20 @@ export default function Header() {
         WebkitBackdropFilter: isScrolled ? 'blur(12px)' : 'blur(4px)',
       }}
     >
-      <nav className="w-full max-w-6xl mx-auto px-6 lg:px-8 xl:px-12 py-5 flex items-center justify-between">
+      <nav className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-4 sm:py-5 flex items-center justify-between">
         <Link 
           href="#"
           onClick={(e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            setIsMenuOpen(false);
           }}
-          className="text-lg font-medium tracking-tight hover:opacity-80 transition-opacity duration-200"
+          className="text-base sm:text-lg font-medium tracking-tight hover:opacity-80 transition-opacity duration-200 z-10"
         >
           Portfolio
         </Link>
 
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-8 lg:gap-10">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -215,7 +234,7 @@ export default function Header() {
         </div>
 
         <button
-          className="md:hidden relative w-8 h-8 flex items-center justify-center text-white hover:opacity-80 transition-opacity duration-200"
+          className="md:hidden relative w-8 h-8 flex items-center justify-center text-white hover:opacity-80 transition-opacity duration-200 z-10"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
@@ -253,13 +272,13 @@ export default function Header() {
             WebkitBackdropFilter: 'blur(12px)',
           }}
         >
-          <div className="w-full max-w-6xl mx-auto px-6 lg:px-8 xl:px-12 py-6 flex flex-col gap-5">
+          <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-6 flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`text-base font-medium tracking-wide transition-colors duration-200 ${
+                className={`text-base font-medium tracking-wide transition-colors duration-200 py-2 ${
                   isActive(link.href)
                     ? 'text-white'
                     : 'text-white/70 hover:text-white'

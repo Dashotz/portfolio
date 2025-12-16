@@ -24,7 +24,7 @@ export default function AboutMe() {
   }, []);
 
   return (
-    <section id="about" className="relative flex items-start justify-center pt-16 pb-2.5 px-6 lg:px-8 xl:px-12 border-t border-white/10">
+    <section id="about" className="relative flex items-start justify-center pt-12 sm:pt-14 md:pt-16 pb-2.5 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/10">
       <div className="w-full max-w-6xl mx-auto text-center">
         <h1 
           ref={titleRef}

@@ -24,7 +24,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-32 pb-32 px-6 lg:px-8 xl:px-12">
+    <section className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12">
       <div className="w-full max-w-6xl mx-auto text-center">
         <h1 
           ref={titleRef}

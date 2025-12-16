@@ -40,12 +40,12 @@ const tools = [
 
 export default function Services() {
   return (
-    <section id="skills" className="relative flex items-start justify-center pt-0 pb-0 px-6 lg:px-8 xl:px-12 border-t border-white/10">
+    <section id="skills" className="relative flex items-start justify-center pt-0 pb-0 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/10">
       <div className="w-full max-w-6xl mx-auto text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl 2xl:text-7xl font-bold mb-12 md:mb-16 leading-tight tracking-tight break-words">
           Skills
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-gray-400 mt-8 md:mt-12 mb-16 md:mb-20 text-center whitespace-nowrap">
+        <p className="text-base sm:text-lg md:text-xl text-gray-400 mt-8 md:mt-12 mb-16 md:mb-20 text-center md:whitespace-nowrap">
           A comprehensive overview of the technologies, tools, and skills I work with to bring ideas to life.
         </p>
         
