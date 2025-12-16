@@ -5,9 +5,27 @@ import Link from 'next/link';
 import { gsap } from 'gsap';
 
 const projects = [
-  { name: 'Looped', slug: 'looped' },
-  { name: 'Ibicash', slug: 'ibicash' },
-  { name: 'Prosupps', slug: 'prosupps' },
+  { 
+    name: 'Project One', 
+    slug: 'project-one',
+    description: 'A modern web application built with Next.js and TypeScript',
+    tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    link: '#'
+  },
+  { 
+    name: 'Project Two', 
+    slug: 'project-two',
+    description: 'E-commerce platform with seamless user experience',
+    tech: ['React', 'Node.js', 'MongoDB'],
+    link: '#'
+  },
+  { 
+    name: 'Project Three', 
+    slug: 'project-three',
+    description: 'Creative portfolio website with smooth animations',
+    tech: ['GSAP', 'Three.js', 'WebGL'],
+    link: '#'
+  },
 ];
 
 export default function FeaturedProjects() {
@@ -46,34 +64,41 @@ export default function FeaturedProjects() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-32 px-6 border-t border-white/10">
-      <div className="container mx-auto max-w-6xl">
-        <p className="text-sm uppercase tracking-wider text-gray-500 mb-4">
-          A Small Sample, Just Three Builds We Liked for Different Reasons. If You Want the Full Stack (Live Links, Case Studies, the Weird Stuff), Head Over to the Work Page.
+    <section id="projects" ref={sectionRef} className="relative flex items-start justify-center pt-10 pb-32 px-6 lg:px-8 xl:px-12 border-t border-white/10 mt-2.5">
+      <div className="w-full max-w-6xl mx-auto text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl 2xl:text-7xl font-bold mb-12 md:mb-16 leading-tight tracking-tight break-words">
+          Projects
+        </h1>
+        <p className="text-base sm:text-lg md:text-xl text-gray-400 mt-8 md:mt-12 mb-12 md:mb-16 text-center whitespace-nowrap">
+          A selection of projects I've worked on, showcasing my skills in web development, design, and problem-solving.
         </p>
-        
-        <div className="flex justify-end mb-16">
-          <Link 
-            href="/work" 
-            className="text-lg hover:text-gray-400 transition-colors"
-          >
-            All Work→
-          </Link>
-        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 items-start">
           {projects.map((project, index) => (
-            <div
+            <Link
               key={project.slug}
-              className="project-card group relative h-64 sm:h-80 md:h-96 border border-white/10 hover:border-white/30 transition-all cursor-pointer overflow-hidden"
+              href={project.link}
+              className="project-card group relative h-64 sm:h-80 md:h-96 border border-white/10 hover:border-white/30 transition-all cursor-pointer overflow-hidden flex flex-col"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative h-full flex items-center justify-center p-6 md:p-8">
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center">
-                  {project.name}
-                </h3>
+              <div className="relative h-full flex flex-col justify-between p-6 md:p-8 z-10">
+                <div>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">
+                    {project.name}
+                  </h3>
+                  <p className="text-sm text-gray-400 mb-4 line-clamp-2">
+                    {project.description}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
+                    <span key={tech} className="text-xs px-2 py-1 border border-white/20 rounded text-gray-400">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

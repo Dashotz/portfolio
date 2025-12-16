@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "darkroom.engineering - Where Things Get Developed",
-  description: "A dev-first studio where design, speed, and system thinking all pull weight.",
+  title: "Portfolio - Developer & Designer",
+  description: "Portfolio showcasing my work as a developer and designer. Building digital experiences that matter.",
 };
 
 export default function RootLayout({
@@ -27,6 +27,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
+        suppressHydrationWarning
       >
         <SmoothScroll>
           {children}

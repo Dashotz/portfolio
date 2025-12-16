@@ -1,23 +1,25 @@
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Hero from '@/components/sections/Hero';
-import Manifesto from '@/components/sections/Manifesto';
+import AboutMe from '@/components/sections/AboutMe';
 import FeaturedProjects from '@/components/sections/FeaturedProjects';
-import OpenSourceTools from '@/components/sections/OpenSourceTools';
 import Services from '@/components/sections/Services';
-import ActivityLog from '@/components/sections/ActivityLog';
+import OpenSourceTools from '@/components/sections/OpenSourceTools';
+import Contact from '@/components/sections/ActivityLog';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
     <main className="relative min-h-screen">
       <div className="squares-pattern" />
       <Header />
-      <Hero />
-      <Manifesto />
-      <FeaturedProjects />
-      <OpenSourceTools />
-      <Services />
-      <ActivityLog />
+      <div className="relative z-10">
+        <Hero />
+        <AboutMe />
+        <FeaturedProjects />
+        <Services />
+        <OpenSourceTools />
+        <Contact />
+      </div>
       <Footer />
     </main>
   );

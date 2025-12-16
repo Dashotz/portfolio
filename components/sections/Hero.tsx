@@ -25,35 +25,36 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-32 pb-32 px-6">
-      <div className="container mx-auto max-w-6xl">
+    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-32 pb-32 px-6 lg:px-8 xl:px-12">
+      <div className="w-full max-w-6xl mx-auto text-center">
         <h1 
           ref={titleRef}
-          className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold mb-12 md:mb-16 text-center leading-tight tracking-tight"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl 2xl:text-7xl font-bold mb-12 md:mb-16 leading-tight tracking-tight break-words"
         >
-          WhereThingsGetDeveloped
+          Developer & Designer
         </h1>
         
-        <div ref={definitionRef} className="max-w-3xl mx-auto space-y-6 md:space-y-8">
+        <div ref={definitionRef} className="w-full space-y-6 md:space-y-8 flex flex-col items-center">
           <div className="text-xl sm:text-2xl md:text-3xl font-light">
-            <span className="font-semibold">[ Darkroom ]</span>, noun
+            Building digital experiences that <span className="font-semibold">matter</span>
           </div>
           
-          <ol className="space-y-3 md:space-y-4 text-base sm:text-lg md:text-xl text-gray-300 ml-6 md:ml-8 list-decimal">
-            <li>A Lightproof Room for Developing Photographs.</li>
-            <li>A Studio Engineering Creativity into Reality.</li>
-          </ol>
-          
-          <p className="text-base sm:text-lg md:text-xl text-gray-400 mt-8 md:mt-12 leading-relaxed">
-            we skipped the part where everyone pretends it's fine. if it's slow, buggy, or brittle, we fix it. not for the case study, but because that's the job. darkroom's a dev-first studio where design, speed, and system thinking all pull weight.
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 mt-8 md:mt-12 leading-relaxed max-w-3xl">
+            I craft beautiful, functional web experiences with a focus on performance, accessibility, and user-centered design. Passionate about clean code, modern technologies, and bringing ideas to life.
           </p>
           
-          <div className="mt-8 md:mt-12">
+          <div className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link 
-              href="/work" 
+              href="#projects" 
               className="inline-block px-6 md:px-8 py-3 md:py-4 border border-white/20 hover:border-white/40 transition-all hover:bg-white/5 rounded-sm text-sm md:text-base"
             >
-              Manifesto→
+              View Work→
+            </Link>
+            <Link 
+              href="#contact" 
+              className="inline-block px-6 md:px-8 py-3 md:py-4 bg-white text-black hover:bg-white/90 transition-all rounded-sm text-sm md:text-base font-medium"
+            >
+              Get in Touch→
             </Link>
           </div>
         </div>

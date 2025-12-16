@@ -20,6 +20,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -27,6 +28,13 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+}
+
+/* Ensure content doesn't spread too wide on ultra-wide screens */
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1280px;
+  }
 }
 
 /* Decorative squares pattern */

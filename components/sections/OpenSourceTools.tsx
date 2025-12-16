@@ -4,52 +4,64 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { gsap } from 'gsap';
 
-const tools = [
-  { name: 'Satus', description: 'With powerful graphics, smooth animations, and full CMS support, Satus is the starting point for high-performance, interactive web experiences.', link: '#' },
-  { name: 'Lenis', description: 'Smooth scroll library for modern web experiences.', link: '#' },
-  { name: 'Hamo', description: 'Creative development tools and utilities.', link: '#' },
-  { name: 'Tempus', description: 'Time-based animation and interaction library.', link: '#' },
+const experience = [
+  { 
+    period: '2023 - Present', 
+    role: 'Senior Frontend Developer', 
+    company: 'Tech Company',
+    description: 'Leading frontend development initiatives, building scalable web applications, and mentoring junior developers.',
+    achievements: ['Led team of 5 developers', 'Improved performance by 40%', 'Implemented design system']
+  },
+  { 
+    period: '2021 - 2023', 
+    role: 'Full Stack Developer', 
+    company: 'Startup Inc',
+    description: 'Developed full-stack applications using modern technologies, collaborated with cross-functional teams.',
+    achievements: ['Built 10+ web applications', 'Reduced load time by 50%', 'Integrated third-party APIs']
+  },
+  { 
+    period: '2019 - 2021', 
+    role: 'Junior Developer', 
+    company: 'Digital Agency',
+    description: 'Started my journey in web development, learned modern frameworks, and contributed to client projects.',
+    achievements: ['Learned React & Node.js', 'Completed 20+ projects', 'Earned certifications']
+  },
 ];
 
 export default function OpenSourceTools() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section ref={sectionRef} className="relative py-32 px-6 border-t border-white/10">
-      <div className="container mx-auto max-w-6xl">
-        <div className="mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 md:mb-8 leading-tight">
-            We Build the Tools We Wish Existed.<br className="hidden sm:block" />
-            <span className="sm:hidden"> </span>Tools We Trust, Now Yours to Use.
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-400 mb-6 md:mb-8 leading-relaxed">
-            We Believe in Open-Source Because Good Tools Make Better Work. Our Libraries Are Built for Speed, Reliability, and Ease of Use, Powering Real Projects and Solving Real Problems — and Now They Can Help You Too.
-          </p>
-          <Link 
-            href="/tools" 
-            className="text-base md:text-lg hover:text-gray-400 transition-colors"
-          >
-            All Tools→
-          </Link>
-        </div>
+    <section id="experience" ref={sectionRef} className="relative flex items-start justify-center pt-0 pb-0 px-6 lg:px-8 xl:px-12 border-t border-white/10 mt-2.5">
+      <div className="w-full max-w-6xl mx-auto text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl 2xl:text-7xl font-bold mb-12 md:mb-16 leading-tight tracking-tight break-words">
+          Experience
+        </h1>
+        <p className="text-base sm:text-lg md:text-xl text-gray-400 mt-8 md:mt-12 mb-12 md:mb-16 text-center whitespace-nowrap">
+          A journey through my professional career, highlighting key roles, achievements, and the growth that has shaped me as a developer.
+        </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {tools.map((tool, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 items-start">
+          {experience.map((exp, index) => (
             <div
-              key={tool.name}
+              key={index}
               className="border border-white/10 p-8 hover:border-white/30 transition-all group"
             >
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-sm text-gray-500">0{index + 1}.</span>
-                <h3 className="text-2xl font-bold">{tool.name}</h3>
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-2">
+                <div>
+                  <span className="text-sm text-gray-500 font-mono">{exp.period}</span>
+                  <h3 className="text-2xl font-bold mt-2">{exp.role}</h3>
+                  <p className="text-gray-400 mt-1">{exp.company}</p>
+                </div>
               </div>
-              <p className="text-gray-400 mb-4">{tool.description}</p>
-              <Link 
-                href={tool.link}
-                className="text-sm hover:text-gray-400 transition-colors inline-flex items-center gap-2"
-              >
-                {tool.name}↗
-              </Link>
+              <p className="text-gray-300 mb-4 leading-relaxed">{exp.description}</p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {exp.achievements.map((achievement, i) => (
+                  <span key={i} className="text-xs px-3 py-1 border border-white/20 rounded text-gray-400">
+                    {achievement}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
