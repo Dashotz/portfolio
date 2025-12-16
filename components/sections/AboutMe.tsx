@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { gsap } from 'gsap';
 
 export default function AboutMe() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -25,7 +24,7 @@ export default function AboutMe() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="relative flex items-start justify-center pt-16 pb-2.5 px-6 lg:px-8 xl:px-12 border-t border-white/10">
+    <section id="about" className="relative flex items-start justify-center pt-16 pb-2.5 px-6 lg:px-8 xl:px-12 border-t border-white/10">
       <div className="w-full max-w-6xl mx-auto text-center">
         <h1 
           ref={titleRef}

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { gsap } from 'gsap';
 
 export default function Hero() {
-  const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const definitionRef = useRef<HTMLDivElement>(null);
 
@@ -25,7 +24,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-32 pb-32 px-6 lg:px-8 xl:px-12">
+    <section className="relative min-h-screen flex items-center justify-center pt-32 pb-32 px-6 lg:px-8 xl:px-12">
       <div className="w-full max-w-6xl mx-auto text-center">
         <h1 
           ref={titleRef}
