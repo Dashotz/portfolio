@@ -29,8 +29,7 @@ export default function WorkExperience() {
           <div className="md:border-r md:border-white/30 pr-0 md:pr-12 text-center md:text-left" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-none tracking-tight">
               <div style={{ marginTop: '12px', marginBottom: '12px' }}>WORK</div>
-              <div style={{ marginTop: '12px', marginBottom: '12px' }}>EXPE</div>
-              <div style={{ marginTop: '12px', marginBottom: '12px' }}>RIENCE</div>
+              <div style={{ marginTop: '12px', marginBottom: '12px' }}>EXP.</div>
             </h2>
           </div>
           
