@@ -38,10 +38,10 @@ export default function Header() {
     };
 
         // Use IntersectionObserver for accurate section detection
-        const sections = ['home', 'about', 'projects', 'experience', 'contact'];
+        const sections = ['home', 'about', 'experience', 'tech-stack', 'projects', 'contact'];
     const observerOptions = {
       root: null,
-      rootMargin: '-200px 0px -50% 0px',
+      rootMargin: '-100px 0px -60% 0px',
       threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
     };
 
@@ -110,17 +110,18 @@ export default function Header() {
 
       // Fallback to scroll position if no section is highly visible
       if (!activeSection || maxRatio < 0.05) {
-        const scrollPosition = window.scrollY + 200;
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
         
         // Check from bottom to top to get the most recent section
         for (let i = sections.length - 1; i >= 0; i--) {
           const section = document.getElementById(sections[i]);
           if (section) {
-            const sectionTop = section.offsetTop;
-            const sectionBottom = sectionTop + section.offsetHeight;
+            const rect = section.getBoundingClientRect();
+            const sectionTop = window.scrollY + rect.top;
+            const sectionBottom = sectionTop + rect.height;
             
             // Check if scroll position is within this section
-            if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom + 100) {
+            if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom + 200) {
               activeSection = sections[i];
               break;
             }
@@ -148,13 +149,14 @@ export default function Header() {
     
     // Initial check after a short delay to ensure DOM is ready
     setTimeout(() => {
-      const scrollPosition = window.scrollY + 200;
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
         if (section) {
-          const sectionTop = section.offsetTop;
-          const sectionBottom = sectionTop + section.offsetHeight;
-          if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom + 100) {
+          const rect = section.getBoundingClientRect();
+          const sectionTop = window.scrollY + rect.top;
+          const sectionBottom = sectionTop + rect.height;
+          if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom + 200) {
             setActiveHash(`#${sections[i]}`);
             break;
           }
@@ -175,8 +177,9 @@ export default function Header() {
   const navLinks = [
     { href: '#home', label: 'Home' },
     { href: '#about', label: 'About' },
-    { href: '#projects', label: 'Projects' },
     { href: '#experience', label: 'Experience' },
+    { href: '#tech-stack', label: 'Tech Stack' },
+    { href: '#projects', label: 'Projects' },
     { href: '#contact', label: 'Contact' },
   ];
 

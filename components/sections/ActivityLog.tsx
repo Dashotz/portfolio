@@ -6,11 +6,11 @@ export default function Contact() {
   return (
     <section id="contact" className="relative flex items-start justify-center pt-12 sm:pt-14 md:pt-16 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/30">
       <div className="w-full max-w-6xl mx-auto" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
-            <div className="text-center" style={{ marginBottom: '64px', paddingTop: '16px', paddingBottom: '16px' }}>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight" style={{ marginTop: '16px', marginBottom: '16px' }}>
+            <div className="text-center" style={{ marginBottom: '42px', paddingTop: '16px', paddingBottom: '16px' }}>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight" style={{ marginTop: '16px', marginBottom: '0' }}>
                 Get In Touch
               </h2>
-              <p className="text-lg sm:text-xl text-gray-400" style={{ marginTop: '12px', marginBottom: '12px' }}>
+              <p className="text-lg sm:text-xl text-gray-400" style={{ marginTop: '0' }}>
                 Have a project in mind? Let's work together to bring your ideas to life
               </p>
             </div>
