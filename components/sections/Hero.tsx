@@ -8,6 +8,7 @@ export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const matrixCanvasRef = useRef<HTMLCanvasElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (titleRef.current && contentRef.current) {
@@ -31,50 +32,117 @@ export default function Hero() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Detect mobile/touch devices for performance optimization
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
+                     ('ontouchstart' in window) || 
+                     (navigator.maxTouchPoints > 0);
+    
+    // Reduce performance impact on mobile devices
+    const baseFontSize = isMobile ? 12 : (window.innerWidth < 640 ? 10 : 14);
+    const fontSize = baseFontSize;
+    const frameSkip = isMobile ? 2 : 1; // Skip frames on mobile for better performance
+    let frameCount = 0;
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
     const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
     const charArray = chars.split('');
-    const fontSize = window.innerWidth < 640 ? 10 : 14;
-    const columns = Math.floor(canvas.width / fontSize);
+    
+    // Reduce number of columns on mobile for better performance
+    const columnMultiplier = isMobile ? 0.7 : 1;
+    const columns = Math.floor((canvas.width / fontSize) * columnMultiplier);
     const drops: number[] = [];
 
     for (let i = 0; i < columns; i++) {
       drops[i] = Math.random() * -100;
     }
 
+    let animationId: number;
+    let isVisible = true;
+    let isSectionVisible = true;
+
     const draw = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+      if (!isVisible || !isSectionVisible) {
+        animationId = requestAnimationFrame(draw);
+        return;
+      }
+
+      frameCount++;
+      if (frameCount % frameSkip !== 0) {
+        animationId = requestAnimationFrame(draw);
+        return;
+      }
+
+      // Use simpler fill for mobile performance
+      if (isMobile) {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+      } else {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+      }
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.font = `${fontSize}px monospace`;
       
-      // Add gradient effect for better visibility
-      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, 'rgba(0, 255, 0, 0.9)');
-      gradient.addColorStop(0.5, 'rgba(0, 255, 0, 0.7)');
-      gradient.addColorStop(1, 'rgba(0, 255, 0, 0.4)');
-      ctx.fillStyle = gradient;
+      // Simplified gradient on mobile
+      if (isMobile) {
+        ctx.fillStyle = 'rgba(0, 255, 0, 0.6)';
+      } else {
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        gradient.addColorStop(0, 'rgba(0, 255, 0, 0.9)');
+        gradient.addColorStop(0.5, 'rgba(0, 255, 0, 0.7)');
+        gradient.addColorStop(1, 'rgba(0, 255, 0, 0.4)');
+        ctx.fillStyle = gradient;
+      }
 
       for (let i = 0; i < drops.length; i++) {
         const text = charArray[Math.floor(Math.random() * charArray.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        ctx.fillText(text, i * (fontSize / columnMultiplier), drops[i] * fontSize);
 
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
         drops[i]++;
       }
+
+      animationId = requestAnimationFrame(draw);
     };
 
-    const interval = setInterval(draw, 35);
+    // Pause animation when tab is hidden
+    const handleVisibilityChange = () => {
+      isVisible = !document.hidden;
+    };
+
+    // Pause animation when section is not in viewport
+    let intersectionObserver: IntersectionObserver | null = null;
+    
+    // Use setTimeout to ensure ref is set after render
+    const setupIntersectionObserver = () => {
+      const sectionElement = sectionRef.current;
+      if (sectionElement && 'IntersectionObserver' in window && !intersectionObserver) {
+        intersectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              isSectionVisible = entry.isIntersecting;
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when at least 10% of the section is visible
+            rootMargin: '50px', // Start/stop animation slightly before entering/exiting viewport
+          }
+        );
+        intersectionObserver.observe(sectionElement);
+      }
+    };
+    
+    // Setup observer after a brief delay to ensure ref is set
+    setTimeout(setupIntersectionObserver, 0);
 
     const handleResize = () => {
-      const newFontSize = window.innerWidth < 640 ? 10 : 14;
+      const newFontSize = isMobile ? 12 : (window.innerWidth < 640 ? 10 : 14);
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      const newColumns = Math.floor(canvas.width / newFontSize);
+      const newColumns = Math.floor((canvas.width / newFontSize) * columnMultiplier);
       
       // Adjust drops array if columns changed
       if (newColumns !== drops.length) {
@@ -85,20 +153,28 @@ export default function Hero() {
       }
     };
 
+    // Start animation
+    animationId = requestAnimationFrame(draw);
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('resize', handleResize);
 
     return () => {
-      clearInterval(interval);
+      cancelAnimationFrame(animationId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('resize', handleResize);
+      if (intersectionObserver) {
+        intersectionObserver.disconnect();
+      }
     };
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12 overflow-hidden">
+    <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12 overflow-hidden">
       <canvas
         ref={matrixCanvasRef}
         className="absolute inset-0 w-full h-full opacity-50 pointer-events-none"
-        style={{ zIndex: 0 }}
+        style={{ zIndex: 0, willChange: 'contents' }}
       />
       <div className="w-full max-w-6xl mx-auto text-center relative z-10">
           <div className="my-4 sm:my-6">

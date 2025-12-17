@@ -114,6 +114,7 @@ html.lenis {
 .glitch-text {
   position: relative;
   animation: glitch 2s infinite;
+  will-change: text-shadow;
 }
 
 .glitch-text::before,
@@ -131,6 +132,7 @@ html.lenis {
   text-shadow: -2px 0 #ffffff;
   clip: rect(44px, 450px, 56px, 0);
   animation: glitch-anim 5s infinite linear alternate-reverse;
+  will-change: clip;
 }
 
 .glitch-text::after {
@@ -138,6 +140,22 @@ html.lenis {
   text-shadow: -2px 0 #000000, 2px 2px #ffffff;
   clip: rect(44px, 450px, 56px, 0);
   animation: glitch-anim2 1s infinite linear alternate-reverse;
+  will-change: clip;
+}
+
+/* Reduce glitch animation intensity on mobile for better performance */
+@media (max-width: 768px) {
+  .glitch-text {
+    animation: glitch 4s infinite;
+  }
+  
+  .glitch-text::before {
+    animation: glitch-anim 8s infinite linear alternate-reverse;
+  }
+  
+  .glitch-text::after {
+    animation: glitch-anim2 2s infinite linear alternate-reverse;
+  }
 }
 
 @keyframes glitch {
