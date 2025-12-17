@@ -7,6 +7,7 @@ import { gsap } from 'gsap';
 export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const matrixCanvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     if (titleRef.current && contentRef.current) {
@@ -23,9 +24,73 @@ export default function Hero() {
     }
   }, []);
 
+  useEffect(() => {
+    const canvas = matrixCanvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+    const charArray = chars.split('');
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops: number[] = [];
+
+    for (let i = 0; i < columns; i++) {
+      drops[i] = Math.random() * -100;
+    }
+
+    const draw = () => {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.font = `${fontSize}px monospace`;
+      
+      // Add gradient effect for better visibility
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      gradient.addColorStop(0, 'rgba(0, 255, 0, 0.9)');
+      gradient.addColorStop(0.5, 'rgba(0, 255, 0, 0.7)');
+      gradient.addColorStop(1, 'rgba(0, 255, 0, 0.4)');
+      ctx.fillStyle = gradient;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = charArray[Math.floor(Math.random() * charArray.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    };
+
+    const interval = setInterval(draw, 35);
+
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12">
-      <div className="w-full max-w-6xl mx-auto text-center">
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12 overflow-hidden">
+      <canvas
+        ref={matrixCanvasRef}
+        className="absolute inset-0 w-full h-full opacity-50 pointer-events-none"
+        style={{ zIndex: 0 }}
+      />
+      <div className="w-full max-w-6xl mx-auto text-center relative z-10">
         <div className="my-6">
           <p className="text-sm uppercase tracking-wider text-gray-400">Welcome to my portfolio</p>
         </div>
@@ -34,7 +99,7 @@ export default function Hero() {
             ref={titleRef}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight"
           >
-            Hi, I'm <span className="text-white">Francis Cruz</span>
+            Hi, I'm <span className="text-white glitch-text" data-text="Francis Cruz">Francis Cruz</span>
           </h1>
         </div>
         
