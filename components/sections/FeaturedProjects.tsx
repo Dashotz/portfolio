@@ -167,23 +167,23 @@ export default function FeaturedProjects() {
 
   return (
     <section id="projects" ref={sectionRef} className="relative flex items-start justify-center pt-12 sm:pt-14 md:pt-16 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/30">
-      <div className="w-[80%] mx-auto" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
+      <div className="w-full sm:w-[90%] md:w-[80%] mx-auto" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
         <div className="mb-12 text-center" style={{ marginBottom: '15px', paddingTop: '16px', paddingBottom: '16px' }}>
-          <h2 
+            <h2 
             ref={titleRef}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tight relative"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-none tracking-tight relative inline-block"
             style={{ marginTop: '16px', marginBottom: '0', minHeight: '1.2em' }}
           >
-            <span className="creative-text absolute inset-0" style={{ marginTop: '12px', marginBottom: '12px', clipPath: 'inset(0% 0% 0% 0%)' }}>CREATIVE</span>
-            <span className="projects-text" style={{ marginTop: '12px', marginBottom: '12px', clipPath: 'inset(0% 100% 0% 0%)' }}>PROJECTS</span>
+            <span className="creative-text absolute inset-0 flex items-center justify-center" style={{ clipPath: 'inset(0% 0% 0% 0%)' }}>CREATIVE</span>
+            <span className="projects-text inline-block" style={{ clipPath: 'inset(0% 100% 0% 0%)' }}>PROJECTS</span>
           </h2>
           
-          <div className="flex flex-wrap gap-6 justify-center" style={{ marginTop: '0', marginBottom: '24px' }}>
+          <div className="flex flex-wrap gap-4 sm:gap-6 justify-center" style={{ marginTop: '0', marginBottom: '24px' }}>
             {['all', 'website', 'app'].map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-32 py-10 border transition-all rounded-sm text-2xl font-medium ${
+                className={`px-6 py-3 sm:px-12 sm:py-6 md:px-24 md:py-8 lg:px-32 lg:py-10 border transition-all rounded-sm text-base sm:text-lg md:text-xl lg:text-2xl font-medium ${
                   activeFilter === filter
                     ? 'border-white/50 bg-white/10 text-white'
                     : 'border-white/20 text-gray-400 hover:border-white/40 hover:text-white'
@@ -200,10 +200,10 @@ export default function FeaturedProjects() {
           {filteredProjects.map((project, index) => (
             <div
               key={project.name}
-              className="project-card group relative overflow-visible grid grid-cols-1 md:grid-cols-2 gap-8 items-center border-t border-b border-white/30 py-8"
-              style={{ paddingTop: '32px', paddingBottom: '32px' }}
+              className="project-card group relative overflow-visible grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center border-t border-b border-white/30 py-6 md:py-8"
+              style={{ paddingTop: '24px', paddingBottom: '24px' }}
             >
-              <div className="relative w-full h-64 md:h-80 bg-white/5 border border-white/30 overflow-visible group/image transition-all duration-300 hover:scale-105 hover:border-white/50">
+              <div className="relative w-full h-48 sm:h-64 md:h-80 bg-white/5 border border-white/30 overflow-visible group/image transition-all duration-300 hover:scale-105 hover:border-white/50">
                 <div className="w-full h-full flex items-center justify-center transition-transform duration-300 group-hover/image:scale-110">
                   <div className="text-gray-400 text-center transition-colors duration-300 group-hover/image:text-white">
                     <div className="text-6xl mb-2 transition-transform duration-300 group-hover/image:scale-110" style={{ marginTop: '12px', marginBottom: '12px' }}>📱</div>
@@ -212,16 +212,16 @@ export default function FeaturedProjects() {
                 </div>
               </div>
               
-              <div className="flex flex-col">
-                <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ marginTop: '12px', marginBottom: '12px' }}>
+              <div className="flex flex-col text-center md:text-left">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4" style={{ marginTop: '12px', marginBottom: '12px' }}>
                   {project.name}
                 </h3>
                 
-                <p className="text-gray-400 mb-4 leading-relaxed" style={{ marginTop: '12px', marginBottom: '12px' }}>
+                <p className="text-sm sm:text-base text-gray-400 mb-4 leading-relaxed" style={{ marginTop: '12px', marginBottom: '12px' }}>
                   {project.description}
                 </p>
                 
-                <div className="flex flex-wrap gap-2 mb-6" style={{ marginTop: '12px', marginBottom: '12px' }}>
+                <div className="flex flex-wrap gap-2 mb-6 justify-center md:justify-start" style={{ marginTop: '12px', marginBottom: '12px' }}>
                   {project.tech.map((tech) => (
                     <span key={tech} className="text-xs px-3 py-1 border border-white/20 rounded-full text-gray-400">
                       {tech}
@@ -229,7 +229,7 @@ export default function FeaturedProjects() {
                   ))}
                 </div>
                 
-                <div className="flex flex-wrap gap-4" style={{ marginTop: '12px', marginBottom: '12px' }}>
+                <div className="flex flex-wrap gap-4 justify-center md:justify-start" style={{ marginTop: '12px', marginBottom: '12px' }}>
                   <Link 
                     href={project.demoLink}
                     target="_blank"

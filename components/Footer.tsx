@@ -16,9 +16,9 @@ export default function Footer() {
         <div className="flex justify-center items-start" style={{ marginBottom: '32px', marginTop: '16px' }}>
           <div className="text-center">
             <h3 className="text-lg font-bold mb-6" style={{ marginTop: '12px', marginBottom: '24px' }}>Services</h3>
-            <ul className="grid grid-cols-2 gap-x-8 gap-y-2">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-2">
               {services.map((service, index) => (
-                <li key={index} className="text-gray-400 text-sm text-left" style={{ marginTop: '8px', marginBottom: '8px' }}>
+                <li key={index} className="text-gray-400 text-xs sm:text-sm text-left" style={{ marginTop: '8px', marginBottom: '8px' }}>
                   {service}
                 </li>
               ))}

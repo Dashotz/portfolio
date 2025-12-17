@@ -203,7 +203,7 @@ export default function Header() {
       }}
     >
       <nav className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-24 sm:pt-28 md:pt-32 pb-4 sm:pb-5 flex items-center justify-center md:justify-end">
-        <div className="hidden md:flex items-center gap-8 lg:gap-10">
+        <div className="hidden md:flex items-center gap-8 lg:gap-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -220,26 +220,26 @@ export default function Header() {
         </div>
 
         <button
-          className="md:hidden absolute right-4 sm:right-6 lg:right-8 xl:right-12 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition-all z-10"
+          className="md:hidden absolute right-4 sm:right-6 w-10 h-10 flex items-center justify-center text-white hover:text-gray-300 transition-all z-10 touch-manipulation"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
         >
           <span className="sr-only">Toggle menu</span>
-          <div className="relative w-5 h-4">
+          <div className="relative w-6 h-5 flex flex-col justify-between">
             <span
-              className={`absolute left-0 top-0 h-0.5 w-full bg-white transition-all duration-300 ${
-                isMenuOpen ? 'rotate-45 top-1.5' : ''
+              className={`block h-0.5 w-full bg-white transition-all duration-300 origin-center ${
+                isMenuOpen ? 'rotate-45 translate-y-2' : ''
               }`}
             />
             <span
-              className={`absolute left-0 top-1.5 h-0.5 w-full bg-white transition-all duration-300 ${
+              className={`block h-0.5 w-full bg-white transition-all duration-300 ${
                 isMenuOpen ? 'opacity-0' : 'opacity-100'
               }`}
             />
             <span
-              className={`absolute left-0 top-3 h-0.5 w-full bg-white transition-all duration-300 ${
-                isMenuOpen ? '-rotate-45 top-1.5' : ''
+              className={`block h-0.5 w-full bg-white transition-all duration-300 origin-center ${
+                isMenuOpen ? '-rotate-45 -translate-y-2' : ''
               }`}
             />
           </div>
@@ -258,13 +258,13 @@ export default function Header() {
             WebkitBackdropFilter: 'blur(12px)',
           }}
         >
-          <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-6 flex flex-col gap-4">
+          <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-4 sm:py-6 flex flex-col gap-3 sm:gap-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`text-sm font-medium tracking-wide transition-all py-2 ${
+                className={`text-base sm:text-sm font-medium tracking-wide transition-all py-2 text-center ${
                   isActive(link.href)
                     ? 'text-white'
                     : 'text-gray-400 hover:text-white'

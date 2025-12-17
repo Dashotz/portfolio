@@ -7,18 +7,18 @@ export default function Contact() {
     <section id="contact" className="relative flex items-start justify-center pt-12 sm:pt-14 md:pt-16 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/30">
       <div className="w-full max-w-6xl mx-auto" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
             <div className="text-center" style={{ marginBottom: '42px', paddingTop: '16px', paddingBottom: '16px' }}>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight" style={{ marginTop: '16px', marginBottom: '0' }}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight" style={{ marginTop: '16px', marginBottom: '0' }}>
                 Get In Touch
               </h2>
-              <p className="text-lg sm:text-xl text-gray-400" style={{ marginTop: '0' }}>
+              <p className="text-base sm:text-lg md:text-xl text-gray-400" style={{ marginTop: '0' }}>
                 Have a project in mind? Let's work together to bring your ideas to life
               </p>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
           <div style={{ paddingTop: '8px', paddingBottom: '8px' }}>
-            <h3 className="text-2xl sm:text-3xl font-bold" style={{ marginTop: '12px', marginBottom: '12px' }}>Let's Connect</h3>
-            <p className="text-gray-400 leading-relaxed" style={{ marginTop: '16px', marginBottom: '16px' }}>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold" style={{ marginTop: '12px', marginBottom: '12px' }}>Let's Connect</h3>
+            <p className="text-sm sm:text-base text-gray-400 leading-relaxed" style={{ marginTop: '16px', marginBottom: '16px' }}>
               I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out through any of the channels below.
             </p>
             
@@ -68,7 +68,7 @@ export default function Contact() {
           </div>
           
           <div style={{ paddingTop: '8px', paddingBottom: '8px' }}>
-            <h3 className="text-2xl sm:text-3xl font-bold" style={{ marginTop: '12px', marginBottom: '12px' }}>Send a Message</h3>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold" style={{ marginTop: '12px', marginBottom: '12px' }}>Send a Message</h3>
             <form style={{ marginTop: '16px', marginBottom: '16px' }}>
               <div style={{ marginTop: '12px', marginBottom: '12px' }}>
                 <label htmlFor="name" className="block text-sm font-medium" style={{ marginTop: '12px', marginBottom: '12px' }}>Name</label>
