@@ -40,7 +40,7 @@ const tools = [
 
 export default function Services() {
   return (
-    <section id="skills" className="relative flex items-start justify-center pt-0 pb-0 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/10">
+    <section id="skills" className="relative flex items-start justify-center pt-0 pb-0 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/30">
       <div className="w-full max-w-6xl mx-auto text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl 2xl:text-7xl font-bold mb-12 md:mb-16 leading-tight tracking-tight break-words">
           Skills

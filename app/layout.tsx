@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
+import { Lenis } from "@/components/lenis";
+import { GSAPRuntime } from "@/components/gsap/runtime";
+import { ReactTempus } from "tempus/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio - Developer & Designer",
-  description: "Portfolio showcasing my work as a developer and designer. Building digital experiences that matter.",
+  title: "Portfolio - Francis Cruz",
+  description: "Full Stack Developer & Creative Problem Solver. I create beautiful, functional, and user-centered digital experiences.",
 };
 
 export default function RootLayout({
@@ -29,9 +31,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
         suppressHydrationWarning
       >
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+        {children}
+        <Lenis root options={{ duration: 1.2 }}>
+          {/* Empty - Lenis handles root scrolling internally */}
+        </Lenis>
+        {/* Animation framework */}
+        <GSAPRuntime />
+        {/* RAF management */}
+        <ReactTempus patch={true} />
       </body>
     </html>
   );

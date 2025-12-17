@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { Link } from '@/components/link';
 import { usePathname } from 'next/navigation';
 
 export default function Header() {
@@ -37,8 +37,8 @@ export default function Header() {
       setActiveHash(window.location.hash);
     };
 
-    // Use IntersectionObserver for accurate section detection
-    const sections = ['about', 'projects', 'skills', 'experience', 'contact'];
+        // Use IntersectionObserver for accurate section detection
+        const sections = ['home', 'about', 'projects', 'experience', 'contact'];
     const observerOptions = {
       root: null,
       rootMargin: '-200px 0px -50% 0px',
@@ -173,9 +173,9 @@ export default function Header() {
   }, []);
 
   const navLinks = [
+    { href: '#home', label: 'Home' },
     { href: '#about', label: 'About' },
     { href: '#projects', label: 'Projects' },
-    { href: '#skills', label: 'Skills' },
     { href: '#experience', label: 'Experience' },
     { href: '#contact', label: 'Contact' },
   ];
@@ -189,9 +189,9 @@ export default function Header() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all ${
         isScrolled 
-          ? 'bg-black/95 backdrop-blur-md border-b border-white/20 shadow-lg' 
+          ? 'bg-black/95 backdrop-blur-md border-b border-white/20' 
           : 'bg-black/80 backdrop-blur-sm border-b border-white/10'
       }`}
       style={{
@@ -199,42 +199,25 @@ export default function Header() {
         WebkitBackdropFilter: isScrolled ? 'blur(12px)' : 'blur(4px)',
       }}
     >
-      <nav className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-4 sm:py-5 flex items-center justify-between">
-        <Link 
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setIsMenuOpen(false);
-          }}
-          className="text-base sm:text-lg font-medium tracking-tight hover:opacity-80 transition-opacity duration-200 z-10"
-        >
-          Portfolio
-        </Link>
-
+      <nav className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-24 sm:pt-28 md:pt-32 pb-4 sm:pb-5 flex items-center justify-center md:justify-end">
         <div className="hidden md:flex items-center gap-8 lg:gap-10">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`relative text-sm font-medium tracking-wide transition-all duration-200 ${
+              className={`text-sm font-medium tracking-wide transition-all ${
                 isActive(link.href)
                   ? 'text-white'
-                  : 'text-white/70 hover:text-white'
+                  : 'text-gray-400 hover:text-white'
               }`}
             >
               {link.label}
-              {isActive(link.href) ? (
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white" />
-              ) : (
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-white/50 scale-x-0 hover:scale-x-100 transition-transform duration-200 origin-left" />
-              )}
             </Link>
           ))}
         </div>
 
         <button
-          className="md:hidden relative w-8 h-8 flex items-center justify-center text-white hover:opacity-80 transition-opacity duration-200 z-10"
+          className="md:hidden absolute right-4 sm:right-6 lg:right-8 xl:right-12 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white transition-all z-10"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
@@ -278,10 +261,10 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`text-base font-medium tracking-wide transition-colors duration-200 py-2 ${
+                className={`text-sm font-medium tracking-wide transition-all py-2 ${
                   isActive(link.href)
                     ? 'text-white'
-                    : 'text-white/70 hover:text-white'
+                    : 'text-gray-400 hover:text-white'
                 }`}
               >
                 {link.label}

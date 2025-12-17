@@ -1,30 +1,41 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Link from 'next/link';
+import { Link } from '@/components/link';
 import { gsap } from 'gsap';
 
 const projects = [
   { 
-    name: 'Project One', 
-    slug: 'project-one',
-    description: 'A modern web application built with Next.js and TypeScript',
-    tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    link: '#'
+    name: 'Learning Management System', 
+    description: 'A comprehensive LMS platform for Gov D.M. Camerino with student dashboard, grade tracking, assignments, quizzes, and attendance management. Features include subject management, calendar integration, and real-time activity tracking.',
+    tech: ['PHP', 'HTML', 'CSS', 'JavaScript', 'MySQL'],
+    codeLink: 'https://github.com/Dashotz/Camerino-Hub',
+    demoLink: 'https://camerinohub.helioho.st',
+    image: '/project-lms.jpg'
   },
   { 
-    name: 'Project Two', 
-    slug: 'project-two',
-    description: 'E-commerce platform with seamless user experience',
-    tech: ['React', 'Node.js', 'MongoDB'],
-    link: '#'
+    name: 'St. Thomas More School', 
+    description: 'An academic website developed for St. Thomas More School, featuring essential functions for information sharing, student access, and school updates. Includes a Learning Management System portal with login functionality for students and teachers.',
+    tech: ['PHP', 'JavaScript', 'CSS', 'HTML', 'Bootstrap', 'MySQL'],
+    codeLink: 'https://github.com/Dashotz',
+    demoLink: 'https://stthomasmore.helioho.st',
+    image: '/project-school.jpg'
   },
   { 
-    name: 'Project Three', 
-    slug: 'project-three',
-    description: 'Creative portfolio website with smooth animations',
-    tech: ['GSAP', 'Three.js', 'WebGL'],
-    link: '#'
+    name: 'Social Media Dashboard', 
+    description: 'A comprehensive, real-time dashboard for managing multiple social media accounts with advanced analytics, post scheduling, and performance insights. Features include multi-platform support (Facebook, Instagram, Twitter), interactive charts, smart post scheduling with live preview, activity tracking, and enterprise-grade security with rate limiting and XSS protection.',
+    tech: ['Next.js 14', 'TypeScript', 'Chart.js', 'Tailwind CSS', 'Zod', 'date-fns'],
+    codeLink: 'https://github.com/Dashotz/Social_Media_Dashboard',
+    demoLink: 'https://dashotz.github.io/Social_Media_Dashboard/',
+    image: '/project-dashboard.jpg'
+  },
+  { 
+    name: 'Weather App', 
+    description: 'A beautiful weather application with location-based forecasts and interactive maps. Features include 5-day forecasts, nearby cities weather, city search with autocomplete, and interactive Leaflet maps. Built with free APIs (Open-Meteo & Nominatim) - no API keys required!',
+    tech: ['React', 'Leaflet', 'React-Leaflet', 'Open-Meteo API', 'Nominatim', 'Tailwind CSS', 'Vite'],
+    codeLink: 'https://github.com/Dashotz/weather',
+    demoLink: 'https://dashotz.github.io/weather/',
+    image: '/project-weather.jpg'
   },
 ];
 
@@ -64,45 +75,74 @@ export default function FeaturedProjects() {
   }, []);
 
   return (
-    <section id="projects" ref={sectionRef} className="relative flex items-start justify-center pt-8 sm:pt-10 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/10 mt-2.5">
-      <div className="w-full max-w-6xl mx-auto text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl 2xl:text-7xl font-bold mb-12 md:mb-16 leading-tight tracking-tight break-words">
-          Projects
-        </h1>
-        <p className="text-base sm:text-lg md:text-xl text-gray-400 mt-8 md:mt-12 mb-12 md:mb-16 text-center md:whitespace-nowrap">
-          A selection of projects I've worked on, showcasing my skills in web development, design, and problem-solving.
-        </p>
+    <section id="projects" ref={sectionRef} className="relative flex items-start justify-center pt-8 sm:pt-10 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/30 mt-2.5">
+      <div className="w-full max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 leading-tight tracking-tight">
+            My Projects
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-400">
+            A collection of projects showcasing my skills and creativity
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
           {projects.map((project, index) => (
-            <Link
-              key={project.slug}
-              href={project.link}
-              className="project-card group relative h-64 sm:h-80 md:h-96 border border-white/10 hover:border-white/30 transition-all cursor-pointer overflow-hidden flex flex-col"
+            <div
+              key={project.name}
+              className="project-card group relative border border-white/30 hover:border-white/50 transition-all overflow-hidden flex flex-col"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative h-full flex flex-col justify-between p-6 md:p-8 z-10">
-                <div>
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">
-                    {project.name}
-                  </h3>
-                  <p className="text-sm text-gray-400 mb-4 line-clamp-2">
-                    {project.description}
-                  </p>
+              <div className="bg-white/5 h-48 flex items-center justify-center flex-shrink-0">
+                <div className="text-gray-400 text-center">
+                  <div className="text-4xl mb-2">📱</div>
+                  <p className="text-xs">{project.name}</p>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="text-xs px-2 py-1 border border-white/20 rounded text-gray-400">
+              </div>
+              
+              <div className="flex flex-col flex-grow p-6">
+                <h3 className="text-xl font-bold mb-3">
+                  {project.name}
+                </h3>
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3 flex-grow">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.slice(0, 3).map((tech) => (
+                    <span key={tech} className="text-xs px-2 py-1 border border-white/20 rounded-full text-gray-400">
                       {tech}
                     </span>
                   ))}
                 </div>
+                
+                <div className="flex flex-col gap-2 mt-auto">
+                  <Link 
+                    href={project.codeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-white/20 hover:border-white/40 transition-all hover:bg-white/5 rounded-sm text-xs"
+                  >
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                      <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                    </svg>
+                    Code
+                  </Link>
+                  <Link 
+                    href={project.demoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white text-black hover:bg-white/90 transition-all rounded-sm text-xs font-medium"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    Live Demo
+                  </Link>
+                </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
 }
-
