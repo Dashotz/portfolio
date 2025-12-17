@@ -200,10 +200,11 @@ export default function Header() {
       style={{
         backdropFilter: isScrolled ? 'blur(12px)' : 'blur(4px)',
         WebkitBackdropFilter: isScrolled ? 'blur(12px)' : 'blur(4px)',
+        minHeight: 'auto',
       }}
     >
-      <nav className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-24 sm:pt-28 md:pt-32 pb-4 sm:pb-5 flex items-center justify-center md:justify-end">
-        <div className="hidden md:flex items-center gap-8 lg:gap-4">
+      <nav className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-16 sm:pt-20 md:pt-32 pb-3 sm:pb-4 md:pb-5 flex items-center justify-center xl:justify-end relative">
+        <div className="hidden md:flex md:justify-center xl:justify-end items-center gap-6 md:gap-8 lg:gap-6 xl:gap-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -220,10 +221,11 @@ export default function Header() {
         </div>
 
         <button
-          className="md:hidden absolute right-4 sm:right-6 w-10 h-10 flex items-center justify-center text-white hover:text-gray-300 transition-all z-10 touch-manipulation"
+          className="md:hidden absolute right-4 sm:right-6 top-4 sm:top-5 w-10 h-10 flex items-center justify-center text-white hover:text-gray-300 transition-all z-20 touch-manipulation"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
+          style={{ position: 'absolute' }}
         >
           <span className="sr-only">Toggle menu</span>
           <div className="relative w-6 h-5 flex flex-col justify-between">
@@ -248,7 +250,7 @@ export default function Header() {
 
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <div 
@@ -258,17 +260,23 @@ export default function Header() {
             WebkitBackdropFilter: 'blur(12px)',
           }}
         >
-          <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-4 sm:py-6 flex flex-col gap-3 sm:gap-4">
+          <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-4 sm:py-5 md:py-6 flex flex-col gap-2 sm:gap-3 md:gap-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`text-base sm:text-sm font-medium tracking-wide transition-all py-2 text-center ${
+                className={`text-base sm:text-lg md:text-sm font-medium tracking-wide transition-all py-2.5 sm:py-3 text-center w-full ${
                   isActive(link.href)
                     ? 'text-white'
                     : 'text-gray-400 hover:text-white'
                 }`}
+                style={{ 
+                  minHeight: '44px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
               >
                 {link.label}
               </Link>
