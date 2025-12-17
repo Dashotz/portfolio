@@ -1,8 +1,54 @@
 'use client';
 
+import { useState, FormEvent } from 'react';
 import { Link } from '@/components/link';
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        const errorMsg = data.error || 'Failed to send message';
+        const details = data.details ? ` (${data.details})` : '';
+        throw new Error(errorMsg + details);
+      }
+
+      // Reset form on success
+      setFormData({ name: '', email: '', message: '' });
+      setSubmitStatus('success');
+    } catch (error) {
+      console.error('Error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
   return (
     <section id="contact" className="relative flex items-start justify-center pt-12 sm:pt-14 md:pt-16 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/30">
       <div className="w-full max-w-6xl mx-auto" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
@@ -69,13 +115,16 @@ export default function Contact() {
           
           <div style={{ paddingTop: '8px', paddingBottom: '8px' }}>
             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold" style={{ marginTop: '12px', marginBottom: '12px' }}>Send a Message</h3>
-            <form style={{ marginTop: '16px', marginBottom: '16px' }}>
+            <form onSubmit={handleSubmit} style={{ marginTop: '16px', marginBottom: '16px' }}>
               <div style={{ marginTop: '12px', marginBottom: '12px' }}>
                 <label htmlFor="name" className="block text-sm font-medium" style={{ marginTop: '12px', marginBottom: '12px' }}>Name</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   placeholder="Your Name"
                   className="w-full px-4 py-3 bg-white/5 border border-white/30 rounded-sm focus:outline-none focus:border-white/50 transition-colors text-white placeholder-gray-500"
                 />
@@ -87,6 +136,9 @@ export default function Contact() {
                   type="email"
                   id="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   placeholder="your.email@example.com"
                   className="w-full px-4 py-3 bg-white/5 border border-white/30 rounded-sm focus:outline-none focus:border-white/50 transition-colors text-white placeholder-gray-500"
                 />
@@ -97,19 +149,38 @@ export default function Contact() {
                 <textarea
                   id="message"
                   name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   rows={6}
                   placeholder="Your message..."
                   className="w-full px-4 py-3 bg-white/5 border border-white/30 rounded-sm focus:outline-none focus:border-white/50 transition-colors text-white placeholder-gray-500 resize-none"
                 />
               </div>
+              
+              {submitStatus === 'success' && (
+                <div className="mb-4 p-3 bg-green-500/20 border border-green-500/50 rounded-sm text-green-400 text-sm">
+                  Message sent successfully! I'll get back to you soon.
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-sm text-red-400 text-sm">
+                  <p className="font-semibold mb-1">Failed to send message.</p>
+                  <p className="text-xs text-red-300">
+                    Please check that RESEND_API_KEY is set in .env.local file, or email directly at frncsgerard02@gmail.com
+                  </p>
+                </div>
+              )}
                   
-                  <button
-                    type="submit"
-                    className="w-full px-6 py-3 bg-white text-black hover:bg-white/90 transition-all rounded-sm font-medium"
-                    style={{ marginTop: '12px', marginBottom: '12px' }}
-                  >
-                    Send Message
-                  </button>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full px-6 py-3 bg-white text-black hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all rounded-sm font-medium"
+                style={{ marginTop: '12px', marginBottom: '12px' }}
+              >
+                {isSubmitting ? 'Preparing...' : 'Send Message'}
+              </button>
             </form>
           </div>
         </div>
