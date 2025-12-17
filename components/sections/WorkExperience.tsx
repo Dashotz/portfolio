@@ -21,38 +21,38 @@ const experience = [
   },
 ];
 
-export default function OpenSourceTools() {
+export default function WorkExperience() {
   return (
     <section id="experience" className="relative flex items-start justify-center pt-12 sm:pt-14 md:pt-16 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/30 border-b border-white/30">
       <div className="w-[80%] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_2fr] gap-8 md:gap-12 items-start">
-          <div className="md:border-r md:border-white/30 pr-0 md:pr-12">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_2fr] gap-8 md:gap-12 items-stretch" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
+          <div className="md:border-r md:border-white/30 pr-0 md:pr-12" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
             <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tight">
-              <div>WORK</div>
-              <div>EXPE</div>
-              <div>RIENCE</div>
+              <div style={{ marginTop: '12px', marginBottom: '12px' }}>WORK</div>
+              <div style={{ marginTop: '12px', marginBottom: '12px' }}>EXPE</div>
+              <div style={{ marginTop: '12px', marginBottom: '12px' }}>RIENCE</div>
             </h2>
           </div>
           
-          <div className="hidden md:block w-px h-full bg-white/30"></div>
+          <div className="hidden md:block w-px bg-white/30" style={{ height: '100%', minHeight: '100%' }}></div>
           
-          <div className="flex flex-col">
-            <div className="space-y-0">
+          <div className="flex flex-col" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
+            <div style={{ marginTop: '16px', marginBottom: '16px' }}>
               {experience.map((exp, index) => (
-                <div key={index} className={index !== experience.length - 1 ? 'border-b border-white/30 pb-6 mb-6' : ''}>
-                  <div className="flex justify-between items-start mb-2">
+                <div key={index} className={index !== experience.length - 1 ? 'border-b border-white/30' : ''} style={{ paddingBottom: index !== experience.length - 1 ? '24px' : '0', marginBottom: index !== experience.length - 1 ? '24px' : '0' }}>
+                  <div className="flex justify-between items-start" style={{ marginTop: '12px', marginBottom: '12px' }}>
                     <div className="flex-1">
-                      <h3 className="text-lg font-bold text-white mb-1">
+                      <h3 className="text-lg font-bold text-white" style={{ marginTop: '12px', marginBottom: '12px' }}>
                         {exp.company}.
                       </h3>
-                      <p className="text-base text-gray-400 mb-2">
+                      <p className="text-base text-gray-400" style={{ marginTop: '12px', marginBottom: '12px' }}>
                         {exp.role}
                       </p>
-                      <p className="text-sm text-gray-500 leading-relaxed">
+                      <p className="text-sm text-gray-500 leading-relaxed" style={{ marginTop: '12px', marginBottom: '12px' }}>
                         {exp.description}
                       </p>
                     </div>
-                    <span className="text-sm text-gray-500 ml-4 whitespace-nowrap">
+                    <span className="text-sm text-gray-500 ml-4 whitespace-nowrap" style={{ marginTop: '12px', marginBottom: '12px' }}>
                       {exp.year}
                     </span>
                   </div>

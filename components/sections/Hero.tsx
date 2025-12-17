@@ -26,29 +26,41 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12">
       <div className="w-full max-w-6xl mx-auto text-center">
-        <p className="text-sm uppercase tracking-wider text-gray-400 mb-4">Welcome to my portfolio</p>
-        <h1 
-          ref={titleRef}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight tracking-tight"
-        >
-          Hi, I'm <span className="text-white">Francis Cruz</span>
-        </h1>
+        <div className="my-6">
+          <p className="text-sm uppercase tracking-wider text-gray-400">Welcome to my portfolio</p>
+        </div>
+        <div className="my-8">
+          <h1 
+            ref={titleRef}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight"
+          >
+            Hi, I'm <span className="text-white">Francis Cruz</span>
+          </h1>
+        </div>
         
-        <div ref={contentRef} className="w-full space-y-6 md:space-y-8 flex flex-col items-center">
-          <p className="text-xl sm:text-2xl md:text-3xl text-gray-300 font-medium">
-            Full Stack Developer & Creative Problem Solver
-          </p>
+        <div ref={contentRef} className="w-full flex flex-col items-center">
+          <div className="my-6">
+            <p className="text-xl sm:text-2xl md:text-3xl text-gray-300 font-medium">
+              Full Stack Developer & Creative Problem Solver
+            </p>
+          </div>
           
-          <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl">
-            I create beautiful, functional, and user-centered digital experiences. Let's bring your ideas to life with modern web technologies.
-          </p>
+          <div className="my-6 max-w-3xl">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed">
+              I create beautiful, functional, and user-centered digital experiences. Let's bring your ideas to life with modern web technologies.
+            </p>
+          </div>
           
-          <div className="flex items-center gap-6 mt-8">
+          <div 
+            className="flex items-center gap-6"
+            style={{ paddingTop: '5px', paddingBottom: '5px', marginTop: '5px', marginBottom: '5px' }}
+          >
             <Link 
               href="https://github.com/Dashotz"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"
+              style={{ paddingTop: '5px', paddingBottom: '5px' }}
               aria-label="GitHub"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -60,6 +72,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"
+              style={{ paddingTop: '5px', paddingBottom: '5px' }}
               aria-label="LinkedIn"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -69,6 +82,7 @@ export default function Hero() {
             <Link 
               href="mailto:frncsgerard02@gmail.com"
               className="text-gray-400 hover:text-white transition-colors"
+              style={{ paddingTop: '5px', paddingBottom: '5px' }}
               aria-label="Email"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,7 +91,7 @@ export default function Hero() {
             </Link>
           </div>
           
-          <div className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="my-8 md:my-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link 
               href="#projects" 
               className="inline-block px-6 md:px-8 py-3 md:py-4 border border-white/20 hover:border-white/40 transition-all hover:bg-white/5 rounded-sm text-sm md:text-base"

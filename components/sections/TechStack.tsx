@@ -71,26 +71,26 @@ export default function TechStack() {
   return (
     <section id="tech-stack" className="relative flex items-start justify-center pt-12 sm:pt-14 md:pt-16 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/30 border-b border-white/30">
       <div className="w-[80%] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_2fr] gap-8 md:gap-12 items-start">
-          <div className="md:border-r md:border-white/30 pr-0 md:pr-12">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_2fr] gap-8 md:gap-12 items-stretch" style={{ paddingTop: '16px', paddingBottom: '16px', minHeight: '100%' }}>
+          <div className="md:border-r md:border-white/30 pr-0 md:pr-12" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
             <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tight">
-              <div>TECH.</div>
-              <div>STACK</div>
+              <div style={{ marginTop: '12px', marginBottom: '12px' }}>TECH.</div>
+              <div style={{ marginTop: '12px', marginBottom: '12px' }}>STACK</div>
             </h2>
           </div>
           
-          <div className="hidden md:block w-px h-full bg-white/30"></div>
+          <div className="hidden md:block w-px bg-white/30" style={{ height: '100%', minHeight: '100%' }}></div>
           
-          <div className="flex flex-col">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 md:gap-10">
+          <div className="flex flex-col" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 md:gap-10" style={{ marginTop: '12px', marginBottom: '12px' }}>
               {techStack.map((tech, index) => (
-                <div key={index} className="flex flex-col items-center text-center">
+                <div key={index} className="flex flex-col items-center text-center" style={{ marginTop: '8px', marginBottom: '8px' }}>
                   <div className="w-16 h-16 mb-3 flex items-center justify-center bg-white/5 rounded-lg border border-white/30 hover:border-white/50 transition-all p-3">
                     <div className="w-full h-full flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:max-w-[40px] [&>svg]:max-h-[40px]">
                       {tech.svg}
                     </div>
                   </div>
-                  <span className="text-sm text-gray-300 font-medium">{tech.name}</span>
+                  <span className="text-sm text-gray-300 font-medium" style={{ marginTop: '12px', marginBottom: '12px' }}>{tech.name}</span>
                 </div>
               ))}
             </div>
