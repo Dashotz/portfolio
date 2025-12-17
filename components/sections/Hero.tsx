@@ -62,11 +62,25 @@ export default function Hero() {
     let isVisible = true;
     let isSectionVisible = true;
 
-    const draw = () => {
+    // FPS cap for consistent animation speed across browsers
+    const targetFPS = 30; // Cap at 30 FPS for consistent speed
+    const frameInterval = 1000 / targetFPS; // milliseconds per frame
+    let lastFrameTime = performance.now();
+
+    const draw = (currentTime: number) => {
       if (!isVisible || !isSectionVisible) {
+        lastFrameTime = currentTime;
         animationId = requestAnimationFrame(draw);
         return;
       }
+
+      // Cap frame rate - only render if enough time has passed
+      const timeSinceLastFrame = currentTime - lastFrameTime;
+      if (timeSinceLastFrame < frameInterval) {
+        animationId = requestAnimationFrame(draw);
+        return;
+      }
+      lastFrameTime = currentTime;
 
       frameCount++;
       if (frameCount % frameSkip !== 0) {
@@ -107,6 +121,12 @@ export default function Hero() {
 
       animationId = requestAnimationFrame(draw);
     };
+
+    // Start animation with time tracking
+    animationId = requestAnimationFrame((time) => {
+      lastFrameTime = time;
+      draw(time);
+    });
 
     // Pause animation when tab is hidden
     const handleVisibilityChange = () => {
@@ -152,9 +172,6 @@ export default function Hero() {
         }
       }
     };
-
-    // Start animation
-    animationId = requestAnimationFrame(draw);
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('resize', handleResize);
