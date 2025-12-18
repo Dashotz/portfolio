@@ -19,6 +19,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Portfolio - Francis Cruz",
   description: "Full Stack Developer & Creative Problem Solver. I create beautiful, functional, and user-centered digital experiences.",
+  icons: {
+    icon: [
+      { url: '/icon-dark.svg', media: '(prefers-color-scheme: dark)' },
+      { url: '/icon-light.svg', media: '(prefers-color-scheme: light)' },
+    ],
+  },
 };
 
 export default function RootLayout({
