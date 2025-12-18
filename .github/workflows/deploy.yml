@@ -42,6 +42,7 @@ jobs:
           # The contact form will need to be handled differently
           GITHUB_PAGES: 'true'
           BASE_PATH: /${{ steps.repo.outputs.name }}
+          NEXT_PUBLIC_BASE_PATH: /${{ steps.repo.outputs.name }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
