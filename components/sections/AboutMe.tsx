@@ -41,13 +41,10 @@ export default function AboutMe() {
           <div className="flex flex-col text-center md:text-left" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
             <div className="text-base sm:text-lg text-gray-300 leading-relaxed" style={{ marginTop: '16px', marginBottom: '16px' }}>
               <p style={{ marginTop: '12px', marginBottom: '12px' }}>
-                I'm a full-stack developer passionate about building innovative web applications that solve real-world problems. With a strong foundation in modern web technologies, I bring creativity and technical expertise to every project.
+                Full-stack developer building innovative web applications that solve real-world problems.
               </p>
               <p style={{ marginTop: '12px', marginBottom: '12px' }}>
-                My journey in web development started with curiosity and has evolved into a career where I continuously learn and adapt to new technologies and best practices.
-              </p>
-              <p style={{ marginTop: '12px', marginBottom: '12px' }}>
-                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.
+                Continuously learning and adapting to new technologies and best practices.
               </p>
             </div>
           </div>

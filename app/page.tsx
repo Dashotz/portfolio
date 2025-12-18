@@ -16,9 +16,10 @@ export default function Home() {
         <Hero />
         <TechStack />
         <AboutMe />
+        <WorkExperience />
         <FeaturedProjects />
         <Contact />
-        <WorkExperience />
+       
       </div>
       <Footer />
     </main>
