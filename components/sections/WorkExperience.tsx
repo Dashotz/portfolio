@@ -2,16 +2,46 @@
 
 const experience = [
   { 
-    year: '2019-2025', 
-    role: 'Freelance Technical Support Specialist', 
+    year: '2023 – 2025', 
+    role: 'Freelance Full-Stack Developer (Part Time)', 
     company: 'Self-Employed',
-    description: 'Provided comprehensive technical support services for laptops and desktops, including deep cleaning, cable management, hardware repairs, and system optimization.',
+    description: [
+      'Designed and developed custom web applications and websites for small businesses and individual clients',
+      'Built full-stack solutions using Laravel, JavaScript, TypeScript, React, Next.js, Node.js, and Express',
+      'Implemented responsive UI using Tailwind CSS and Bootstrap',
+      'Developed secure APIs, authentication flows, and database-driven features',
+      'Collaborated directly with clients to gather requirements, deliver features, and provide ongoing support',
+    ],
   },
   { 
-    year: 'Project Based', 
-    role: 'Web Developer (Full-Stack)', 
+    year: '2022 – 2023', 
+    role: 'Senior Web Developer', 
     company: 'City Government of Bacoor',
-    description: 'Worked as a project-based full-stack web developer, creating websites using PHP Laravel, JavaScript, Bootstrap, and CSS. Ensured secure, clean, and well-documented code.',
+    description: [
+      'Took ownership of core application features and system improvements',
+      'Reviewed code and mentored junior developers and interns',
+      'Improved application stability and maintainability through refactoring and best practices',
+    ],
+  },
+  { 
+    year: '2020 – 2022', 
+    role: 'Junior Web Developer', 
+    company: 'City Government of Bacoor',
+    description: [
+      'Developed and maintained website components using PHP, Laravel, JavaScript, Bootstrap, and CSS',
+      'Assisted in backend development, bug fixes, and feature enhancements',
+      'Gained hands-on experience working on live government systems',
+    ],
+  },
+  { 
+    year: '2019 – 2020', 
+    role: 'Web Development Intern', 
+    company: 'City Government of Bacoor',
+    description: [
+      'Supported the development team with basic frontend and backend tasks',
+      'Assisted in testing, debugging, and documentation',
+      'Built a strong foundation in professional development workflows and coding standards',
+    ],
   },
 ];
 
@@ -30,26 +60,29 @@ export default function WorkExperience() {
           <div className="hidden md:block w-px bg-white/30" style={{ height: '100%', minHeight: '100%' }}></div>
           
           <div className="flex flex-col text-center md:text-left" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
-            <div style={{ marginTop: '16px', marginBottom: '16px' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8" style={{ marginTop: '16px', marginBottom: '16px' }}>
               {experience.map((exp, index) => (
-                <div key={index} className={index !== experience.length - 1 ? 'border-b border-white/30' : ''} style={{ paddingBottom: index !== experience.length - 1 ? '24px' : '0', marginBottom: index !== experience.length - 1 ? '24px' : '0' }}>
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-0" style={{ marginTop: '12px', marginBottom: '12px' }}>
-                    <div className="flex-1">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
-                        <h3 className="text-lg font-bold text-white" style={{ marginTop: '12px', marginBottom: '12px' }}>
-                          {exp.company}.
-                        </h3>
-                        <span className="text-sm text-gray-500 sm:ml-4 sm:whitespace-nowrap" style={{ marginTop: '12px', marginBottom: '12px' }}>
-                          {exp.year}
-                        </span>
-                      </div>
-                      <p className="text-base text-gray-400" style={{ marginTop: '12px', marginBottom: '12px' }}>
-                        {exp.role}
-                      </p>
-                      <p className="text-sm text-gray-500 leading-relaxed" style={{ marginTop: '12px', marginBottom: '12px' }}>
-                        {exp.description}
-                      </p>
+                <div key={index} className="border-b border-white/30 pb-6" style={{ paddingBottom: '24px' }}>
+                  <div className="flex flex-col gap-2" style={{ marginTop: '12px', marginBottom: '12px' }}>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
+                      <h3 className="text-lg font-bold text-white">
+                        {exp.company}
+                      </h3>
+                      <span className="text-sm text-gray-500 sm:whitespace-nowrap">
+                        {exp.year}
+                      </span>
                     </div>
+                    <p className="text-base text-gray-400 font-medium">
+                      {exp.role}
+                    </p>
+                    <ul className="text-sm text-gray-500 leading-relaxed space-y-2 mt-2">
+                      {exp.description.map((item, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <span className="mr-2 text-gray-400">•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               ))}

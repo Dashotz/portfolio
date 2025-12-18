@@ -41,10 +41,13 @@ export default function AboutMe() {
           <div className="flex flex-col text-center md:text-left" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
             <div className="text-base sm:text-lg text-gray-300 leading-relaxed" style={{ marginTop: '16px', marginBottom: '16px' }}>
               <p style={{ marginTop: '12px', marginBottom: '12px' }}>
-                Full-stack developer building innovative web applications that solve real-world problems.
+                I'm a full-stack developer with 6+ years of experience building production-ready web applications. I work across the stack using React, Next.js, TypeScript, Tailwind CSS, Node.js, Express, and Laravel to deliver fast, scalable, and maintainable solutions.
               </p>
               <p style={{ marginTop: '12px', marginBottom: '12px' }}>
-                Continuously learning and adapting to new technologies and best practices.
+                I focus on clean architecture, performance, and clear communication, and I'm comfortable owning features end-to-end—from implementation to deployment.
+              </p>
+              <p style={{ marginTop: '12px', marginBottom: '12px' }}>
+                If you're looking for a developer who can ship reliably and improve real products, I'd be happy to connect.
               </p>
             </div>
           </div>

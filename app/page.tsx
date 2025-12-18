@@ -15,8 +15,8 @@ export default function Home() {
       <div className="relative z-10">
         <Hero />
         <TechStack />
-        <AboutMe />
         <WorkExperience />
+        <AboutMe />        
         <FeaturedProjects />
         <Contact />
        
