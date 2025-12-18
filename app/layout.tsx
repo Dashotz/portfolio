@@ -4,6 +4,7 @@ import "./globals.css";
 import { Lenis } from "@/components/lenis";
 import { GSAPRuntime } from "@/components/gsap/runtime";
 import { ReactTempus } from "tempus/react";
+import Favicon from "@/components/Favicon";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
         suppressHydrationWarning
       >
+        <Favicon />
         {children}
         <Lenis root options={{ duration: 1.2 }}>
           {/* Empty - Lenis handles root scrolling internally */}
