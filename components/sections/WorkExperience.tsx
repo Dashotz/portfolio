@@ -2,7 +2,17 @@
 
 const experience = [
   { 
-    year: '2023 – 2025', 
+    year: '2024 – 2025', 
+    role: 'Web Developer', 
+    company: 'City Government of Bacoor',
+    description: [
+      'Took ownership of core application features and system improvements',
+      'Reviewed code and mentored junior developers and interns',
+      'Improved application stability and maintainability through refactoring and best practices',
+    ],
+  },
+  { 
+    year: '2023 – Present', 
     role: 'Freelance Full-Stack Developer (Part Time)', 
     company: 'Self-Employed',
     description: [
@@ -14,33 +24,14 @@ const experience = [
     ],
   },
   { 
-    year: '2022 – 2023', 
-    role: 'Senior Web Developer', 
-    company: 'City Government of Bacoor',
+    year: '2020 – Present', 
+    role: 'Freelance Technical Support Specialist', 
+    company: 'Self-Employed',
     description: [
-      'Took ownership of core application features and system improvements',
-      'Reviewed code and mentored junior developers and interns',
-      'Improved application stability and maintainability through refactoring and best practices',
-    ],
-  },
-  { 
-    year: '2020 – 2022', 
-    role: 'Junior Web Developer', 
-    company: 'City Government of Bacoor',
-    description: [
-      'Developed and maintained website components using PHP, Laravel, JavaScript, Bootstrap, and CSS',
-      'Assisted in backend development, bug fixes, and feature enhancements',
-      'Gained hands-on experience working on live government systems',
-    ],
-  },
-  { 
-    year: '2019 – 2020', 
-    role: 'Web Development Intern', 
-    company: 'City Government of Bacoor',
-    description: [
-      'Supported the development team with basic frontend and backend tasks',
-      'Assisted in testing, debugging, and documentation',
-      'Built a strong foundation in professional development workflows and coding standards',
+      'Hardware repairs including component replacement (RAM, storage, batteries, keyboards) and troubleshooting motherboard/power supply issues',
+      'Windows OS installation and configuration (Windows 7-11) with driver setup and Microsoft Office installation',
+      'System optimization, malware removal, and client communication with detailed service documentation',
+      'Completed hundreds of repairs and installations across multiple computer brands and models',
     ],
   },
 ];
