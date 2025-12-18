@@ -34,6 +34,7 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
     let basePath = '';
     if (typeof window !== 'undefined') {
       const pathname = window.location.pathname;
+<<<<<<< HEAD
       const isGitHubPages = window.location.hostname.includes('github.io');
       
       // Method 1: Check pathname for basePath (e.g., /portfolio, /portfolio/, /portfolio/index.html)
@@ -89,6 +90,11 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
             }
           }
         }
+=======
+      // If pathname starts with /portfolio, use that as basePath
+      if (pathname.startsWith('/portfolio')) {
+        basePath = '/portfolio';
+>>>>>>> parent of 1cf860e (fix video v.1.3.1)
       }
       
       // Method 5: Last resort - if on GitHub Pages and still no basePath, default to /portfolio
@@ -98,7 +104,7 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
       }
     }
     
-    // Fallback to environment variable (available at build time, but may not be at runtime)
+    // Fallback to environment variable
     if (!basePath && typeof process !== 'undefined' && process.env) {
       basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
     }
@@ -990,6 +996,7 @@ export default function FeaturedProjects() {
     let basePath = '';
     if (typeof window !== 'undefined') {
       const pathname = window.location.pathname;
+<<<<<<< HEAD
       const isGitHubPages = window.location.hostname.includes('github.io');
       
       // Method 1: Check pathname for basePath (e.g., /portfolio, /portfolio/, /portfolio/index.html)
@@ -1045,6 +1052,11 @@ export default function FeaturedProjects() {
             }
           }
         }
+=======
+      // If pathname starts with /portfolio, use that as basePath
+      if (pathname.startsWith('/portfolio')) {
+        basePath = '/portfolio';
+>>>>>>> parent of 1cf860e (fix video v.1.3.1)
       }
       
       // Method 5: Last resort - if on GitHub Pages and still no basePath, default to /portfolio
@@ -1054,7 +1066,7 @@ export default function FeaturedProjects() {
       }
     }
     
-    // Fallback to environment variable (available at build time, but may not be at runtime)
+    // Fallback to environment variable
     if (!basePath && typeof process !== 'undefined' && process.env) {
       basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
     }
