@@ -72,15 +72,21 @@ export default function Header() {
 
       // If multiple sections are visible, use scroll position to determine which is most in view
       if (visibleSections.size > 1) {
+        // Batch all DOM reads together to avoid forced reflows
         const scrollPosition = window.scrollY + window.innerHeight / 2;
         let closestSection = '';
         let closestDistance = Infinity;
         
+        // Cache window dimensions
+        const windowHeight = window.innerHeight;
+        
         sections.forEach((sectionId) => {
           const section = document.getElementById(sectionId);
           if (section && visibleSections.has(sectionId)) {
+            // Batch offsetTop and offsetHeight reads
             const sectionTop = section.offsetTop;
-            const sectionCenter = sectionTop + section.offsetHeight / 2;
+            const sectionHeight = section.offsetHeight;
+            const sectionCenter = sectionTop + sectionHeight / 2;
             const distance = Math.abs(scrollPosition - sectionCenter);
             
             if (distance < closestDistance) {
@@ -96,13 +102,19 @@ export default function Header() {
       }
 
       // Check if we're at the bottom of the page - prioritize contact section
-      const isNearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 150;
+      // Batch DOM reads
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const isNearBottom = windowHeight + scrollY >= scrollHeight - 150;
+      
       if (isNearBottom) {
         const contactSection = document.getElementById('contact');
         if (contactSection) {
+          // Batch getBoundingClientRect read
           const rect = contactSection.getBoundingClientRect();
           // If contact section is visible (even partially), set it as active
-          if (rect.top < window.innerHeight && rect.bottom > 0) {
+          if (rect.top < windowHeight && rect.bottom > 0) {
             activeSection = 'contact';
           }
         }

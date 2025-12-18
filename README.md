@@ -51,10 +51,16 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser and you
 
 I've set this up to deploy on both Vercel and GitHub Pages:
 
-- **Vercel** - Full functionality including API routes (recommended)
-- **GitHub Pages** - Static hosting (contact form won't work here)
+### Vercel (Recommended)
+- Full functionality including API routes
+- Automatic deployments on push to main branch
+- Just connect your GitHub repo and add environment variables
 
-Check out the [DEPLOYMENT.md](./DEPLOYMENT.md) file for detailed instructions.
+### GitHub Pages
+- Static hosting only (contact form won't work)
+- Uses GitHub Actions for automatic deployment
+- The workflow automatically detects your repository name and sets the correct base path
+- Make sure to enable GitHub Pages in your repo settings (Settings → Pages → Source: GitHub Actions)
 
 ## Contact Form Setup
 
@@ -67,6 +73,20 @@ The contact form uses Resend to send emails. You'll need to:
    RESEND_FROM_EMAIL=your_verified_email@domain.com
    RESEND_TO_EMAIL=where_you_want_emails_sent@email.com
    ```
+
+## Security
+
+This site implements several security measures to protect against common web vulnerabilities:
+
+- **XSS Protection** - All user input is sanitized to prevent Cross-Site Scripting attacks. HTML characters are escaped before processing.
+- **Input Validation** - All form fields are validated on the server side, including email format validation using regex patterns.
+- **Type Safety** - Built with TypeScript to catch type-related errors at compile time.
+- **Environment Variables** - Sensitive data like API keys are stored securely in environment variables and never exposed to the client.
+- **React Strict Mode** - Enabled for additional development warnings and checks.
+- **Security Headers** - Next.js security headers are configured (e.g., `poweredByHeader: false` to hide framework information).
+- **Error Handling** - Comprehensive error handling prevents information leakage through error messages.
+
+The contact form API route includes server-side validation, HTML sanitization, and proper error handling to ensure secure form submissions.
 
 ## Customization
 

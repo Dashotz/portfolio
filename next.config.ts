@@ -19,6 +19,8 @@ const nextConfig: NextConfig = {
           }
         : false,
   },
+  // Optimize performance
+  swcMinify: true,
   experimental: {
     optimizePackageImports: [
       '@react-three/drei',
@@ -27,6 +29,7 @@ const nextConfig: NextConfig = {
       'three',
       'lenis',
     ],
+    optimizeCss: true,
   },
   images: {
     formats: ['image/avif', 'image/webp'],
