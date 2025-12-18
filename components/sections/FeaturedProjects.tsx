@@ -33,14 +33,80 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
     // Detect basePath from current location (for GitHub Pages)
     let basePath = '';
     if (typeof window !== 'undefined') {
+      // Method 1: Check pathname for /portfolio
       const pathname = window.location.pathname;
-      // If pathname starts with /portfolio, use that as basePath
-      if (pathname.startsWith('/portfolio')) {
-        basePath = '/portfolio';
+      const portfolioMatch = pathname.match(/^(\/portfolio)/);
+      if (portfolioMatch) {
+        basePath = portfolioMatch[1];
+      }
+      
+      // Method 2: Try to get from Next.js __NEXT_DATA__ if available
+      if (!basePath) {
+        const nextData = (window as any).__NEXT_DATA__;
+        if (nextData?.assetPrefix) {
+          basePath = nextData.assetPrefix;
+        } else if (nextData?.basePath) {
+          basePath = nextData.basePath;
+        }
+      }
+      
+      // Method 3: Check base tag in document head
+      if (!basePath) {
+        const baseTag = document.querySelector('base');
+        if (baseTag?.href) {
+          try {
+            const baseUrl = new URL(baseTag.href, window.location.href);
+            const basePathname = baseUrl.pathname;
+            if (basePathname && basePathname !== '/') {
+              basePath = basePathname.replace(/\/$/, ''); // Remove trailing slash
+            }
+          } catch (e) {
+            // Ignore URL parsing errors
+          }
+        }
+      }
+      
+      // Method 4: Check if we're on GitHub Pages by checking hostname
+      if (!basePath && window.location.hostname.includes('github.io')) {
+        // Extract repo name from hostname (e.g., dashotz.github.io -> portfolio)
+        // Format: username.github.io or username.github.io/repo
+        const hostnameParts = window.location.hostname.split('.');
+        if (hostnameParts.length >= 2) {
+          // Check pathname first
+          const pathParts = pathname.split('/').filter(Boolean);
+          if (pathParts.length > 0 && pathParts[0] !== '') {
+            basePath = `/${pathParts[0]}`;
+          } else {
+            // If pathname is / or /index.html, try to get from first script/link tag
+            // Next.js injects basePath into asset URLs
+            const scripts = document.querySelectorAll('script[src], link[href]');
+            for (const script of Array.from(scripts)) {
+              const src = (script as HTMLScriptElement).src || (script as HTMLLinkElement).href;
+              if (src) {
+                try {
+                  const url = new URL(src, window.location.origin);
+                  const urlPath = url.pathname;
+                  // Check if path starts with /portfolio/ or /username-repo/
+                  const match = urlPath.match(/^\/([^\/]+)\//);
+                  if (match && match[1] !== '') {
+                    basePath = `/${match[1]}`;
+                    break;
+                  }
+                } catch (e) {
+                  // Ignore URL parsing errors
+                }
+              }
+            }
+            // Last resort: assume repo name is 'portfolio' for this project
+            if (!basePath) {
+              basePath = '/portfolio';
+            }
+          }
+        }
       }
     }
     
-    // Fallback to environment variable
+    // Fallback to environment variable (available at build time, but may not be at runtime)
     if (!basePath && typeof process !== 'undefined' && process.env) {
       basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
     }
@@ -921,14 +987,80 @@ export default function FeaturedProjects() {
     // Detect basePath from current location (for GitHub Pages)
     let basePath = '';
     if (typeof window !== 'undefined') {
+      // Method 1: Check pathname for /portfolio
       const pathname = window.location.pathname;
-      // If pathname starts with /portfolio, use that as basePath
-      if (pathname.startsWith('/portfolio')) {
-        basePath = '/portfolio';
+      const portfolioMatch = pathname.match(/^(\/portfolio)/);
+      if (portfolioMatch) {
+        basePath = portfolioMatch[1];
+      }
+      
+      // Method 2: Try to get from Next.js __NEXT_DATA__ if available
+      if (!basePath) {
+        const nextData = (window as any).__NEXT_DATA__;
+        if (nextData?.assetPrefix) {
+          basePath = nextData.assetPrefix;
+        } else if (nextData?.basePath) {
+          basePath = nextData.basePath;
+        }
+      }
+      
+      // Method 3: Check base tag in document head
+      if (!basePath) {
+        const baseTag = document.querySelector('base');
+        if (baseTag?.href) {
+          try {
+            const baseUrl = new URL(baseTag.href, window.location.href);
+            const basePathname = baseUrl.pathname;
+            if (basePathname && basePathname !== '/') {
+              basePath = basePathname.replace(/\/$/, ''); // Remove trailing slash
+            }
+          } catch (e) {
+            // Ignore URL parsing errors
+          }
+        }
+      }
+      
+      // Method 4: Check if we're on GitHub Pages by checking hostname
+      if (!basePath && window.location.hostname.includes('github.io')) {
+        // Extract repo name from hostname (e.g., dashotz.github.io -> portfolio)
+        // Format: username.github.io or username.github.io/repo
+        const hostnameParts = window.location.hostname.split('.');
+        if (hostnameParts.length >= 2) {
+          // Check pathname first
+          const pathParts = pathname.split('/').filter(Boolean);
+          if (pathParts.length > 0 && pathParts[0] !== '') {
+            basePath = `/${pathParts[0]}`;
+          } else {
+            // If pathname is / or /index.html, try to get from first script/link tag
+            // Next.js injects basePath into asset URLs
+            const scripts = document.querySelectorAll('script[src], link[href]');
+            for (const script of Array.from(scripts)) {
+              const src = (script as HTMLScriptElement).src || (script as HTMLLinkElement).href;
+              if (src) {
+                try {
+                  const url = new URL(src, window.location.origin);
+                  const urlPath = url.pathname;
+                  // Check if path starts with /portfolio/ or /username-repo/
+                  const match = urlPath.match(/^\/([^\/]+)\//);
+                  if (match && match[1] !== '') {
+                    basePath = `/${match[1]}`;
+                    break;
+                  }
+                } catch (e) {
+                  // Ignore URL parsing errors
+                }
+              }
+            }
+            // Last resort: assume repo name is 'portfolio' for this project
+            if (!basePath) {
+              basePath = '/portfolio';
+            }
+          }
+        }
       }
     }
     
-    // Fallback to environment variable
+    // Fallback to environment variable (available at build time, but may not be at runtime)
     if (!basePath && typeof process !== 'undefined' && process.env) {
       basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
     }
