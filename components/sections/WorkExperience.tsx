@@ -13,12 +13,6 @@ const experience = [
     company: 'City Government of Bacoor',
     description: 'Worked as a project-based full-stack web developer, creating websites using PHP Laravel, JavaScript, Bootstrap, and CSS. Ensured secure, clean, and well-documented code.',
   },
-  { 
-    year: '2020-2025', 
-    role: 'Coach', 
-    company: 'Imus United Football Inc.',
-    description: 'Worked with coaches to build a strong football program, connected with the community through media, trained athletes for competitions, and organized events.',
-  },
 ];
 
 export default function WorkExperience() {

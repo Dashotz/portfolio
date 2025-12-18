@@ -14,11 +14,11 @@ export default function Home() {
       <Header />
       <div className="relative z-10">
         <Hero />
-        <AboutMe />
-        <WorkExperience />
         <TechStack />
+        <AboutMe />
         <FeaturedProjects />
         <Contact />
+        <WorkExperience />
       </div>
       <Footer />
     </main>
