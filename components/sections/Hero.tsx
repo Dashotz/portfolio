@@ -244,7 +244,7 @@ export default function Hero() {
             
             <div className="my-4 sm:my-6 max-w-3xl px-4 sm:px-0">
               <div className="flex flex-col items-center gap-2 sm:gap-3 text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed text-center">
-                <p>6 years of tech support experience configuring systems.</p>
+                <p>6 years of tech support experience configuring systems, troubleshooting issues, and performing repairs.</p>
               </div>
             </div>
           
