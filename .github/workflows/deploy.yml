@@ -31,13 +31,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Get repository name
+        id: repo
+        run: echo "name=${GITHUB_REPOSITORY#*/}" >> $GITHUB_OUTPUT
+
       - name: Build with Next.js (Static Export)
         run: npm run build:static
         env:
           # Note: API routes won't work on GitHub Pages
           # The contact form will need to be handled differently
           GITHUB_PAGES: 'true'
-          BASE_PATH: ''
+          BASE_PATH: /${{ steps.repo.outputs.name }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

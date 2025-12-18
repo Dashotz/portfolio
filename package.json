@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:static": "GITHUB_PAGES=true BASE_PATH= next build",
+    "build:static": "next build",
     "start": "next start",
     "lint": "eslint"
   },
