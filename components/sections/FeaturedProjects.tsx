@@ -33,11 +33,13 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
     // Detect basePath from current location (for GitHub Pages)
     let basePath = '';
     if (typeof window !== 'undefined') {
-      // Method 1: Check pathname for /portfolio
       const pathname = window.location.pathname;
-      const portfolioMatch = pathname.match(/^(\/portfolio)/);
-      if (portfolioMatch) {
-        basePath = portfolioMatch[1];
+      const isGitHubPages = window.location.hostname.includes('github.io');
+      
+      // Method 1: Check pathname for basePath (e.g., /portfolio, /portfolio/, /portfolio/index.html)
+      const pathMatch = pathname.match(/^\/([^\/]+)/);
+      if (pathMatch && pathMatch[1]) {
+        basePath = `/${pathMatch[1]}`;
       }
       
       // Method 2: Try to get from Next.js __NEXT_DATA__ if available
@@ -66,49 +68,44 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
         }
       }
       
-      // Method 4: Check if we're on GitHub Pages by checking hostname
-      if (!basePath && window.location.hostname.includes('github.io')) {
-        // Extract repo name from hostname (e.g., dashotz.github.io -> portfolio)
-        // Format: username.github.io or username.github.io/repo
-        const hostnameParts = window.location.hostname.split('.');
-        if (hostnameParts.length >= 2) {
-          // Check pathname first
-          const pathParts = pathname.split('/').filter(Boolean);
-          if (pathParts.length > 0 && pathParts[0] !== '') {
-            basePath = `/${pathParts[0]}`;
-          } else {
-            // If pathname is / or /index.html, try to get from first script/link tag
-            // Next.js injects basePath into asset URLs
-            const scripts = document.querySelectorAll('script[src], link[href]');
-            for (const script of Array.from(scripts)) {
-              const src = (script as HTMLScriptElement).src || (script as HTMLLinkElement).href;
-              if (src) {
-                try {
-                  const url = new URL(src, window.location.origin);
-                  const urlPath = url.pathname;
-                  // Check if path starts with /portfolio/ or /username-repo/
-                  const match = urlPath.match(/^\/([^\/]+)\//);
-                  if (match && match[1] !== '') {
-                    basePath = `/${match[1]}`;
-                    break;
-                  }
-                } catch (e) {
-                  // Ignore URL parsing errors
-                }
+      // Method 4: If on GitHub Pages and pathname is / or /index.html, extract from script/link tags
+      if (!basePath && isGitHubPages && (pathname === '/' || pathname === '/index.html' || pathname.match(/^\/[^\/]*$/))) {
+        // Check all script and link tags for basePath
+        const allTags = document.querySelectorAll('script[src], link[href], link[rel="stylesheet"]');
+        for (const tag of Array.from(allTags)) {
+          const src = (tag as HTMLScriptElement).src || (tag as HTMLLinkElement).href;
+          if (src) {
+            try {
+              const url = new URL(src, window.location.origin);
+              const urlPath = url.pathname;
+              // Extract basePath from asset URLs (e.g., /portfolio/_next/static/...)
+              const match = urlPath.match(/^\/([^\/]+)\//);
+              if (match && match[1] && match[1] !== '_next' && match[1] !== 'api') {
+                basePath = `/${match[1]}`;
+                break;
               }
-            }
-            // Last resort: assume repo name is 'portfolio' for this project
-            if (!basePath) {
-              basePath = '/portfolio';
+            } catch (e) {
+              // Ignore URL parsing errors
             }
           }
         }
+      }
+      
+      // Method 5: Last resort - if on GitHub Pages and still no basePath, default to /portfolio
+      // This assumes the repo name is 'portfolio', but should work for most cases
+      if (!basePath && isGitHubPages) {
+        basePath = '/portfolio';
       }
     }
     
     // Fallback to environment variable (available at build time, but may not be at runtime)
     if (!basePath && typeof process !== 'undefined' && process.env) {
       basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+    }
+    
+    // Final fallback: if on github.io and still no basePath, force /portfolio
+    if (!basePath && typeof window !== 'undefined' && window.location.hostname.includes('github.io')) {
+      basePath = '/portfolio';
     }
     
     // Ensure src starts with /
@@ -411,7 +408,10 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
         console.log('Loading video:', {
           original: videoSrc,
           fullPath: fullVideoSrc,
+          actualVideoSrc: video.src,
           format: videoExtension,
+          pathname: typeof window !== 'undefined' ? window.location.pathname : 'N/A',
+          hostname: typeof window !== 'undefined' ? window.location.hostname : 'N/A',
         });
         
         // Wait for video to be ready
@@ -462,32 +462,34 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
               readyState: videoEl?.readyState,
             });
             
-            let errorMsg = `Failed to load video: ${videoSrc}`;
+            // Use actual video.src (which should have basePath) for error messages
+            const actualVideoSrc = videoEl?.src || videoSrc;
+            let errorMsg = `Failed to load video: ${actualVideoSrc}`;
             if (error) {
               switch (error.code) {
                 case error.MEDIA_ERR_ABORTED:
-                  errorMsg = `Video loading was aborted. File: ${videoSrc}`;
+                  errorMsg = `Video loading was aborted. File: ${actualVideoSrc}`;
                   break;
                 case error.MEDIA_ERR_NETWORK:
-                  errorMsg = `Network error while loading video. Please check your connection. File: ${videoSrc}`;
+                  errorMsg = `Network error while loading video. Please check your connection. File: ${actualVideoSrc}`;
                   break;
                 case error.MEDIA_ERR_DECODE:
-                  errorMsg = `Video decoding error. The file may be corrupted or use an unsupported codec. File: ${videoSrc}`;
+                  errorMsg = `Video decoding error. The file may be corrupted or use an unsupported codec. File: ${actualVideoSrc}`;
                   break;
                 case error.MEDIA_ERR_SRC_NOT_SUPPORTED:
-                  errorMsg = `Video format not supported by your browser. The file "${videoSrc}" may be missing, use an unsupported codec, or have CORS restrictions. Please ensure the video file exists and is in a supported format (MP4 with H.264 codec recommended).`;
+                  errorMsg = `Video format not supported by your browser. The file "${actualVideoSrc}" may be missing, use an unsupported codec, or have CORS restrictions. Please ensure the video file exists and is in a supported format (MP4 with H.264 codec recommended).`;
                   break;
                 default:
-                  errorMsg = `Video error (code: ${error.code}). File: ${videoSrc}`;
+                  errorMsg = `Video error (code: ${error.code}). File: ${actualVideoSrc}`;
               }
             } else {
               // No error object - could be file not found, CORS, etc.
               if (videoEl?.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
-                errorMsg = `Video file not found: ${videoSrc}. Please ensure the file exists in the public/videos directory.`;
+                errorMsg = `Video file not found: ${actualVideoSrc}. Please ensure the file exists in the public/videos directory.`;
               } else if (videoEl?.networkState === HTMLMediaElement.NETWORK_EMPTY) {
-                errorMsg = `Video source is empty: ${videoSrc}`;
+                errorMsg = `Video source is empty: ${actualVideoSrc}`;
               } else {
-                errorMsg = `Failed to load video: ${videoSrc}. This could be due to CORS restrictions, file not found, or unsupported format.`;
+                errorMsg = `Failed to load video: ${actualVideoSrc}. This could be due to CORS restrictions, file not found, or unsupported format.`;
               }
             }
             reject(new Error(errorMsg));
@@ -987,11 +989,13 @@ export default function FeaturedProjects() {
     // Detect basePath from current location (for GitHub Pages)
     let basePath = '';
     if (typeof window !== 'undefined') {
-      // Method 1: Check pathname for /portfolio
       const pathname = window.location.pathname;
-      const portfolioMatch = pathname.match(/^(\/portfolio)/);
-      if (portfolioMatch) {
-        basePath = portfolioMatch[1];
+      const isGitHubPages = window.location.hostname.includes('github.io');
+      
+      // Method 1: Check pathname for basePath (e.g., /portfolio, /portfolio/, /portfolio/index.html)
+      const pathMatch = pathname.match(/^\/([^\/]+)/);
+      if (pathMatch && pathMatch[1]) {
+        basePath = `/${pathMatch[1]}`;
       }
       
       // Method 2: Try to get from Next.js __NEXT_DATA__ if available
@@ -1020,49 +1024,44 @@ export default function FeaturedProjects() {
         }
       }
       
-      // Method 4: Check if we're on GitHub Pages by checking hostname
-      if (!basePath && window.location.hostname.includes('github.io')) {
-        // Extract repo name from hostname (e.g., dashotz.github.io -> portfolio)
-        // Format: username.github.io or username.github.io/repo
-        const hostnameParts = window.location.hostname.split('.');
-        if (hostnameParts.length >= 2) {
-          // Check pathname first
-          const pathParts = pathname.split('/').filter(Boolean);
-          if (pathParts.length > 0 && pathParts[0] !== '') {
-            basePath = `/${pathParts[0]}`;
-          } else {
-            // If pathname is / or /index.html, try to get from first script/link tag
-            // Next.js injects basePath into asset URLs
-            const scripts = document.querySelectorAll('script[src], link[href]');
-            for (const script of Array.from(scripts)) {
-              const src = (script as HTMLScriptElement).src || (script as HTMLLinkElement).href;
-              if (src) {
-                try {
-                  const url = new URL(src, window.location.origin);
-                  const urlPath = url.pathname;
-                  // Check if path starts with /portfolio/ or /username-repo/
-                  const match = urlPath.match(/^\/([^\/]+)\//);
-                  if (match && match[1] !== '') {
-                    basePath = `/${match[1]}`;
-                    break;
-                  }
-                } catch (e) {
-                  // Ignore URL parsing errors
-                }
+      // Method 4: If on GitHub Pages and pathname is / or /index.html, extract from script/link tags
+      if (!basePath && isGitHubPages && (pathname === '/' || pathname === '/index.html' || pathname.match(/^\/[^\/]*$/))) {
+        // Check all script and link tags for basePath
+        const allTags = document.querySelectorAll('script[src], link[href], link[rel="stylesheet"]');
+        for (const tag of Array.from(allTags)) {
+          const src = (tag as HTMLScriptElement).src || (tag as HTMLLinkElement).href;
+          if (src) {
+            try {
+              const url = new URL(src, window.location.origin);
+              const urlPath = url.pathname;
+              // Extract basePath from asset URLs (e.g., /portfolio/_next/static/...)
+              const match = urlPath.match(/^\/([^\/]+)\//);
+              if (match && match[1] && match[1] !== '_next' && match[1] !== 'api') {
+                basePath = `/${match[1]}`;
+                break;
               }
-            }
-            // Last resort: assume repo name is 'portfolio' for this project
-            if (!basePath) {
-              basePath = '/portfolio';
+            } catch (e) {
+              // Ignore URL parsing errors
             }
           }
         }
+      }
+      
+      // Method 5: Last resort - if on GitHub Pages and still no basePath, default to /portfolio
+      // This assumes the repo name is 'portfolio', but should work for most cases
+      if (!basePath && isGitHubPages) {
+        basePath = '/portfolio';
       }
     }
     
     // Fallback to environment variable (available at build time, but may not be at runtime)
     if (!basePath && typeof process !== 'undefined' && process.env) {
       basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+    }
+    
+    // Final fallback: if on github.io and still no basePath, force /portfolio
+    if (!basePath && typeof window !== 'undefined' && window.location.hostname.includes('github.io')) {
+      basePath = '/portfolio';
     }
     
     // Ensure src starts with /
