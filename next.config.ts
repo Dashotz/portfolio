@@ -5,10 +5,8 @@ const nextConfig: NextConfig = {
   // Note: API routes won't work with static export
   // Use Vercel for full functionality including API routes
   output: process.env.GITHUB_PAGES === 'true' ? 'export' : undefined,
-  basePath: process.env.GITHUB_PAGES === 'true' ? (process.env.BASE_PATH || '/portfolio') : '',
-  assetPrefix: process.env.GITHUB_PAGES === 'true' ? (process.env.BASE_PATH || '/portfolio') : '',
-  // Ensure trailingSlash for GitHub Pages compatibility
-  trailingSlash: process.env.GITHUB_PAGES === 'true',
+  basePath: process.env.GITHUB_PAGES === 'true' ? process.env.BASE_PATH || '' : '',
+  assetPrefix: process.env.GITHUB_PAGES === 'true' ? process.env.BASE_PATH || '' : '',
   reactStrictMode: true,
   reactCompiler: true,
   poweredByHeader: false,
