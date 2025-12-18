@@ -51,16 +51,27 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser and you
 
 I've set this up to deploy on both Vercel and GitHub Pages:
 
-### Vercel (Recommended)
+### Vercel (Primary - Recommended)
 - Full functionality including API routes
 - Automatic deployments on push to main branch
 - Just connect your GitHub repo and add environment variables
+- **Live URL**: https://portfolio-frncszxc.vercel.app
 
-### GitHub Pages
-- Static hosting only (contact form won't work)
+### GitHub Pages (Redirects to Vercel)
+- **GitHub Pages now automatically redirects to Vercel** for the best user experience
+- The redirect ensures all images, videos, and API routes work correctly
 - Uses GitHub Actions for automatic deployment
-- The workflow automatically detects your repository name and sets the correct base path
-- Make sure to enable GitHub Pages in your repo settings (Settings → Pages → Source: GitHub Actions)
+- **Live URL**: https://dashotz.github.io/portfolio/ (redirects to Vercel)
+
+#### How the Redirect Works
+
+When someone visits `dashotz.github.io/portfolio`, they are automatically redirected to the Vercel deployment. This ensures:
+- ✅ All images and videos load correctly
+- ✅ Contact form API routes work properly
+- ✅ No basePath issues with static assets
+- ✅ Consistent experience across all features
+
+The redirect is automatically created during the build process using the `build:github` script.
 
 ## Contact Form Setup
 
@@ -96,6 +107,7 @@ Want to use this as a template? Go for it! Just:
 2. Replace the project images in the `public` folder
 3. Update the metadata in `app/layout.tsx`
 4. Change the colors in `app/globals.css` if you want a different theme
+5. Update the Vercel URL in `scripts/create-github-redirect.js` if deploying your own version
 
 ## Fonts
 

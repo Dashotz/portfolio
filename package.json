@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:static": "next build",
+    "build:static": "GITHUB_PAGES=true BASE_PATH=/portfolio next build && node scripts/create-github-redirect.js",
+    "build:github": "GITHUB_PAGES=true BASE_PATH=/portfolio next build && node scripts/create-github-redirect.js",
     "start": "next start",
     "lint": "eslint"
   },
