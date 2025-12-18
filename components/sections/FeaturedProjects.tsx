@@ -21,8 +21,8 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
   const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   
-  // Get basePath-aware video source
-  const getVideoSrc = useCallback((src: string) => {
+  // Get basePath-aware asset path (for videos, images, etc.)
+  const getAssetPath = useCallback((src: string) => {
     if (!src) return src;
     
     // If it's already an absolute URL, return as is
@@ -338,7 +338,7 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
         }
         
         // Set video source with basePath-aware path and load
-        const fullVideoSrc = getVideoSrc(videoSrc);
+        const fullVideoSrc = getAssetPath(videoSrc);
         video.src = fullVideoSrc;
         video.load();
         
@@ -454,7 +454,7 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
       setIsLoading(false);
       setIsLoaded(false);
     }
-  }, [isLoaded, isLoading, videoSrc, handlePlayVideo, getVideoSrc]);
+  }, [isLoaded, isLoading, videoSrc, handlePlayVideo, getAssetPath]);
 
   const handleStop = useCallback(() => {
     if (videoRef.current) {
@@ -490,7 +490,7 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
       {(videoThumbnail || thumbnail) && !isLoaded && (
         <div className="absolute inset-0 z-0">
           <img 
-            src={videoThumbnail || thumbnail} 
+            src={videoThumbnail || (thumbnail ? getAssetPath(thumbnail) : '')} 
             alt={`${projectName} thumbnail`}
             className="w-full h-full object-cover"
             loading="lazy"
@@ -909,6 +909,36 @@ export default function FeaturedProjects() {
   const touchStartRef = useRef<Map<string, number>>(new Map());
   const [isMobile, setIsMobile] = useState(false);
 
+  // Get basePath-aware asset path (for images, videos, etc.)
+  const getAssetPath = useCallback((src: string) => {
+    if (!src) return src;
+    
+    // If it's already an absolute URL, return as is
+    if (src.startsWith('http://') || src.startsWith('https://')) {
+      return src;
+    }
+    
+    // Detect basePath from current location (for GitHub Pages)
+    let basePath = '';
+    if (typeof window !== 'undefined') {
+      const pathname = window.location.pathname;
+      // If pathname starts with /portfolio, use that as basePath
+      if (pathname.startsWith('/portfolio')) {
+        basePath = '/portfolio';
+      }
+    }
+    
+    // Fallback to environment variable
+    if (!basePath && typeof process !== 'undefined' && process.env) {
+      basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+    }
+    
+    // Ensure src starts with /
+    const normalizedSrc = src.startsWith('/') ? src : `/${src}`;
+    
+    return `${basePath}${normalizedSrc}`;
+  }, []);
+
   // Detect mobile device - use matchMedia for better performance
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -1202,7 +1232,7 @@ export default function FeaturedProjects() {
                   {/* Front side - Image */}
                   <div className="flip-card-front">
                     <img 
-                      src={project.image} 
+                      src={getAssetPath(project.image)} 
                       alt={project.name}
                       className="w-full h-full object-cover"
                       loading="lazy"
@@ -1217,7 +1247,7 @@ export default function FeaturedProjects() {
                       videoSrc={project.video}
                       projectName={project.name}
                       isFlipped={flippedCards.has(project.name)}
-                      thumbnail={project.image}
+                      thumbnail={getAssetPath(project.image)}
                     />
                   ) : (
                     <div className="flip-card-back flex items-center justify-center">
