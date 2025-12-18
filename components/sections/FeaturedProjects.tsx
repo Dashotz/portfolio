@@ -20,6 +20,36 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
   const [error, setError] = useState<string | null>(null);
   const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  
+  // Get basePath-aware video source
+  const getVideoSrc = useCallback((src: string) => {
+    if (!src) return src;
+    
+    // If it's already an absolute URL, return as is
+    if (src.startsWith('http://') || src.startsWith('https://')) {
+      return src;
+    }
+    
+    // Detect basePath from current location (for GitHub Pages)
+    let basePath = '';
+    if (typeof window !== 'undefined') {
+      const pathname = window.location.pathname;
+      // If pathname starts with /portfolio, use that as basePath
+      if (pathname.startsWith('/portfolio')) {
+        basePath = '/portfolio';
+      }
+    }
+    
+    // Fallback to environment variable
+    if (!basePath && typeof process !== 'undefined' && process.env) {
+      basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+    }
+    
+    // Ensure src starts with /
+    const normalizedSrc = src.startsWith('/') ? src : `/${src}`;
+    
+    return `${basePath}${normalizedSrc}`;
+  }, []);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
@@ -307,13 +337,15 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
           console.warn(`Video format .${videoExtension} may not be supported. Recommended: MP4 with H.264 codec.`);
         }
         
-        // Set video source and load
-        video.src = videoSrc;
+        // Set video source with basePath-aware path and load
+        const fullVideoSrc = getVideoSrc(videoSrc);
+        video.src = fullVideoSrc;
         video.load();
         
-        console.log('Loading video:', videoSrc, {
+        console.log('Loading video:', {
+          original: videoSrc,
+          fullPath: fullVideoSrc,
           format: videoExtension,
-          fullPath: video.src,
         });
         
         // Wait for video to be ready
@@ -422,7 +454,7 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
       setIsLoading(false);
       setIsLoaded(false);
     }
-  }, [isLoaded, isLoading, videoSrc, handlePlayVideo]);
+  }, [isLoaded, isLoading, videoSrc, handlePlayVideo, getVideoSrc]);
 
   const handleStop = useCallback(() => {
     if (videoRef.current) {
