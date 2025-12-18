@@ -4,6 +4,8 @@ import { useEffect, useRef, useState, useCallback, memo, useMemo } from 'react';
 import { Link } from '@/components/link';
 import { gsap } from 'gsap';
 
+// VideoPlayer component - ready to use when videos are uploaded
+// Uncomment video properties in projects array to enable
 interface VideoPlayerProps {
   videoSrc: string;
   projectName: string;
@@ -433,7 +435,6 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
     }
   }, []);
 
-
   const handleVideoEnd = useCallback(() => {
     setIsPlaying(false);
     setShowControls(true);
@@ -833,7 +834,7 @@ const projects = [
     codeLink: 'https://github.com/Dashotz/Camerino-Hub',
     demoLink: 'https://camerinohub.helioho.st',
     image: '/images/camerino.jpg',
-    video: '/videos/camerino.mp4',
+    // video: '/videos/camerino.mp4', // Uncomment when video is uploaded
     category: 'website'
   },
   { 
@@ -843,7 +844,7 @@ const projects = [
     codeLink: 'https://github.com/Dashotz',
     demoLink: 'https://stthomasmore.helioho.st',
     image: '/images/sttma.jpg',
-    video: '/videos/sttma.mp4',
+    // video: '/videos/sttma.mp4', // Uncomment when video is uploaded
     category: 'website'
   },
   { 
@@ -853,7 +854,7 @@ const projects = [
     codeLink: 'https://github.com/Dashotz/Social_Media_Dashboard',
     demoLink: 'https://dashotz.github.io/Social_Media_Dashboard/',
     image: '/images/socialmedia.jpg',
-    video: '/videos/socialmedia.mp4',
+    // video: '/videos/socialmedia.mp4', // Uncomment when video is uploaded
     category: 'website'
   },
   { 
@@ -863,7 +864,7 @@ const projects = [
     codeLink: 'https://github.com/Dashotz/weather',
     demoLink: 'https://dashotz.github.io/weather/',
     image: '/images/weather.png',
-    video: '/videos/weather.mp4',
+    // video: '/videos/weather.mp4', // Uncomment when video is uploaded
     category: 'website'
   },
 ];
@@ -1105,7 +1106,8 @@ export default function FeaturedProjects() {
               <div 
                 className="relative w-full h-[24rem] xs:h-[28rem] sm:h-[32rem] md:h-[40rem] lg:h-[48rem] xl:h-[56rem] flip-card-container group/image"
                 onMouseEnter={() => {
-                  if (project.video && !isMobile) {
+                  // Only flip if project has video or we want to show placeholder
+                  if (!isMobile) {
                     // Clear any pending timeout
                     const timeout = hoverTimeoutRef.current.get(project.name);
                     if (timeout) {
@@ -1116,7 +1118,7 @@ export default function FeaturedProjects() {
                   }
                 }}
                 onMouseLeave={() => {
-                  if (project.video && !isMobile) {
+                  if (!isMobile) {
                     // Small delay before flipping back to prevent flickering
                     const timeout = setTimeout(() => {
                       setFlippedCards(prev => {
@@ -1130,7 +1132,7 @@ export default function FeaturedProjects() {
                   }
                 }}
                 onTouchStart={(e) => {
-                  if (project.video && isMobile) {
+                  if (isMobile) {
                     e.preventDefault();
                     touchStartRef.current.set(project.name, Date.now());
                     // Clear any pending timeout
@@ -1143,7 +1145,7 @@ export default function FeaturedProjects() {
                   }
                 }}
                 onTouchEnd={(e) => {
-                  if (project.video && isMobile) {
+                  if (isMobile) {
                     e.preventDefault();
                     const touchStart = touchStartRef.current.get(project.name);
                     const touchDuration = touchStart ? Date.now() - touchStart : 0;
@@ -1179,21 +1181,22 @@ export default function FeaturedProjects() {
                     />
                   </div>
                   
-                  {/* Back side - Video */}
-                  {project.video ? (
+                  {/* Back side - Video or Placeholder */}
+                  {(project as any).video ? (
                     <VideoPlayer
-                      videoSrc={project.video}
+                      videoSrc={(project as any).video}
                       projectName={project.name}
                       isFlipped={flippedCards.has(project.name)}
                       thumbnail={project.image}
                     />
                   ) : (
-                    <div className="flip-card-back flex items-center justify-center">
-                      <div className="text-center text-gray-400">
-                        <svg className="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    <div className="flip-card-back flex items-center justify-center bg-black/50">
+                      <div className="text-center text-gray-400 px-4">
+                        <svg className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                         </svg>
-                        <p className="text-sm">Video coming soon</p>
+                        <p className="text-sm sm:text-base font-medium mb-2">Demo Video</p>
+                        <p className="text-xs sm:text-sm text-gray-500">Coming soon</p>
                       </div>
                     </div>
                   )}
