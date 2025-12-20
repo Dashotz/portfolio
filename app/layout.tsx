@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Lenis } from "@/components/lenis";
@@ -41,6 +42,7 @@ export default function RootLayout({
         <GSAPRuntime />
         {/* RAF management */}
         <ReactTempus patch={true} />
+        <Analytics />
       </body>
     </html>
   );
