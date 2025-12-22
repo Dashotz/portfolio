@@ -2,13 +2,23 @@
 
 const experience = [
   { 
-    year: '2024 – 2025', 
-    role: 'Web Developer', 
+    year: '2025 – Present', 
+    role: 'Senior Full Stack Developer', 
     company: 'City Government of Bacoor',
     description: [
       'Took ownership of core application features and system improvements',
       'Reviewed code and mentored junior developers and interns',
       'Improved application stability and maintainability through refactoring and best practices',
+    ],
+  },
+  { 
+    year: '2024 – 2025', 
+    role: 'Junior Full Stack Developer', 
+    company: 'City Government of Bacoor',
+    description: [
+      'Developed and maintained website components using PHP, Laravel, JavaScript, Bootstrap, and CSS',
+      'Assisted in backend development, bug fixes, and feature enhancements',
+      'Gained hands-on experience working on live government systems',
     ],
   },
   { 
