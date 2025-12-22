@@ -833,7 +833,8 @@ const projects = [
     tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Monaco Editor', 'React DnD', 'Lucide React'],
     codeLink: 'https://github.com/Dashotz',
     demoLink: '#',
-    image: '/images/email-builder.jpg',
+    image: '/images/emailbuilder.jpg',
+    images: ['/images/emailbuilder.jpg', '/images/emailbuilder1.jpg'], // Multiple images for this project
     // video: '/videos/email-builder.mp4', // Uncomment when video is uploaded
     category: 'app'
   },
@@ -843,7 +844,8 @@ const projects = [
     tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', '@dnd-kit', 'Lucide React'],
     codeLink: 'https://github.com/Dashotz',
     demoLink: '#',
-    image: '/images/website-builder.jpg',
+    image: '/images/websitebuilder.jpg',
+    images: ['/images/websitebuilder.jpg', '/images/websitebuilder1.jpg'], // Multiple images for this project
     // video: '/videos/website-builder.mp4', // Uncomment when video is uploaded
     category: 'app'
   },
@@ -851,9 +853,9 @@ const projects = [
     name: 'Dental Scheduling System', 
     description: 'A comprehensive web-based dental clinic management system designed to streamline patient management, appointment scheduling, and clinic operations. Features include patient profiles with dental records and teeth chart tracking, interactive calendar interface, treatment plan creation with quote/invoice generation, multi-role system with role-based access control, and administrative tools with multi-tenant support and comprehensive reporting.',
     tech: ['Laravel', 'PHP', 'MySQL', 'Bootstrap', 'jQuery', 'JavaScript'],
-    codeLink: 'https://github.com/Dashotz',
-    demoLink: '#',
-    image: '/images/dental-schedule.jpg',
+    codeLink: 'https://github.com/Dashotz/dental_schedule',
+    demoLink: 'https://dental-schedule.helioho.st',
+    image: '/images/dental.jpg',
     // video: '/videos/dental-schedule.mp4', // Uncomment when video is uploaded
     category: 'app'
   },
@@ -1220,16 +1222,34 @@ export default function FeaturedProjects() {
                 style={{ WebkitTapHighlightColor: 'transparent' }}
               >
                 <div className={`flip-card-inner ${flippedCards.has(project.name) ? 'flipped' : ''}`}>
-                  {/* Front side - Image */}
+                  {/* Front side - Image(s) */}
                   <div className="flip-card-front">
-                    <img
-                      src={project.image}
-                      alt={project.name}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="high"
-                    />
+                    {(project as any).images && (project as any).images.length > 1 ? (
+                      // Multiple images - show side by side
+                      <div className="w-full h-full grid grid-cols-2 gap-0">
+                        {(project as any).images.map((img: string, idx: number) => (
+                          <img
+                            key={idx}
+                            src={img}
+                            alt={`${project.name} ${idx + 1}`}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="high"
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      // Single image
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="high"
+                      />
+                    )}
                   </div>
                   
                   {/* Back side - Video or Placeholder */}
