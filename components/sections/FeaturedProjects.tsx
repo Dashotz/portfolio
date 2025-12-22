@@ -829,7 +829,7 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
 const projects = [
   { 
     name: 'HTML Email Template Builder', 
-    description: 'A comprehensive, Litmus-like email template builder with advanced features for creating, testing, and managing professional email campaigns. Features include visual drag-and-drop builder with modular components, Monaco code editor with live preview, multi-client testing across 40+ email clients, AI-powered template generation, template management with folders and tags, interactive components (countdown timers, progress bars), design asset library, real-time analytics tracking, ESP integrations (Mailchimp, SendGrid, Amazon SES, Postmark, SendinBlue, Gmail), reviews and approvals workflow, brand settings management, and automated spam and accessibility testing.',
+    description: 'A comprehensive email template builder for creating, testing, and managing professional email campaigns. Features include drag-and-drop visual builder, Monaco code editor with live preview, multi-client testing across 40+ email clients, AI-powered template generation, real-time analytics, ESP integrations, and automated spam and accessibility testing.',
     tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Monaco Editor', 'React DnD', 'Lucide React'],
     codeLink: 'https://github.com/Dashotz',
     demoLink: '#',
@@ -839,7 +839,7 @@ const projects = [
   },
   { 
     name: 'Drag & Drop Website Builder', 
-    description: 'A modern, feature-rich drag-and-drop website builder inspired by WordPress and Shopify. Features include intuitive visual editor, pre-built customizable component library, custom code injection for HTML/CSS/JavaScript, real-time preview, responsive design for mobile/tablet/desktop, save and export to HTML/CSS/JS, extensible plugin system, theme system with pre-built templates, and built-in SEO optimization tools.',
+    description: 'A modern drag-and-drop website builder inspired by WordPress and Shopify. Features include intuitive visual editor, pre-built component library, custom code injection, real-time preview, responsive design, save and export functionality, extensible plugin system, and built-in SEO optimization tools.',
     tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', '@dnd-kit', 'Lucide React'],
     codeLink: 'https://github.com/Dashotz',
     demoLink: '#',
@@ -849,7 +849,7 @@ const projects = [
   },
   { 
     name: 'Dental Scheduling System', 
-    description: 'A comprehensive web-based dental clinic management system designed to streamline patient management, appointment scheduling, and clinic operations. Features include patient profiles with dental records and teeth chart tracking, interactive calendar interface, treatment plan creation with quote/invoice generation, multi-role system with role-based access control, and administrative tools including multi-tenant support and comprehensive reporting.',
+    description: 'A comprehensive web-based dental clinic management system designed to streamline patient management, appointment scheduling, and clinic operations. Features include patient profiles with dental records and teeth chart tracking, interactive calendar interface, treatment plan creation with quote/invoice generation, multi-role system with role-based access control, and administrative tools with multi-tenant support and comprehensive reporting.',
     tech: ['Laravel', 'PHP', 'MySQL', 'Bootstrap', 'jQuery', 'JavaScript'],
     codeLink: 'https://github.com/Dashotz',
     demoLink: '#',
