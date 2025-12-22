@@ -828,6 +828,56 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
 
 const projects = [
   { 
+    name: 'HTML Email Template Builder', 
+    description: 'A comprehensive email template builder for creating, testing, and managing professional email campaigns. Features include drag-and-drop visual builder, Monaco code editor with live preview, multi-client testing across 40+ email clients, AI-powered template generation, real-time analytics, ESP integrations, and automated spam and accessibility testing.',
+    tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Monaco Editor', 'React DnD', 'Lucide React'],
+    codeLink: 'https://github.com/Dashotz',
+    demoLink: '#',
+    image: '/images/emailbuilder.jpg',
+    // video: '/videos/email-builder.mp4', // Uncomment when video is uploaded
+    category: 'app'
+  },
+  { 
+    name: 'Drag & Drop Website Builder', 
+    description: 'A modern drag-and-drop website builder inspired by WordPress and Shopify. Features include intuitive visual editor, pre-built component library, custom code injection, real-time preview, responsive design, save and export functionality, extensible plugin system, and built-in SEO optimization tools.',
+    tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', '@dnd-kit', 'Lucide React'],
+    codeLink: 'https://github.com/Dashotz',
+    demoLink: '#',
+    image: '/images/websitebuilder.jpg',
+    // video: '/videos/website-builder.mp4', // Uncomment when video is uploaded
+    category: 'app'
+  },
+  { 
+    name: 'Dental Scheduling System', 
+    description: 'A comprehensive web-based dental clinic management system designed to streamline patient management, appointment scheduling, and clinic operations. Features include patient profiles with dental records and teeth chart tracking, interactive calendar interface, treatment plan creation with quote/invoice generation, multi-role system with role-based access control, and administrative tools with multi-tenant support and comprehensive reporting.',
+    tech: ['Laravel', 'PHP', 'MySQL', 'Bootstrap', 'jQuery', 'JavaScript'],
+    codeLink: 'https://github.com/Dashotz/dental_schedule',
+    demoLink: 'https://dental-schedule.helioho.st',
+    image: '/images/dental.jpg',
+    // video: '/videos/dental-schedule.mp4', // Uncomment when video is uploaded
+    category: 'app'
+  },
+  { 
+    name: 'Weather App', 
+    description: 'A beautiful weather application with location-based forecasts and interactive maps. Features include 5-day forecasts, nearby cities weather, city search with autocomplete, and interactive Leaflet maps. Built with free APIs (Open-Meteo & Nominatim) - no API keys required!',
+    tech: ['React', 'Leaflet', 'React-Leaflet', 'Open-Meteo API', 'Nominatim', 'Tailwind CSS', 'Vite'],
+    codeLink: 'https://github.com/Dashotz/weather',
+    demoLink: 'https://dashotz.github.io/weather/',
+    image: '/images/weather.png',
+    // video: '/videos/weather.mp4', // Uncomment when video is uploaded
+    category: 'website'
+  },
+  { 
+    name: 'Social Media Dashboard', 
+    description: 'A comprehensive, real-time dashboard for managing multiple social media accounts with advanced analytics, post scheduling, and performance insights. Features include multi-platform support (Facebook, Instagram, Twitter), interactive charts, smart post scheduling with live preview, activity tracking, and enterprise-grade security with rate limiting and XSS protection.',
+    tech: ['Next.js 14', 'TypeScript', 'Chart.js', 'Tailwind CSS', 'Zod', 'date-fns'],
+    codeLink: 'https://github.com/Dashotz/Social_Media_Dashboard',
+    demoLink: 'https://dashotz.github.io/Social_Media_Dashboard/',
+    image: '/images/socialmedia.jpg',
+    // video: '/videos/socialmedia.mp4', // Uncomment when video is uploaded
+    category: 'website'
+  },
+  { 
     name: 'Learning Management System', 
     description: 'A comprehensive LMS platform for Gov D.M. Camerino with student dashboard, grade tracking, assignments, quizzes, and attendance management. Features include subject management, calendar integration, and real-time activity tracking.',
     tech: ['PHP', 'HTML', 'CSS', 'JavaScript', 'MySQL'],
@@ -847,26 +897,6 @@ const projects = [
     // video: '/videos/sttma.mp4', // Uncomment when video is uploaded
     category: 'website'
   },
-  { 
-    name: 'Social Media Dashboard', 
-    description: 'A comprehensive, real-time dashboard for managing multiple social media accounts with advanced analytics, post scheduling, and performance insights. Features include multi-platform support (Facebook, Instagram, Twitter), interactive charts, smart post scheduling with live preview, activity tracking, and enterprise-grade security with rate limiting and XSS protection.',
-    tech: ['Next.js 14', 'TypeScript', 'Chart.js', 'Tailwind CSS', 'Zod', 'date-fns'],
-    codeLink: 'https://github.com/Dashotz/Social_Media_Dashboard',
-    demoLink: 'https://dashotz.github.io/Social_Media_Dashboard/',
-    image: '/images/socialmedia.jpg',
-    // video: '/videos/socialmedia.mp4', // Uncomment when video is uploaded
-    category: 'website'
-  },
-  { 
-    name: 'Weather App', 
-    description: 'A beautiful weather application with location-based forecasts and interactive maps. Features include 5-day forecasts, nearby cities weather, city search with autocomplete, and interactive Leaflet maps. Built with free APIs (Open-Meteo & Nominatim) - no API keys required!',
-    tech: ['React', 'Leaflet', 'React-Leaflet', 'Open-Meteo API', 'Nominatim', 'Tailwind CSS', 'Vite'],
-    codeLink: 'https://github.com/Dashotz/weather',
-    demoLink: 'https://dashotz.github.io/weather/',
-    image: '/images/weather.png',
-    // video: '/videos/weather.mp4', // Uncomment when video is uploaded
-    category: 'website'
-  },
 ];
 
 export default function FeaturedProjects() {
@@ -877,6 +907,8 @@ export default function FeaturedProjects() {
   const hoverTimeoutRef = useRef<Map<string, NodeJS.Timeout>>(new Map());
   const touchStartRef = useRef<Map<string, number>>(new Map());
   const [isMobile, setIsMobile] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   // Detect mobile device - use matchMedia for better performance
   useEffect(() => {
@@ -1065,6 +1097,25 @@ export default function FeaturedProjects() {
       : projects.filter(project => project.category === activeFilter);
   }, [activeFilter]);
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedProjects = useMemo(() => {
+    return filteredProjects.slice(startIndex, endIndex);
+  }, [filteredProjects, startIndex, endIndex]);
+
+  // Reset to page 1 when filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeFilter]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top of projects section
+    sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <section id="projects" ref={sectionRef} className="relative flex items-start justify-center pt-12 sm:pt-14 md:pt-16 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/30">
       <div className="w-full sm:w-[90%] md:w-[80%] mx-auto" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
@@ -1097,7 +1148,7 @@ export default function FeaturedProjects() {
         </div>
 
         <div className="flex flex-col gap-12 w-full" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
-          {filteredProjects.map((project, index) => (
+          {paginatedProjects.map((project, index) => (
             <div
               key={project.name}
               className="project-card group relative overflow-visible grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center border-t border-b border-white/30 py-6 md:py-8"
@@ -1169,16 +1220,34 @@ export default function FeaturedProjects() {
                 style={{ WebkitTapHighlightColor: 'transparent' }}
               >
                 <div className={`flip-card-inner ${flippedCards.has(project.name) ? 'flipped' : ''}`}>
-                  {/* Front side - Image */}
+                  {/* Front side - Image(s) */}
                   <div className="flip-card-front">
-                    <img
-                      src={project.image}
-                      alt={project.name}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="high"
-                    />
+                    {(project as any).images && (project as any).images.length > 1 ? (
+                      // Multiple images - show side by side
+                      <div className="w-full h-full grid grid-cols-2 gap-0">
+                        {(project as any).images.map((img: string, idx: number) => (
+                          <img
+                            key={idx}
+                            src={img}
+                            alt={`${project.name} ${idx + 1}`}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
+                            fetchPriority="high"
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      // Single image
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="high"
+                      />
+                    )}
                   </div>
                   
                   {/* Back side - Video or Placeholder */}
@@ -1220,36 +1289,124 @@ export default function FeaturedProjects() {
                   ))}
                 </div>
                 
-                <div className="flex flex-wrap gap-4 justify-center md:justify-start" style={{ marginTop: '12px', marginBottom: '12px' }}>
-                  <Link 
-                    href={project.demoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 border border-white/30 hover:border-white/50 hover:bg-white/5 transition-all rounded-sm text-sm"
-                  >
-                    <span>View Website</span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </Link>
-                  {project.codeLink && (
+                {/* Hide links for private projects */}
+                {project.name !== 'HTML Email Template Builder' && project.name !== 'Drag & Drop Website Builder' && (
+                  <div className="flex flex-wrap gap-4 justify-center md:justify-start" style={{ marginTop: '12px', marginBottom: '12px' }}>
                     <Link 
-                      href={project.codeLink}
+                      href={project.demoLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 border border-white/30 hover:border-white/50 hover:bg-white/5 transition-all rounded-sm text-sm"
                     >
-                      <span>View on GitHub</span>
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                      <span>View Website</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
                     </Link>
-                  )}
-                </div>
+                    {project.codeLink && (
+                      <Link 
+                        href={project.codeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 border border-white/30 hover:border-white/50 hover:bg-white/5 transition-all rounded-sm text-sm"
+                      >
+                        <span>View on GitHub</span>
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                        </svg>
+                      </Link>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           ))}
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-2 sm:gap-4 mt-8 sm:mt-12">
+            {/* Previous Button */}
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 sm:px-6 sm:py-3 border rounded-sm text-sm sm:text-base font-medium transition-all ${
+                currentPage === 1
+                  ? 'border-white/10 text-gray-600 cursor-not-allowed'
+                  : 'border-white/30 text-gray-400 hover:border-white/50 hover:text-white'
+              }`}
+              aria-label="Previous page"
+            >
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Prev
+            </button>
+
+            {/* Page Numbers */}
+            <div className="flex items-center gap-1 sm:gap-2">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                // Show first page, last page, current page, and pages around current
+                const showPage = 
+                  page === 1 || 
+                  page === totalPages || 
+                  (page >= currentPage - 1 && page <= currentPage + 1);
+                
+                if (!showPage) {
+                  // Show ellipsis
+                  if (page === currentPage - 2 || page === currentPage + 2) {
+                    return (
+                      <span key={page} className="px-2 text-gray-500">
+                        ...
+                      </span>
+                    );
+                  }
+                  return null;
+                }
+
+                return (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    className={`px-3 py-2 sm:px-4 sm:py-2 border rounded-sm text-sm sm:text-base font-medium transition-all min-w-[40px] sm:min-w-[48px] ${
+                      currentPage === page
+                        ? 'border-white/50 bg-white/10 text-white'
+                        : 'border-white/20 text-gray-400 hover:border-white/40 hover:text-white'
+                    }`}
+                    aria-label={`Go to page ${page}`}
+                    aria-current={currentPage === page ? 'page' : undefined}
+                  >
+                    {page}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Next Button */}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className={`px-4 py-2 sm:px-6 sm:py-3 border rounded-sm text-sm sm:text-base font-medium transition-all ${
+                currentPage === totalPages
+                  ? 'border-white/10 text-gray-600 cursor-not-allowed'
+                  : 'border-white/30 text-gray-400 hover:border-white/50 hover:text-white'
+              }`}
+              aria-label="Next page"
+            >
+              Next
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        )}
+
+        {/* Page Info */}
+        {totalPages > 1 && (
+          <div className="text-center mt-4 text-sm text-gray-400">
+            Showing {startIndex + 1}-{Math.min(endIndex, filteredProjects.length)} of {filteredProjects.length} projects
+          </div>
+        )}
       </div>
     </section>
   );
