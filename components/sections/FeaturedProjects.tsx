@@ -828,6 +828,56 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
 
 const projects = [
   { 
+    name: 'Email Template Drag & Drop Builder', 
+    description: 'An intuitive drag-and-drop email template builder that allows users to create professional email templates without coding. Features include drag-and-drop interface, pre-built components, responsive design preview, template library, and export functionality for various email clients.',
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Drag & Drop API', 'HTML Email'],
+    codeLink: 'https://github.com/Dashotz',
+    demoLink: '#',
+    image: '/images/email-builder.jpg',
+    // video: '/videos/email-builder.mp4', // Uncomment when video is uploaded
+    category: 'app'
+  },
+  { 
+    name: 'Website Drag & Drop Builder', 
+    description: 'A powerful visual website builder with drag-and-drop functionality. Create beautiful, responsive websites without writing code. Features include component library, real-time preview, responsive breakpoints, export to HTML/CSS, and template marketplace.',
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Drag & Drop API', 'Next.js'],
+    codeLink: 'https://github.com/Dashotz',
+    demoLink: '#',
+    image: '/images/website-builder.jpg',
+    // video: '/videos/website-builder.mp4', // Uncomment when video is uploaded
+    category: 'app'
+  },
+  { 
+    name: 'Dental Schedule', 
+    description: 'A comprehensive dental appointment scheduling system designed for dental clinics. Features include patient management, appointment booking, calendar view, appointment reminders, and staff scheduling. Streamlines clinic operations and improves patient experience.',
+    tech: ['PHP', 'JavaScript', 'CSS', 'HTML', 'MySQL', 'Bootstrap'],
+    codeLink: 'https://github.com/Dashotz',
+    demoLink: '#',
+    image: '/images/dental-schedule.jpg',
+    // video: '/videos/dental-schedule.mp4', // Uncomment when video is uploaded
+    category: 'app'
+  },
+  { 
+    name: 'Weather App', 
+    description: 'A beautiful weather application with location-based forecasts and interactive maps. Features include 5-day forecasts, nearby cities weather, city search with autocomplete, and interactive Leaflet maps. Built with free APIs (Open-Meteo & Nominatim) - no API keys required!',
+    tech: ['React', 'Leaflet', 'React-Leaflet', 'Open-Meteo API', 'Nominatim', 'Tailwind CSS', 'Vite'],
+    codeLink: 'https://github.com/Dashotz/weather',
+    demoLink: 'https://dashotz.github.io/weather/',
+    image: '/images/weather.png',
+    // video: '/videos/weather.mp4', // Uncomment when video is uploaded
+    category: 'website'
+  },
+  { 
+    name: 'Social Media Dashboard', 
+    description: 'A comprehensive, real-time dashboard for managing multiple social media accounts with advanced analytics, post scheduling, and performance insights. Features include multi-platform support (Facebook, Instagram, Twitter), interactive charts, smart post scheduling with live preview, activity tracking, and enterprise-grade security with rate limiting and XSS protection.',
+    tech: ['Next.js 14', 'TypeScript', 'Chart.js', 'Tailwind CSS', 'Zod', 'date-fns'],
+    codeLink: 'https://github.com/Dashotz/Social_Media_Dashboard',
+    demoLink: 'https://dashotz.github.io/Social_Media_Dashboard/',
+    image: '/images/socialmedia.jpg',
+    // video: '/videos/socialmedia.mp4', // Uncomment when video is uploaded
+    category: 'website'
+  },
+  { 
     name: 'Learning Management System', 
     description: 'A comprehensive LMS platform for Gov D.M. Camerino with student dashboard, grade tracking, assignments, quizzes, and attendance management. Features include subject management, calendar integration, and real-time activity tracking.',
     tech: ['PHP', 'HTML', 'CSS', 'JavaScript', 'MySQL'],
@@ -847,26 +897,6 @@ const projects = [
     // video: '/videos/sttma.mp4', // Uncomment when video is uploaded
     category: 'website'
   },
-  { 
-    name: 'Social Media Dashboard', 
-    description: 'A comprehensive, real-time dashboard for managing multiple social media accounts with advanced analytics, post scheduling, and performance insights. Features include multi-platform support (Facebook, Instagram, Twitter), interactive charts, smart post scheduling with live preview, activity tracking, and enterprise-grade security with rate limiting and XSS protection.',
-    tech: ['Next.js 14', 'TypeScript', 'Chart.js', 'Tailwind CSS', 'Zod', 'date-fns'],
-    codeLink: 'https://github.com/Dashotz/Social_Media_Dashboard',
-    demoLink: 'https://dashotz.github.io/Social_Media_Dashboard/',
-    image: '/images/socialmedia.jpg',
-    // video: '/videos/socialmedia.mp4', // Uncomment when video is uploaded
-    category: 'website'
-  },
-  { 
-    name: 'Weather App', 
-    description: 'A beautiful weather application with location-based forecasts and interactive maps. Features include 5-day forecasts, nearby cities weather, city search with autocomplete, and interactive Leaflet maps. Built with free APIs (Open-Meteo & Nominatim) - no API keys required!',
-    tech: ['React', 'Leaflet', 'React-Leaflet', 'Open-Meteo API', 'Nominatim', 'Tailwind CSS', 'Vite'],
-    codeLink: 'https://github.com/Dashotz/weather',
-    demoLink: 'https://dashotz.github.io/weather/',
-    image: '/images/weather.png',
-    // video: '/videos/weather.mp4', // Uncomment when video is uploaded
-    category: 'website'
-  },
 ];
 
 export default function FeaturedProjects() {
@@ -877,6 +907,8 @@ export default function FeaturedProjects() {
   const hoverTimeoutRef = useRef<Map<string, NodeJS.Timeout>>(new Map());
   const touchStartRef = useRef<Map<string, number>>(new Map());
   const [isMobile, setIsMobile] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
 
   // Detect mobile device - use matchMedia for better performance
   useEffect(() => {
@@ -1065,6 +1097,25 @@ export default function FeaturedProjects() {
       : projects.filter(project => project.category === activeFilter);
   }, [activeFilter]);
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedProjects = useMemo(() => {
+    return filteredProjects.slice(startIndex, endIndex);
+  }, [filteredProjects, startIndex, endIndex]);
+
+  // Reset to page 1 when filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeFilter]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top of projects section
+    sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <section id="projects" ref={sectionRef} className="relative flex items-start justify-center pt-12 sm:pt-14 md:pt-16 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/30">
       <div className="w-full sm:w-[90%] md:w-[80%] mx-auto" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
@@ -1097,7 +1148,7 @@ export default function FeaturedProjects() {
         </div>
 
         <div className="flex flex-col gap-12 w-full" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
-          {filteredProjects.map((project, index) => (
+          {paginatedProjects.map((project, index) => (
             <div
               key={project.name}
               className="project-card group relative overflow-visible grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center border-t border-b border-white/30 py-6 md:py-8"
@@ -1250,6 +1301,91 @@ export default function FeaturedProjects() {
             </div>
           ))}
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-2 sm:gap-4 mt-8 sm:mt-12">
+            {/* Previous Button */}
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 sm:px-6 sm:py-3 border rounded-sm text-sm sm:text-base font-medium transition-all ${
+                currentPage === 1
+                  ? 'border-white/10 text-gray-600 cursor-not-allowed'
+                  : 'border-white/30 text-gray-400 hover:border-white/50 hover:text-white'
+              }`}
+              aria-label="Previous page"
+            >
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Prev
+            </button>
+
+            {/* Page Numbers */}
+            <div className="flex items-center gap-1 sm:gap-2">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                // Show first page, last page, current page, and pages around current
+                const showPage = 
+                  page === 1 || 
+                  page === totalPages || 
+                  (page >= currentPage - 1 && page <= currentPage + 1);
+                
+                if (!showPage) {
+                  // Show ellipsis
+                  if (page === currentPage - 2 || page === currentPage + 2) {
+                    return (
+                      <span key={page} className="px-2 text-gray-500">
+                        ...
+                      </span>
+                    );
+                  }
+                  return null;
+                }
+
+                return (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    className={`px-3 py-2 sm:px-4 sm:py-2 border rounded-sm text-sm sm:text-base font-medium transition-all min-w-[40px] sm:min-w-[48px] ${
+                      currentPage === page
+                        ? 'border-white/50 bg-white/10 text-white'
+                        : 'border-white/20 text-gray-400 hover:border-white/40 hover:text-white'
+                    }`}
+                    aria-label={`Go to page ${page}`}
+                    aria-current={currentPage === page ? 'page' : undefined}
+                  >
+                    {page}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Next Button */}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className={`px-4 py-2 sm:px-6 sm:py-3 border rounded-sm text-sm sm:text-base font-medium transition-all ${
+                currentPage === totalPages
+                  ? 'border-white/10 text-gray-600 cursor-not-allowed'
+                  : 'border-white/30 text-gray-400 hover:border-white/50 hover:text-white'
+              }`}
+              aria-label="Next page"
+            >
+              Next
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        )}
+
+        {/* Page Info */}
+        {totalPages > 1 && (
+          <div className="text-center mt-4 text-sm text-gray-400">
+            Showing {startIndex + 1}-{Math.min(endIndex, filteredProjects.length)} of {filteredProjects.length} projects
+          </div>
+        )}
       </div>
     </section>
   );
