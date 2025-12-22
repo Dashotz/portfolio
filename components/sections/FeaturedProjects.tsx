@@ -834,7 +834,6 @@ const projects = [
     codeLink: 'https://github.com/Dashotz',
     demoLink: '#',
     image: '/images/emailbuilder.jpg',
-    images: ['/images/emailbuilder.jpg', '/images/emailbuilder1.jpg'], // Multiple images for this project
     // video: '/videos/email-builder.mp4', // Uncomment when video is uploaded
     category: 'app'
   },
@@ -845,7 +844,6 @@ const projects = [
     codeLink: 'https://github.com/Dashotz',
     demoLink: '#',
     image: '/images/websitebuilder.jpg',
-    images: ['/images/websitebuilder.jpg', '/images/websitebuilder1.jpg'], // Multiple images for this project
     // video: '/videos/website-builder.mp4', // Uncomment when video is uploaded
     category: 'app'
   },
