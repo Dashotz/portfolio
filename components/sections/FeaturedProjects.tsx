@@ -908,7 +908,7 @@ export default function FeaturedProjects() {
   const touchStartRef = useRef<Map<string, number>>(new Map());
   const [isMobile, setIsMobile] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
+  const itemsPerPage = 4;
 
   // Detect mobile device - use matchMedia for better performance
   useEffect(() => {
