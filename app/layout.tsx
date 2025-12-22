@@ -6,6 +6,7 @@ import { Lenis } from "@/components/lenis";
 import { GSAPRuntime } from "@/components/gsap/runtime";
 import { ReactTempus } from "tempus/react";
 import Favicon from "@/components/Favicon";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
