@@ -828,9 +828,9 @@ const VideoPlayer = memo(function VideoPlayer({ videoSrc, projectName, isFlipped
 
 const projects = [
   { 
-    name: 'Email Template Drag & Drop Builder', 
-    description: 'An intuitive drag-and-drop email template builder that allows users to create professional email templates without coding. Features include drag-and-drop interface, pre-built components, responsive design preview, template library, and export functionality for various email clients.',
-    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Drag & Drop API', 'HTML Email'],
+    name: 'HTML Email Template Builder', 
+    description: 'A comprehensive, Litmus-like email template builder with advanced features for creating, testing, and managing professional email campaigns. Features include visual drag-and-drop builder with modular components, Monaco code editor with live preview, multi-client testing across 40+ email clients, AI-powered template generation, template management with folders and tags, interactive components (countdown timers, progress bars), design asset library, real-time analytics tracking, ESP integrations (Mailchimp, SendGrid, Amazon SES, Postmark, SendinBlue, Gmail), reviews and approvals workflow, brand settings management, and automated spam and accessibility testing.',
+    tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Monaco Editor', 'React DnD', 'Lucide React'],
     codeLink: 'https://github.com/Dashotz',
     demoLink: '#',
     image: '/images/email-builder.jpg',
@@ -838,9 +838,9 @@ const projects = [
     category: 'app'
   },
   { 
-    name: 'Website Drag & Drop Builder', 
-    description: 'A powerful visual website builder with drag-and-drop functionality. Create beautiful, responsive websites without writing code. Features include component library, real-time preview, responsive breakpoints, export to HTML/CSS, and template marketplace.',
-    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Drag & Drop API', 'Next.js'],
+    name: 'Drag & Drop Website Builder', 
+    description: 'A modern, feature-rich drag-and-drop website builder inspired by WordPress and Shopify. Features include intuitive visual editor, pre-built customizable component library, custom code injection for HTML/CSS/JavaScript, real-time preview, responsive design for mobile/tablet/desktop, save and export to HTML/CSS/JS, extensible plugin system, theme system with pre-built templates, and built-in SEO optimization tools.',
+    tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', '@dnd-kit', 'Lucide React'],
     codeLink: 'https://github.com/Dashotz',
     demoLink: '#',
     image: '/images/website-builder.jpg',
@@ -848,9 +848,9 @@ const projects = [
     category: 'app'
   },
   { 
-    name: 'Dental Schedule', 
-    description: 'A comprehensive dental appointment scheduling system designed for dental clinics. Features include patient management, appointment booking, calendar view, appointment reminders, and staff scheduling. Streamlines clinic operations and improves patient experience.',
-    tech: ['PHP', 'JavaScript', 'CSS', 'HTML', 'MySQL', 'Bootstrap'],
+    name: 'Dental Scheduling System', 
+    description: 'A comprehensive web-based dental clinic management system designed to streamline patient management, appointment scheduling, and clinic operations. Features include patient profiles with dental records and teeth chart tracking, interactive calendar interface, treatment plan creation with quote/invoice generation, multi-role system with role-based access control, and administrative tools including multi-tenant support and comprehensive reporting.',
+    tech: ['Laravel', 'PHP', 'MySQL', 'Bootstrap', 'jQuery', 'JavaScript'],
     codeLink: 'https://github.com/Dashotz',
     demoLink: '#',
     image: '/images/dental-schedule.jpg',
@@ -1271,32 +1271,35 @@ export default function FeaturedProjects() {
                   ))}
                 </div>
                 
-                <div className="flex flex-wrap gap-4 justify-center md:justify-start" style={{ marginTop: '12px', marginBottom: '12px' }}>
-                  <Link 
-                    href={project.demoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 border border-white/30 hover:border-white/50 hover:bg-white/5 transition-all rounded-sm text-sm"
-                  >
-                    <span>View Website</span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </Link>
-                  {project.codeLink && (
+                {/* Hide links for private projects */}
+                {project.name !== 'HTML Email Template Builder' && project.name !== 'Drag & Drop Website Builder' && (
+                  <div className="flex flex-wrap gap-4 justify-center md:justify-start" style={{ marginTop: '12px', marginBottom: '12px' }}>
                     <Link 
-                      href={project.codeLink}
+                      href={project.demoLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 border border-white/30 hover:border-white/50 hover:bg-white/5 transition-all rounded-sm text-sm"
                     >
-                      <span>View on GitHub</span>
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                      <span>View Website</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
                     </Link>
-                  )}
-                </div>
+                    {project.codeLink && (
+                      <Link 
+                        href={project.codeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 border border-white/30 hover:border-white/50 hover:bg-white/5 transition-all rounded-sm text-sm"
+                      >
+                        <span>View on GitHub</span>
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                        </svg>
+                      </Link>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           ))}
