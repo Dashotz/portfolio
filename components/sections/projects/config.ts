@@ -8,7 +8,7 @@ export const projects: ProjectData[] = [
         tech: ['Next.js 14', 'Supabase', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
         codeLink: 'https://github.com/Dashotz/IUFC',
         demoLink: 'https://iufc.netlify.app',
-        image: '/images/iufc.png',
+        image: '/images/IUFC.PNG',
         // video: '/videos/iufc.mp4', 
         category: 'website'
     },
@@ -18,7 +18,7 @@ export const projects: ProjectData[] = [
         tech: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion', 'ogl', 'React Leaflet'],
         codeLink: 'https://github.com/Dashotz/homepage',
         demoLink: 'https://paruhmprealtor.netlify.app',
-        image: '/images/realtor.png',
+        image: '/images/realtor.PNG',
         // video: '/videos/realtor.mp4',
         category: 'website'
     },
@@ -28,7 +28,7 @@ export const projects: ProjectData[] = [
         tech: ['Vue.js 3', 'Quasar', 'Supabase', 'TypeScript', 'Pinia'],
         codeLink: 'https://github.com/Dashotz/prism',
         demoLink: 'https://prism-2npun5jsm-francis-cruzs-projects.vercel.app/#/',
-        image: '/images/prism.png',
+        image: '/images/prism.PNG',
         // video: '/videos/prism.mp4', 
         category: 'app'
     },
@@ -38,7 +38,7 @@ export const projects: ProjectData[] = [
         tech: ['Python', 'Telethon', 'python-telegram-bot', 'python-dotenv'],
         codeLink: 'https://github.com/Dashotz/prismbot',
         demoLink: '#',
-        image: '/images/prismbot.png',
+        image: '/images/prismbot.PNG',
         // video: '/videos/prismbot.mp4', 
         category: 'app'
     },
