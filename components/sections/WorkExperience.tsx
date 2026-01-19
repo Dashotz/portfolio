@@ -1,9 +1,9 @@
 'use client';
 
 const experience = [
-  { 
-    year: '2025 – Present', 
-    role: 'Senior Full Stack Developer', 
+  {
+    year: '2025 – 2026',
+    role: 'Senior Full Stack Developer',
     company: 'City Government of Bacoor',
     description: [
       'Took ownership of core application features and system improvements',
@@ -11,9 +11,9 @@ const experience = [
       'Improved application stability and maintainability through refactoring and best practices',
     ],
   },
-  { 
-    year: '2024 – 2025', 
-    role: 'Junior Full Stack Developer', 
+  {
+    year: '2024 – 2025',
+    role: 'Junior Full Stack Developer',
     company: 'City Government of Bacoor',
     description: [
       'Developed and maintained website components using PHP, Laravel, JavaScript, Bootstrap, and CSS',
@@ -21,9 +21,9 @@ const experience = [
       'Gained hands-on experience working on live government systems',
     ],
   },
-  { 
-    year: '2023 – Present', 
-    role: 'Freelance Full-Stack Developer (Part Time)', 
+  {
+    year: '2023 – Present',
+    role: 'Freelance Full-Stack Developer (Part Time)',
     company: 'Self-Employed',
     description: [
       'Designed and developed custom web applications and websites for small businesses and individual clients',
@@ -33,9 +33,9 @@ const experience = [
       'Collaborated directly with clients to gather requirements, deliver features, and provide ongoing support',
     ],
   },
-  { 
-    year: '2020 – Present', 
-    role: 'Freelance Technical Support Specialist', 
+  {
+    year: '2020 – Present',
+    role: 'Freelance Technical Support Specialist',
     company: 'Self-Employed',
     description: [
       'Hardware repairs including component replacement (RAM, storage, batteries, keyboards) and troubleshooting motherboard/power supply issues',
@@ -57,9 +57,9 @@ export default function WorkExperience() {
               <div style={{ marginTop: '12px', marginBottom: '12px' }}>EXP.</div>
             </h2>
           </div>
-          
+
           <div className="hidden md:block w-px bg-white/30" style={{ height: '100%', minHeight: '100%' }}></div>
-          
+
           <div className="flex flex-col text-center md:text-left" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8" style={{ marginTop: '16px', marginBottom: '16px' }}>
               {experience.map((exp, index) => (

@@ -37,8 +37,8 @@ export default function Header() {
       setActiveHash(window.location.hash);
     };
 
-        // Use IntersectionObserver for accurate section detection
-        const sections = ['home', 'about', 'experience', 'tech-stack', 'projects', 'contact'];
+    // Use IntersectionObserver for accurate section detection
+    const sections = ['home', 'about', 'experience', 'tech-stack', 'projects', 'contact'];
     const observerOptions = {
       root: null,
       rootMargin: '-100px 0px -60% 0px',
@@ -76,10 +76,10 @@ export default function Header() {
         const scrollPosition = window.scrollY + window.innerHeight / 2;
         let closestSection = '';
         let closestDistance = Infinity;
-        
+
         // Cache window dimensions
         const windowHeight = window.innerHeight;
-        
+
         sections.forEach((sectionId) => {
           const section = document.getElementById(sectionId);
           if (section && visibleSections.has(sectionId)) {
@@ -88,14 +88,14 @@ export default function Header() {
             const sectionHeight = section.offsetHeight;
             const sectionCenter = sectionTop + sectionHeight / 2;
             const distance = Math.abs(scrollPosition - sectionCenter);
-            
+
             if (distance < closestDistance) {
               closestDistance = distance;
               closestSection = sectionId;
             }
           }
         });
-        
+
         if (closestSection) {
           activeSection = closestSection;
         }
@@ -107,7 +107,7 @@ export default function Header() {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const isNearBottom = windowHeight + scrollY >= scrollHeight - 150;
-      
+
       if (isNearBottom) {
         const contactSection = document.getElementById('contact');
         if (contactSection) {
@@ -123,7 +123,7 @@ export default function Header() {
       // Fallback to scroll position if no section is highly visible
       if (!activeSection || maxRatio < 0.05) {
         const scrollPosition = window.scrollY + window.innerHeight / 2;
-        
+
         // Check from bottom to top to get the most recent section
         for (let i = sections.length - 1; i >= 0; i--) {
           const section = document.getElementById(sections[i]);
@@ -131,7 +131,7 @@ export default function Header() {
             const rect = section.getBoundingClientRect();
             const sectionTop = window.scrollY + rect.top;
             const sectionBottom = sectionTop + rect.height;
-            
+
             // Check if scroll position is within this section
             if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom + 200) {
               activeSection = sections[i];
@@ -158,7 +158,7 @@ export default function Header() {
 
     // Set initial hash
     setActiveHash(window.location.hash);
-    
+
     // Initial check after a short delay to ensure DOM is ready
     setTimeout(() => {
       const scrollPosition = window.scrollY + window.innerHeight / 2;
@@ -178,7 +178,7 @@ export default function Header() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('hashchange', handleHashChange);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('hashchange', handleHashChange);
@@ -188,9 +188,9 @@ export default function Header() {
 
   const navLinks = [
     { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#experience', label: 'Experience' },
     { href: '#tech-stack', label: 'Tech Stack' },
+    { href: '#experience', label: 'Experience' },
+    { href: '#about', label: 'About' },
     { href: '#projects', label: 'Projects' },
     { href: '#contact', label: 'Contact' },
   ];
@@ -203,12 +203,11 @@ export default function Header() {
   };
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all ${
-        isScrolled 
-          ? 'bg-black/95 backdrop-blur-md border-b border-white/20' 
-          : 'bg-black/80 backdrop-blur-sm border-b border-white/10'
-      }`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all ${isScrolled
+        ? 'bg-black/95 backdrop-blur-md border-b border-white/20'
+        : 'bg-black/80 backdrop-blur-sm border-b border-white/10'
+        }`}
       style={{
         backdropFilter: isScrolled ? 'blur(12px)' : 'blur(4px)',
         WebkitBackdropFilter: isScrolled ? 'blur(12px)' : 'blur(4px)',
@@ -221,11 +220,10 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium tracking-wide transition-all ${
-                isActive(link.href)
-                  ? 'text-white'
-                  : 'text-gray-400 hover:text-white'
-              }`}
+              className={`text-sm font-medium tracking-wide transition-all ${isActive(link.href)
+                ? 'text-white'
+                : 'text-gray-400 hover:text-white'
+                }`}
             >
               {link.label}
             </Link>
@@ -242,30 +240,26 @@ export default function Header() {
           <span className="sr-only">Toggle menu</span>
           <div className="relative w-6 h-5 flex flex-col justify-between">
             <span
-              className={`block h-0.5 w-full bg-white transition-all duration-300 origin-center ${
-                isMenuOpen ? 'rotate-45 translate-y-2' : ''
-              }`}
+              className={`block h-0.5 w-full bg-white transition-all duration-300 origin-center ${isMenuOpen ? 'rotate-45 translate-y-2' : ''
+                }`}
             />
             <span
-              className={`block h-0.5 w-full bg-white transition-all duration-300 ${
-                isMenuOpen ? 'opacity-0' : 'opacity-100'
-              }`}
+              className={`block h-0.5 w-full bg-white transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'
+                }`}
             />
             <span
-              className={`block h-0.5 w-full bg-white transition-all duration-300 origin-center ${
-                isMenuOpen ? '-rotate-45 -translate-y-2' : ''
-              }`}
+              className={`block h-0.5 w-full bg-white transition-all duration-300 origin-center ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''
+                }`}
             />
           </div>
         </button>
       </nav>
 
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
       >
-        <div 
+        <div
           className="border-t border-white/10 bg-black/95 backdrop-blur-md"
           style={{
             backdropFilter: 'blur(12px)',
@@ -278,12 +272,11 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`text-base sm:text-lg md:text-sm font-medium tracking-wide transition-all py-2.5 sm:py-3 text-center w-full ${
-                  isActive(link.href)
-                    ? 'text-white'
-                    : 'text-gray-400 hover:text-white'
-                }`}
-                style={{ 
+                className={`text-base sm:text-lg md:text-sm font-medium tracking-wide transition-all py-2.5 sm:py-3 text-center w-full ${isActive(link.href)
+                  ? 'text-white'
+                  : 'text-gray-400 hover:text-white'
+                  }`}
+                style={{
                   minHeight: '44px',
                   display: 'flex',
                   alignItems: 'center',
