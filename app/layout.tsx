@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://franciscruz.dev",
+    url: "https://portfolio-frncszxc.vercel.app",
     title: "Francis Cruz | Full Stack Developer Portfolio",
     description: "Portfolio of Francis Cruz (Francis Gerard). Full Stack Developer & Creative Problem Solver.",
     siteName: "Francis Cruz Portfolio",
