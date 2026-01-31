@@ -3,22 +3,25 @@
 const experience = [
   {
     year: '2025 – 2026',
-    role: 'Senior Full Stack Developer',
+    role: 'Full Stack Web Developer',
     company: 'City Government of Bacoor',
     description: [
-      'Took ownership of core application features and system improvements',
-      'Reviewed code and mentored junior developers and interns',
-      'Improved application stability and maintainability through refactoring and best practices',
+      'Developed full-stack web applications using PHP Laravel, JavaScript, Bootstrap, and CSS.',
+      'Built responsive, scalable, and high-performance web solutions.',
+      'Wrote secure, clean, and maintainable code with comprehensive documentation.',
+      'Thoroughly tested and fixed the system to make sure that live deployments would not have any bugs',
+      'Managed server setup and application deployment using SSH and WinSCP.',
     ],
   },
   {
     year: '2024 – 2025',
-    role: 'Junior Full Stack Developer',
-    company: 'City Government of Bacoor',
+    role: 'Technical Support Engineer - Intern',
+    company: 'St. Dominic College of Asia',
     description: [
-      'Developed and maintained website components using PHP, Laravel, JavaScript, Bootstrap, and CSS',
-      'Assisted in backend development, bug fixes, and feature enhancements',
-      'Gained hands-on experience working on live government systems',
+      'Set up and maintained 4 computer labs (30-40 units each), troubleshooting PCs, Macs, and printers while ensuring organized cabling and optimal hardware condition.',
+      'Installed OS and software while managing user accounts and security restrictions for computer laboratories',
+      'Assisted in infrastructure projects including server relocation, network switch setup, and hardware inventory auditing',
+      'Set up live-streaming equipment and provided on-site technical support for school events and graduations.',
     ],
   },
   {
