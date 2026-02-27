@@ -17,7 +17,7 @@ export const projects: ProjectData[] = [
         description: 'A modern dental practice management platform focused on digital patient records, smart appointment scheduling, real-time analytics (revenue & patient flow), and HIPAA-conscious security — all wrapped in an intuitive dashboard. Currently in development, with backend API integration planned next.',
         tech: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS', 'shadcn/ui'],
         demoLink: 'https://clinicsync-snowy.vercel.app',
-        image: '/images/clinicsync.png',
+        image: '/images/clinicsync.PNG',
         // video: '/videos/clinicsync.mp4',
         category: 'app'
     },
