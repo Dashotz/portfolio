@@ -1,0 +1,35 @@
+# Francis Gerard A. Cruz (Francis Cruz)
+
+> Official website and portfolio of Francis Gerard A. Cruz, a Full-Stack Web Developer and Technical Support Engineer based in Imus City, Cavite, Philippines.
+
+- Website: https://portfolio-frncszxc.vercel.app
+- Location: Imus City, Cavite, Philippines (Serving Imus, Bacoor, Cavite, Metro Manila, and remote clients worldwide)
+- Email: frncsgerard02@gmail.com
+- Phone: +63 920 804 0444
+- GitHub: https://github.com/Dashotz
+- LinkedIn: https://www.linkedin.com/in/frncszxc/
+
+## Services
+- Custom Web Development (Full-Stack React, Next.js, TypeScript, Laravel, PHP, Node.js, Tailwind CSS, Bootstrap)
+- Technical Support & System Administration (Active Directory, Windows deployment, user account management, IT inventory & ISO documentation)
+- Hardware & Network Engineering (PC assembly, repair, troubleshooting, IP addressing, LAN installation, network configuration)
+- AI Code Evaluation & RLHF (Evaluating AI-generated code for accuracy, quality, security, and performance)
+
+## Experience
+- Technical / Software Support Engineer at St. Dominic Medical Center (2026 - Present)
+- Subject Matter Expert (AI Code Evaluation) at Alignerr (2025 - 2026)
+- Full-Stack Web Developer at City Government of Bacoor (2025 - 2026)
+- Freelance Full-Stack Developer & IT Support Specialist (2020 - 2024)
+
+## Featured Projects
+- GFS Movement Apparel: https://gfsmovementapparel.vercel.app/
+- Bella & Pepper Menu: https://bellandpepper.vercel.app/
+- Lush Photobooth: https://lush-Gold.vercel.app/
+- EcoTrack Dashboard: https://ecotrack-lac.vercel.app/
+- Cavite Tiger's Den: https://cavitigersden.vercel.app/
+- Le Sserafim Fan Hub: https://lesserafim.vercel.app/
+
+## Education & Credentials
+- Bachelor of Science in Information Technology - Cavite State University - Imus Campus (Cum Laude, 2025)
+- Civil Service Professional Eligibility - Honor Graduate Eligibility P.D. 907 (2026)
+
