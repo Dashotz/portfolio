@@ -108,7 +108,7 @@ export default function Contact() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <span style={{ marginTop: '12px', marginBottom: '12px' }}>Toclong 2-A Chua Compound, Imus City, Cavite, Philippines</span>
+                <span style={{ marginTop: '12px', marginBottom: '12px' }}>Imus City, Cavite, Philippines</span>
               </Link>
             </div>
           </div>

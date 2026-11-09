@@ -18,35 +18,42 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Francis Cruz | Full Stack Developer Portfolio",
-  description: "Portfolio of Francis Cruz (Francis Gerard). Full Stack Developer & Creative Problem Solver creating beautiful, functional, and user-centered digital experiences.",
+  title: "Francis Gerard A. Cruz | Technical Support Engineer & Full-Stack Developer",
+  description: "Portfolio of Francis Gerard A. Cruz. Technical Support Engineer & Full-Stack Developer experienced in hardware/software troubleshooting, Active Directory management, network configuration, IT asset management, full-stack web development, and AI code evaluation.",
   keywords: [
     "francis",
     "francis cruz",
+    "francis gerard cruz",
     "francis gerard",
     "gerard",
     "francis portfolio",
     "portfolio",
+    "technical support engineer",
+    "system administration",
+    "active directory",
+    "network configuration",
     "full stack developer",
     "web developer",
     "software engineer",
     "react developer",
-    "next.js developer"
+    "next.js developer",
+    "laravel developer",
+    "ai code evaluation"
   ],
-  authors: [{ name: "Francis Cruz" }],
-  creator: "Francis Cruz",
+  authors: [{ name: "Francis Gerard A. Cruz" }],
+  creator: "Francis Gerard A. Cruz",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://portfolio-frncszxc.vercel.app",
-    title: "Francis Cruz | Full Stack Developer Portfolio",
-    description: "Portfolio of Francis Cruz (Francis Gerard). Full Stack Developer & Creative Problem Solver.",
-    siteName: "Francis Cruz Portfolio",
+    title: "Francis Gerard A. Cruz | Technical Support Engineer & Full-Stack Developer",
+    description: "Technical Support Engineer & Full-Stack Developer experienced in system administration, networking, IT support, web development, and AI code evaluation.",
+    siteName: "Francis Gerard A. Cruz Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Francis Cruz | Full Stack Developer Portfolio",
-    description: "Portfolio of Francis Cruz (Francis Gerard). Full Stack Developer & Creative Problem Solver.",
+    title: "Francis Gerard A. Cruz | Technical Support Engineer & Full-Stack Developer",
+    description: "Technical Support Engineer & Full-Stack Developer experienced in system administration, networking, IT support, web development, and AI code evaluation.",
   },
   robots: {
     index: true,

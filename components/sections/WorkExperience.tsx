@@ -2,56 +2,57 @@
 
 const experience = [
   {
-    year: '2025 – 2026',
-    role: 'Full Stack Web Developer',
+    year: '2026 - Present',
+    role: 'Technical / Software Support Engineer',
+    company: 'St. Dominic Medical Center',
+    description: [
+      'Provide day-to-day technical support for PC assembly, hardware repair, and system maintenance.',
+      'Manage Active Directory accounts, user permissions, and workstation administration.',
+      'Configure IP addresses and network settings while troubleshooting hardware, software, and connectivity issues.',
+      'Keep IT inventory and ISO documentation up to date, including IP logs, network records, EHC, and Stock Cards.',
+    ],
+  },
+  {
+    year: '2025 - 2026',
+    role: 'Subject Matter Expert (Part-Time)',
+    company: 'Alignerr',
+    description: [
+      'Reviewed AI-generated code to check for accuracy, security, code quality, and performance.',
+      'Wrote detailed human feedback in Labelbox to help train and improve large language models.',
+      'Created and tested programming prompts and solutions for AI training datasets.',
+    ],
+  },
+  {
+    year: '2025 - 2026',
+    role: 'Web Developer (Full-Stack)',
     company: 'City Government of Bacoor',
     description: [
-      'Developed full-stack web applications using PHP Laravel, JavaScript, Bootstrap, and CSS.',
-      'Built responsive, scalable, and high-performance web solutions.',
-      'Wrote secure, clean, and maintainable code with comprehensive documentation.',
-      'Thoroughly tested and fixed the system to make sure that live deployments would not have any bugs',
-      'Managed server setup and application deployment using SSH and WinSCP.',
+      'Built and maintained internal and public web applications using Laravel, JavaScript, Bootstrap, and CSS.',
+      'Created responsive layouts and wrote clean, well-documented code.',
+      'Tested and debugged features before release to keep live systems stable.',
+      'Handled server configuration and deployments using SSH and WinSCP.',
     ],
   },
   {
-    year: '2024 – 2025',
-    role: 'Technical Support Engineer - Intern',
-    company: 'St. Dominic College of Asia',
-    description: [
-      'Set up and maintained 4 computer labs (30-40 units each), troubleshooting PCs, Macs, and printers while ensuring organized cabling and optimal hardware condition.',
-      'Installed OS and software while managing user accounts and security restrictions for computer laboratories',
-      'Assisted in infrastructure projects including server relocation, network switch setup, and hardware inventory auditing',
-      'Set up live-streaming equipment and provided on-site technical support for school events and graduations.',
-    ],
-  },
-  {
-    year: '2023 – Present',
-    role: 'Freelance Full-Stack Developer (Part Time)',
+    year: '2020 - 2024',
+    role: 'Freelance Full-Stack Developer & IT Support Specialist',
     company: 'Self-Employed',
     description: [
-      'Designed and developed custom web applications and websites for small businesses and individual clients',
-      'Built full-stack solutions using Laravel, JavaScript, TypeScript, React, Next.js, Node.js, and Express',
-      'Implemented responsive UI using Tailwind CSS and Bootstrap',
-      'Developed secure APIs, authentication flows, and database-driven features',
-      'Collaborated directly with clients to gather requirements, deliver features, and provide ongoing support',
-    ],
-  },
-  {
-    year: '2020 – Present',
-    role: 'Freelance Technical Support Specialist',
-    company: 'Self-Employed',
-    description: [
-      'Hardware repairs including component replacement (RAM, storage, batteries, keyboards) and troubleshooting motherboard/power supply issues',
-      'Windows OS installation and configuration (Windows 7-11) with driver setup and Microsoft Office installation',
-      'System optimization, malware removal, and client communication with detailed service documentation',
-      'Completed hundreds of repairs and installations across multiple computer brands and models',
+      'Built custom web applications for clients using Laravel, React, Next.js, and Node.js.',
+      'Designed responsive, database-driven interfaces with Tailwind CSS and Bootstrap.',
+      'Assembled custom PCs, diagnosed hardware issues, and replaced faulty components.',
+      'Installed and configured Windows, cleaned up malware, and tuned systems for better performance.',
     ],
   },
 ];
 
 export default function WorkExperience() {
   return (
-    <section id="experience" className="relative flex items-start justify-center pt-12 sm:pt-14 md:pt-16 pb-16 sm:pb-24 md:pb-32 px-4 sm:px-6 lg:px-8 xl:px-12 border-t border-white/30 border-b border-white/30">
+    <section
+      id="experience"
+      className="relative flex items-start justify-center border-t border-white/30 border-b border-white/30"
+      style={{ paddingTop: '48px', paddingBottom: '64px', paddingLeft: '16px', paddingRight: '16px' }}
+    >
       <div className="w-full sm:w-[90%] md:w-[80%] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_2fr] gap-6 md:gap-12 items-stretch" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
           <div className="md:border-r md:border-white/30 pr-0 md:pr-12 text-center md:text-left" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
@@ -63,26 +64,26 @@ export default function WorkExperience() {
 
           <div className="hidden md:block w-px bg-white/30" style={{ height: '100%', minHeight: '100%' }}></div>
 
-          <div className="flex flex-col text-center md:text-left" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
+          <div className="flex flex-col text-left" style={{ paddingTop: '16px', paddingBottom: '16px' }}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8" style={{ marginTop: '16px', marginBottom: '16px' }}>
               {experience.map((exp, index) => (
-                <div key={index} className="border-b border-white/30 pb-6" style={{ paddingBottom: '24px' }}>
+                <div key={index} className="border-b border-white/30" style={{ paddingBottom: '24px' }}>
                   <div className="flex flex-col gap-2" style={{ marginTop: '12px', marginBottom: '12px' }}>
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
-                      <h3 className="text-lg font-bold text-white">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4">
+                      <h3 className="text-base sm:text-lg font-bold text-white">
                         {exp.company}
                       </h3>
-                      <span className="text-sm text-gray-500 sm:whitespace-nowrap">
+                      <span className="text-xs sm:text-sm text-gray-500 sm:whitespace-nowrap">
                         {exp.year}
                       </span>
                     </div>
-                    <p className="text-base text-gray-400 font-medium">
+                    <p className="text-sm sm:text-base text-gray-400 font-medium">
                       {exp.role}
                     </p>
-                    <ul className="text-sm text-gray-500 leading-relaxed space-y-2 mt-2">
+                    <ul className="text-xs sm:text-sm text-gray-400 leading-relaxed flex flex-col gap-2" style={{ marginTop: '8px' }}>
                       {exp.description.map((item, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <span className="mr-2 text-gray-400">•</span>
+                        <li key={idx} className="flex items-start gap-2">
+                          <span className="text-gray-400 shrink-0">•</span>
                           <span>{item}</span>
                         </li>
                       ))}

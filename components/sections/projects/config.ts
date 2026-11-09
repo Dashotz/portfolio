@@ -3,6 +3,14 @@ import { ProjectData } from './ProjectCard';
 
 export const projects: ProjectData[] = [
     {
+        name: 'GFS Movement Apparel',
+        description: 'Official website for GFS Movement Apparel, a custom sportswear and sublimation uniform manufacturer in Bacoor, Cavite. Features an interactive 3D uniform preview studio, package pricing, a 5-step production showcase, ready-to-order catalog, and local SEO optimization.',
+        tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Three.js', 'Supabase'],
+        demoLink: 'https://gfsmovementapparel.vercel.app/',
+        image: '/images/gfs.jpg',
+        category: 'website'
+    },
+    {
         name: 'Imus United Football Club',
         description: 'A modern, animated website for Imus United Football Club built with Next.js 14 and Supabase. Features include a public event system with attendance tracking, an admin dashboard for operations, 3D graphics, and SEO optimization.',
         tech: ['Next.js 14', 'Supabase', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
@@ -14,7 +22,7 @@ export const projects: ProjectData[] = [
     },
     {
         name: 'ClinicSync',
-        description: 'A modern dental practice management platform focused on digital patient records, smart appointment scheduling, real-time analytics (revenue & patient flow), and HIPAA-conscious security — all wrapped in an intuitive dashboard. Currently in development, with backend API integration planned next.',
+        description: 'A dental practice management platform built for digital patient records, appointment scheduling, and real-time clinic analytics, all brought together in a clean dashboard.',
         tech: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS', 'shadcn/ui'],
         demoLink: 'https://clinicsync-snowy.vercel.app',
         image: '/images/clinicsync.PNG',
